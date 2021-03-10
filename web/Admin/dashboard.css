@@ -1,0 +1,64 @@
+.pageheader-title h2{
+    font-size:24px;
+    color:#3d405c;
+    margin: 0.5rem;
+}
+
+.info-card{
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+     width: 100%;
+     margin-left:auto;
+     margin-right:auto;
+}
+
+.card-container{
+   border: none;
+   box-shadow: 0px 1px 2px 1px rgb(154 154 204 / 60%);
+   background: white;
+   width: 250px;
+   height: 170px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+}
+
+.card-title{
+    color: #7171a6;
+    font-weight: bold;
+    font-size: 16px;
+    font-family: serif;
+}
+
+.card-content{
+    color:#3d405c;
+    font-size: 20px;
+    font-family: serif;
+}
+
+.order-table{
+    box-shadow: 0px 1px 2px 1px rgb(154 154 204 / 22%);
+    width: 80%;
+}
+
+table.dataTable th,
+table.dataTable td {
+  white-space: nowrap;
+}
+
+@media screen and (max-width: 700px){
+    .container-db-right{
+    margin-left: 0;
+    /*    margin-top:60px;*/
+    }
+    
+    .info-card{
+        flex-direction: column;
+    }
+    
+    .card-container{
+        margin-bottom:15px;
+    }
+}
