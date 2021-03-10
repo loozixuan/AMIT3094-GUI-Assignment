@@ -12,12 +12,11 @@ and open the template in the editor.
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <link href="login.css" rel="stylesheet">
-        <link href="base.css" rel="stylesheet">
     </head>
 
 
     <body>
-        <%@ include file="./header.html" %>
+        <%@ include file="../Share/header.html" %>
         <div class="loginContainer">
 
             <h3>Login to my account</h3>
@@ -41,7 +40,7 @@ and open the template in the editor.
 
         </div>
 
-        <%@ include file="./footer.html" %>
+        <%@ include file="../Share/footer.html" %>
 
     </body>
 </html>

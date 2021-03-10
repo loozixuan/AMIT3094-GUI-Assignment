@@ -3,15 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Client/home.css</file>
+            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Client/Share/base.css</file>
             <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/src/java/domain/Person.java</file>
-            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Client/base.css</file>
-            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Client/header.html</file>
-            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Client/home.jsp</file>
+            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Client/Login/login.css</file>
             <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/src/java/domain/Book.java</file>
+            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Client/Share/header.html</file>
+            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Client/Login/login.jsp</file>
             <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/src/java/domain/Customer.java</file>
-            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Client/login.jsp</file>
-            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Client/login.css</file>
+            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Client/Home/home.jsp</file>
             <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/src/java/domain/SubCategories.java</file>
             <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/src/java/domain/Category.java</file>
         </group>

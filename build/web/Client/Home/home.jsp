@@ -15,12 +15,11 @@ and open the template in the editor.
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <link href="home.css" rel="stylesheet">
-        <link href="base.css" rel="stylesheet">
     </head>
 
 
     <body>
-        <%@ include file="./header.html" %>
+        <%@ include file="../Share/header.html" %>
         <main role="main">
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
@@ -102,7 +101,7 @@ and open the template in the editor.
         </main>
 
 
-        <%@ include file="./footer.html" %>
+        <%@ include file="../Share/footer.html" %>
 
     </body>
 </html>
