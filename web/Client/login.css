@@ -1,0 +1,79 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 9, 2021, 11:15:22 PM
+    Author     : Chrisann Lee
+*/
+
+
+
+.loginContainer{
+    padding-top:100px;
+    padding-bottom:100px;
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content:center;
+}
+
+.enter{
+    color:rgba(0,0,0,0.7);
+    margin-top:15px;
+    margin-bottom:15px;
+}
+
+input{
+    border:1px solid #ccc;
+    padding:10px 15px;
+    margin-top:10px;
+    margin-bottom:10px;
+    width:350px;
+    border-radius:2px;
+    
+}
+
+input:focus{
+    outline:none;
+}
+
+button{
+    width:350px;
+    border:none;
+    background-color:rgba(204,0,0,0.9);
+    color:white;
+    padding:10px;
+    margin:10px 0px;
+    border-radius:2px;
+}
+
+button:hover{
+    background-color:rgba(204,0,0,0.8);
+   
+}
+
+button:focus{
+    outline:none;
+}
+
+
+.rowQuestion{
+    display:flex;
+    font-size:0.8em;
+   
+}
+
+.question{
+    color:rgba(0,0,0,0.8);
+}
+
+.link{
+    color:rgba(204,0,0,0.9);
+}
+
+p{
+    margin:0px;
+}
+

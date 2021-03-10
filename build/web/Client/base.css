@@ -1,0 +1,256 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 5, 2021, 9:30:46 PM
+    Author     : Chrisann Lee
+*/
+
+header{
+    background-color: white;
+}
+
+body{
+    margin: 0!important;
+    background-color:#f4f5f7;
+}
+
+/*header structure*/
+.header {
+    display:flex;
+    margin:0px 30px 0px 30px;
+
+}
+
+
+
+#searchBar{
+    width:46%;
+    height:45px;
+    margin: 30px 80px 0px 80px;
+    display:flex;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; 
+}
+
+#searchBar input{
+    width:100%;
+    padding:5px 10px;
+    border:none;
+}
+
+
+
+#searchBar input:focus{
+    outline: none;
+}
+
+#searchIconContainer{
+    margin:0px;
+    padding:10px 12px;
+    background-color: rgba(0, 0, 0,0.8);
+    border-top-right-radius:4px;
+    border-bottom-right-radius:4px;
+    color:white;
+}
+
+.header-right {
+    display:flex;
+    margin:23px 20px 10px 20px;
+}
+
+div.col-1-2{
+    padding-left:20px;
+    padding-right:20px;
+    padding-top:10px;
+    border-left:  1px solid #ccc;
+    font-size:0.9em;
+}
+
+#myAccount{
+    color:rgb(204, 0, 0);
+    text-align:center;
+    font-weight: bold;
+    margin-bottom: 0px;
+}
+
+#cart{
+    display:flex;
+    padding-top: 18px;
+}
+
+#cartLabel{
+    
+    color:rgb(204, 0, 0);
+    font-size: 1.6em;
+
+}
+
+#cart>i{
+    color:rgb(204, 0, 0);
+    font-size: 2.0em;
+}
+
+#cartLabel{
+    margin-left:10px;
+}
+
+
+
+
+/*nav structure*/
+
+.nav-inner{
+    margin-bottom: 0px;
+}
+.nav-title .dropdown-item{ 
+    display: none;
+    background-color: white;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    z-index: 1;
+    
+}
+
+.nav-title:hover .dropdown-item{ 
+    display: block; 
+    
+}
+.nav-title .dropdown-item{ 
+    margin-top:8px;
+    border-top: 1px solid rgb(230, 230, 230); 
+    background-color: #FEFFFC;
+   
+      
+}
+
+ul{
+    display:flex;
+    justify-content: space-around;
+    text-decoration: none;
+
+}
+
+li{
+    list-style-type:none;
+    font-size:0.9em;
+    color:rgba(0,0,0,0.7);
+    padding-bottom:8px;
+
+}
+
+li>a:hover{
+    color:rgb(204, 0, 0);
+    font-weight: bold;
+}
+
+li>a{
+    width:100%;
+    color:rgba(0,0,0,0.7);
+    text-decoration: none;
+
+
+}
+
+/*dropdown-item structure*/
+.row{
+    margin:20px;
+    display:flex;
+    justify-content: space-around;
+}
+
+
+
+/*footer structure*/
+
+footer{
+    font-size: 20px;
+    background:rgb(46, 45, 45);
+
+
+}
+
+footer a{
+    text-decoration: none;
+    display: block;
+    line-height: 1.5em;
+}
+
+footer.link>a:hover{
+    text-decoration: underline;
+}
+footer{
+    clear: both;
+}
+.footerPicture{
+    box-sizing:border-box;
+    width:100%;
+    margin-bottom: 30px;
+
+}
+.footerPicture img{
+    width:100%;
+}
+
+
+
+div.link {
+    text-align:center;
+    width:35%;
+    column-rule: 2px double white;
+    -moz-column-rule: 2px double white;
+    -webkit-column-rule: 2px double white;
+    column-count: 3; 
+    -moz-column-count: 3;
+    -webkit-column-count: 3;
+    column-width:2px;
+    -moz-column-width:35%;
+    -webkit-column-width: 35%;
+    margin-left:auto;
+    margin-right:auto;
+    color: rgb(190, 179, 179);
+    font-size: 18px;
+}
+
+.column>a{
+    color: honeydew;
+
+}
+
+.footer-description{
+    width: auto;
+    text-align: center;
+    font-size: 14px;
+}
+
+.Footerrow::after{
+    clear: both;
+}
+.icons {
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div.upIconContainer{
+    width:20px;
+
+    margin:10px;
+    background-color: red;
+    border-radius:50px;
+
+}
+.upIcon>a{
+
+    margin-left:5px;
+    margin-right:5px;
+    color:honeydew;
+    font-size: 1.0em;
+
+}
