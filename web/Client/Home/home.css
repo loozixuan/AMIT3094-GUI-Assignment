@@ -54,16 +54,17 @@ and open the template in the editor.
 
 /*Collection Container*/
 .collectionsContainer{
+    font-family: "Poppins", sans-serif;
     margin-left:30px;
     margin-right:30px;
-    margin-bottom:10px;
+    margin-bottom:20px;
 }
 
 #titleCollection{
     font-size:1.3em;
     font-weight: bold;
     color:rgba(0,0,0,0.8);
-    margin-bottom:10px;
+    margin-bottom:30px;
 }
 
 .buttonCollectionsRow{
@@ -81,8 +82,8 @@ and open the template in the editor.
     display:border-box;
     border-radius:50%;
     overflow: hidden;
-    width:150px;
-    height:150px;
+    width:170px;
+    height:170px;
 }
 
 .buttonImgContainer img{
@@ -101,8 +102,6 @@ and open the template in the editor.
 .buttonCollection {
     margin-top:20px;
     margin-bottom:5px;
-    background-color: none;
-    border: none;
     text-align: center;
     font-size: 0.8em;
     transition: all 0.5s;
@@ -138,4 +137,146 @@ and open the template in the editor.
 }
 
 
+
+
+/*Motivational book */
+.prod-list-container{
+    font-family: "Poppins", sans-serif;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin:50px 30px;
+}
+
+.prod-head{
+    display:flex;
+    justify-content: space-between;
+}
+
+#motivational{
+    font-size:1.3em;
+    font-weight: bold;
+    color:rgba(0,0,0,0.8);
+    margin-bottom:30px;
+}
+
+#view-more{
+    color:rgba(204,0,0,0.9);
+    font-weight: bold;
+    transition: all 0.5s;
+    cursor: pointer;
+}
+
+
+#view-more span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+    text-align: center;
+}
+
+#view-more span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+#view-more:hover span {
+    padding-right: 20px;
+    color:rgb(204,0,0);
+}
+#view-more:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+.book-body{
+    width: 20%;
+    background: #FFFFFF;
+    border:1px solid #ccc;
+}
+
+.book-body div:nth-child(2){
+    padding:5px;
+    color:#323e48;
+    height: 50px;
+    font-weight: bold;
+}
+
+.book-body div:nth-child(3){
+    padding:5px;
+    color:#be1e2d;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.book-body li{
+    font-weight: bold;
+}
+
+.book-body li:before {
+    content: "\25CF";
+}
+
+.book-title{
+    font-size:1.1em;
+}
+
+.row{
+    margin:0px !important;
+}
+
+.btn-cart{
+    background: #be1e2d;
+    border: none;
+    width: 100%;
+    position: relative;
+    padding: 0 30px;
+    line-height: 40px;
+    border-radius: 2px;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.25s ease-in-out, color 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+    border-radius: 2px;
+    color: white;
+    font-size: 15px;
+}
+
+
+.btn-cart:hover{
+    opacity: 0.8;
+}
+
+
+/*Children Book*/
+.children-book-container{
+   margin:40px 30px;
+   display:flex;
+   width:100%;
+}
+
+.children-bookImg-container{
+    padding:20px;
+    background:#66d9ff;
+    margin-bottom:13px;
+}
+
+.children-bookImg-container{
+    width:37%;
+    margin-right:20px;
+    
+}
+
+.button-shop-now{
+    border:none;
+    font-size:1.0em;
+    padding:10px 30px;
+    font-weight: bold;
+    color:rgba(0,0,0,0.8);
+    border-radius:5px;
+}
 
