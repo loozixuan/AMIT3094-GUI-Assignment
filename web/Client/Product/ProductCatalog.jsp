@@ -58,36 +58,35 @@
 
                 <div class="prod-container row p-2 d-flex justify-content-between">
                     <div class="book-body p-2 mb-3">
-                        <a href="ProductDescription.jsp"><img src="../Share/images/book/business/business1.jpg" src="book"/></a>
+                        <a href="ProductDescription.jsp"><img src="../Share/images/book/business/business1.jpg" src="book" style="max-width: 100%"/></a>
                         <div>Stats & Curiosities</div>
                         <div>RM 100</div>
                         <li>Sold Out</li>
                         <button class="btn-cart">Add To Cart</button>
                     </div>
                     <div class="book-body p-2 mb-3">
-                        <img src="../Share/images/book/business/business2.jpg" src="book"/>
+                        <img src="../Share/images/book/business/business2.jpg" src="book" style="max-width: 100%"/>
                         <div>Rebuilding Your Business Model</div>
                         <div>RM 200</div>
                         <li>Sold Out</li>
                         <button class="btn-cart">Add To Cart</button>
                     </div>
                     <div class="book-body p-2 mb-3">
-                        <img src="../Share/images/book/business/business3.jpg" src="book"/>
+                        <img src="../Share/images/book/business/business3.jpg" src="book" style="max-width: 100%"/>
                         <div>HBR's 10 Must Reads on Communication</div>
                         <div>RM99.99</div>
                         <li>Sold Out</li>
                         <button class="btn-cart">Add To Cart</button>
                     </div>
                     <div class="book-body p-2 mb-3">
-                        <img src="../Share/images/book/business/business4.jpg" src="book"/>
+                        <img src="../Share/images/book/business/business4.jpg" src="book" style="max-width: 100%"/>
                         <div>Creating Business Planning</div>
                         <div>RM88.88</div>
                         <li>Sold Out</li>
                         <button class="btn-cart">Add To Cart</button>
                     </div>
-                    <div class="w-100"></div>
                     <div class="book-body p-2 mb-3">
-                        <img src="../Share/images/book/business/business3.jpg" src="book"/>
+                        <img src="../Share/images/book/business/business3.jpg" src="book" style="max-width: 100%"/>
                         <div>HBR's 10 Must Reads on Communication</div>
                         <div>RM99.99</div>
                         <li>In Stock</li>
