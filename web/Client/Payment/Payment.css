@@ -1,0 +1,51 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 13, 2021, 4:47:44 AM
+    Author     : user
+*/
+#productInCart{
+    position: relative;
+    height: 200px;
+    
+}
+
+#productInCart > div{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+#productInCart img{
+    width: 50px;
+    height: 70px;
+    padding: 0px;
+}
+
+#productInCart *{ 
+
+}
+
+#productImage{
+    padding: 10px;
+    height: 90px;
+    position: relative;
+}
+
+#productImage span{
+    position: absolute;
+    top: 0; 
+    right: 0;
+}
+
+#calculation > div{
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+
+#bookName{
+    border: 1px solid black;
+}
+
