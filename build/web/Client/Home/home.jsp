@@ -16,7 +16,7 @@ and open the template in the editor.
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-       
+        <link rel="icon" href="../Share/images/logoBook.png"/>
         <link href="home.css" rel="stylesheet">
     </head>
 
@@ -106,35 +106,35 @@ and open the template in the editor.
                 <div class="prod-container row d-flex justify-content-between">
                     <div class="book-body p-3 mb-3">
                         <a href="ProductDescription.jsp"><img src="../Share/images/book/business/business1.jpg" src="book" style="max-width: 100%"/></a>
-                        <div class="book-title">Stats & Curiosities</div>
+                        <div>Stats & Curiosities</div>
                         <div>RM 100</div>
                         <li>Sold Out</li>
                         <button class="btn-cart">Add To Cart</button>
                     </div>
                     <div class="book-body p-3 mb-3">
                         <img src="../Share/images/book/business/business2.jpg" src="book" style="max-width: 100%"/>
-                        <div class="book-title">Rebuilding Your Business Model</div>
+                        <div>Rebuilding Your Business Model</div>
                         <div>RM 200</div>
                         <li>Sold Out</li>
                         <button class="btn-cart">Add To Cart</button>
                     </div>
                     <div class="book-body p-3 mb-3">
                         <img src="../Share/images/book/business/business3.jpg" src="book" style="max-width: 100%"/>
-                        <div class="book-title">HBR's 10 Must Reads on Communication</div>
+                        <div>HBR's 10 Must Reads on Communication</div>
                         <div>RM99.99</div>
                         <li>Sold Out</li>
                         <button class="btn-cart">Add To Cart</button>
                     </div>
                     <div class="book-body p-3 mb-3">
                         <img src="../Share/images/book/business/business4.jpg" src="book" style="max-width: 100%"/>
-                        <div class="book-title">Creating Business Planning</div>
+                        <div>Creating Business Planning</div>
                         <div>RM88.88</div>
                         <li>Sold Out</li>
                         <button class="btn-cart">Add To Cart</button>
                     </div>
                     <div class="book-body p-3 mb-3">
                         <img src="../Share/images/book/business/business3.jpg" src="book" style="max-width: 100%"/>
-                        <div class="book-title">HBR's 10 Must Reads on Communication</div>
+                        <div>HBR's 10 Must Reads on Communication</div>
                         <div>RM99.99</div>
                         <li>In Stock</li>
                         <button class="btn-cart">Add To Cart</button>

@@ -1,0 +1,97 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 15, 2021, 10:50:14 PM
+    Author     : Chrisann Lee
+*/
+
+.mainBody{
+    display: flex;
+    box-sizing: border-box;
+}
+
+.header{
+    width: 19%;
+    box-sizing: border-box;                
+    min-height: 100%;               
+    background: #333;
+}
+
+.main{
+    width: 80%;
+    box-sizing: border-box;
+}
+.orderDetail{
+    margin:0px 20px 30px 30px;
+    padding:10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.custInfo{
+    margin-left: 20px;
+    margin-left: 20px;
+}
+.banner{
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding:10px;
+    font-size:1.3em;
+    margin: 10px 20px 20px 0px;
+    background-image: radial-gradient(circle, #283ed1, #3b4ddb, #4b5ce5, #5a6bef, #687af8);
+}
+td{
+    font-size:1.1em;
+    padding:5px;
+}
+td>input{
+    width: 300px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-left:20px
+}
+.img{
+    width:150px;
+    box-sizing: border-box;
+}
+.img img{
+    width:60%;
+}
+table.product{
+    margin: 15px;
+    width:800px;
+    border: 1px outset rgba(0, 0, 75, 0.1);
+    border-collapse: collapse;
+}
+tr.product_detail>th{
+    height: 30px;
+    font-size: 1.1em;
+    background-color: #F7F7F7;
+}
+tr.product_detail2>td{
+    text-align: center;
+    font-size: 1.1em;
+
+}
+
+@font-face{
+    font-family: p;
+    src: url(Roboto-Regular.ttf);
+}
+.delete{
+    margin:40px;
+
+}
+.delete>input{
+    font-size:1.1em;
+    padding:10px;
+    background-color:red;
+    color:white;
+    border-radius:5px;
+    border: 1px solid #ccc;
+}
+.delete>input:hover{
+    background-color:#cc0000;
+}
