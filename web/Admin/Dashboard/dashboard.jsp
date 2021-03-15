@@ -11,16 +11,15 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="adminPanel.css">
-        <link rel="stylesheet" href="dashboard.css">
         <link rel="icon" href="images/logo-book.png"/>
-        <title>Admin Dashboard</title>
+        <link href="dashboard.css" rel="stylesheet">
+        <title>Hobbit Hall Admin</title>
     </head>
     <body>
         <!--Header-->
-        <%@ include file="adminHeader.html" %>
+        <%@ include file="../Share/adminHeader.html" %>
         <!--Sidebar-->
-        <%@ include file="adminSidebar.html" %>
+        <%@ include file="../Share/adminSidebar.html" %>
 
         <!--Content-->
         <div class="content">
