@@ -1,0 +1,199 @@
+:root {
+    --primary-button-button:#be1e2d; 
+    --heading-color: #323e48;
+    --white-bg-color:#fff;
+    --accent-color:#be1e2d;
+    --product-in-stock-color: #008a00;
+    --header-title-text: "Poppins", sans-serif;
+    --success-color: #00aa00;
+    --error-color: #ff0000;
+}
+
+.image-body{
+    width:40%;
+    background: var(--white-bg-color);
+    box-shadow: 0.1rem 0.1rem 0.2rem rgb(0 0 0 / 10%);
+}
+
+.image-body img{
+    max-width: 100%;
+}
+
+.small-image img{
+    width:75px;
+    border: 2px solid var(--primary-button-button);
+    padding: 3px;
+}
+
+.info-body{
+    width:40%;
+    background: var(--white-bg-color);
+    box-shadow: 0.1rem 0.1rem 0.2rem rgb(0 0 0 / 10%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.info-body>div:nth-child(2){
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 10px;
+}
+
+.info-body>div:nth-child(1){
+    font-family: var(--header-title-text);
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.author-info div:nth-child(1){
+    font-family: var(--header-title-text);
+    color: var(--accent-color);
+    font-size: 0.9rem;
+}
+
+.des-card div{
+    width:87%;
+    background: var(--white-bg-color);
+    box-shadow: 0.1rem 0.1rem 0.2rem rgb(0 0 0 / 10%);
+    display: flex;
+    flex-direction: column;
+    border-radius: 2px;
+}
+
+
+.product-item-body{
+    width: 23.75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--white-bg-color);
+    box-shadow: 0.1rem 0.1rem 0.2rem rgb(0 0 0 / 10%);
+}
+
+.product-item-body div:nth-child(2){
+    padding:5px;
+    color:#323e48;
+    height: 50px;
+    font-weight: bold;
+}
+
+.product-item-body div:nth-child(3){
+    padding:5px;
+    color:var(--primary-button-button);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.product-item-body li{
+    font-weight: bold;
+}
+
+.product-item-body li:before {
+    content: "\25CF";
+}
+
+.btn-cart,.btn-des-cart{
+    background: var(--primary-button-button);
+    border: none;
+    width: 100%;
+    position: relative;
+    padding: 0 30px;
+    line-height: 40px;
+    border-radius: 2px;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.25s ease-in-out, color 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+    border-radius: 2px;
+    color: white;
+    font-size: 15px;
+}
+
+.btn-des-cart{
+    width: 50% !important;
+}
+
+.btn-cart:hover, .btn-des-cart:hover{
+    opacity: 0.8;
+}
+
+.product-item-card{
+    width: 90%;
+}
+
+.price-info div:nth-child(1), .stock-info div:nth-child(1){
+    padding-right: 30px;
+    color: var(--heading-color);
+    font-weight: 620;
+}
+
+.price-info div:nth-child(2){
+    color:var(--accent-color);
+    font-size: 1.3rem;
+    font-weight: 520;
+}
+
+.stock-info div:nth-child(2){
+    color:var(--product-in-stock-color);
+    font-size: 1rem;
+    font-weight: 520;
+}
+
+.stock-info div:nth-child(2):before {
+    padding-right: 5px;
+    content: "\25CF";
+}
+
+.button{
+    border: 1px solid lightgray;
+    padding: 10px;
+    outline: none;
+    background: transparent;
+    width: 45px;
+}
+
+.input-group-field{
+    outline: none;
+    border: 1px solid lightgray;
+    width: 125px;
+    text-align: center;
+    color: gray;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.book-description-title{
+    color: var(--heading-color);
+    font-size: 1.4rem;
+    font-weight: 520;
+    border-bottom: 1px solid lightgray;
+
+}
+
+.book-description{
+    color: var(--heading-color);
+    font-family: var(--header-title-text);
+    font-size: 0.95rem;
+}
+
+.section-title{
+    color: var(--heading-color);
+    font-family: var(--header-title-text);
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 992px) {
+    .info-card{
+        flex-direction: column !important;
+        align-items: center;
+    }
+
+    .image-body, .info-body{
+        width: 87%;
+        margin-top: 10px;
+    }
+}

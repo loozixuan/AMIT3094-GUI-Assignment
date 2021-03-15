@@ -71,7 +71,7 @@ select{
 }
 
 .book-body li:before {
-  content: "\25CF";
+    content: "\25CF";
 }
 
 /*.book-body img{
@@ -99,7 +99,6 @@ select{
     font-size: 15px;
 }
 
-
 .btn-cart:hover{
-  opacity: 0.8;
+    opacity: 0.8;
 }
