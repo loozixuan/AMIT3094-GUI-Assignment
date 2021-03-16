@@ -1,0 +1,57 @@
+.table-emp-body{
+    background: white;
+    box-shadow: 0.1rem 0.1rem 0.2rem rgb(0 0 0 / 10%);
+    border-radius: 3px;
+}
+
+.table-emp #table-title{
+    border-top: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey !important;
+    text-align: center;
+}
+
+.table-emp td{
+    text-align: center;
+}
+
+.table>:not(:last-child)>:last-child>*{
+    border-bottom-color: lightgray !important;
+    padding: 10px !important;
+}
+
+.table>:not(caption)>*>*{
+    padding: 15px !important;
+}
+
+.table-emp-header{
+    background: #299be4;
+    border-radius: 2px;
+    color:white;
+}
+
+.table-emp-header div:nth-child(1){
+    font-size: 1.2rem;
+}
+
+.btn-add-emp button{
+    color: #566787;
+    font-size: 13px;
+    background: #fff;
+    border: none;
+    border-radius: 2px;
+    padding: 5px;
+    border: none;
+    outline: none !important;
+}
+
+.table-action div:nth-child(1){
+    color:#2196F3;
+}
+
+.table-action div:nth-child(2){
+    color:red;
+}
+
+.table{
+    margin-bottom: 0px !important;
+}
