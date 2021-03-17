@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="icon" href="../images/logo-book.png"/>
+        <link rel="icon" href="../Share/images/logo-book.png"/>
         <link rel="stylesheet" href="orderDetails.css"/>
         <title>Hobbit Hall</title>
     </head>
@@ -18,11 +18,25 @@
         <%@ include file="../Share/adminHeader.html" %>
         <!--Sidebar-->
         <%@ include file="../Share/adminSidebar.html" %>
+        
+        
+             <!--Content-->
         <div class="content">
-            <div class="orderDetail">
+            <div class="container-fluid p-2">
+                <div class="container-db-right p-2">
+                    <div class="pageheader-title">
+                        <h4>Order Details</h4>
+                        <hr style="margin:0px;border-bottom:1px solid lightgrey;border-top: none;"/>
+                        <ul class="breadcrumb">
+                            <li><a href="#">Customer Order</a></li>
+                            <li>Order Details</li>
+                        </ul>
+                    </div>
+                   
+                     <div class="orderDetail">
                 <div class="custInfo">
-                    <h3>Order ID - 123456</h3>
-                    <div class="banner">Customer Detail</div>
+                    <h5>Order ID - 123456</h5>
+                    <div class="banner">Customer Details</div>
                     <table>
                         <tr><td>Customer ID   :</td><td><input type="text" value="C001"></td></tr>
                         <tr><td>Customer Name :</td><td><input type="text" value="Chris"></td></tr>
@@ -30,7 +44,7 @@
                         <tr><td>Phone Number :</td><td><input type="text" value="010-1111111"></td></tr>
                         <tr><td>Address :</td><td><input type="text" value="123 Jalan Ampang"></td></tr>
                     </table>
-                    <div class="banner">Order Detail</div>  
+                    <div class="banner">Order Details</div>  
                     <table>
                         <tr><td>Order Date  :</td><td><input type="text" value="2020-1-2" style="border:none;width:400px;"></td><td>Order Status :</td><td><input type="text" value="shipping" style="border:none;width:100px;color:red;"></td></tr>      
                         <tr><td></td><td><input type="text" value="" style="border:none;width:400px;"></td><td>Total Payment :</td><td><input type="text" value="RM100" style="border:none;width:100px;"></td></tr>      
@@ -52,13 +66,16 @@
                             <td>RM100</td>
                         </tr>
                     </table>
-
-                    <div class="delete"><input type="submit" name="cancel" value="Cancel" onclick="return confirm('Are you sure you want to cancel this order?');"></div>
-                    <!--                    <div class="delete"><input type="submit" name="delivered" value="Shipping" onclick="return confirm('This order is on shipping?');" style='background-image: radial-gradient(circle, #37bd0b, #3dc80d, #42d40f, #48df10, #4eeb12);;'></div>
                     
-                    -->
+                    <div class="delete"><input type="submit" name="cancel" value="Cancel" onclick="return confirm('Are you sure you want to cancel this order?');"></div>
+<!--                    <div class="delete"><input type="submit" name="delivered" value="Shipping" onclick="return confirm('This order is on shipping?');" style='background-image: radial-gradient(circle, #37bd0b, #3dc80d, #42d40f, #48df10, #4eeb12);;'></div>
+
+                   -->
 
                 </div> 
+            </div>
+
+                </div>
             </div>
         </div>
 

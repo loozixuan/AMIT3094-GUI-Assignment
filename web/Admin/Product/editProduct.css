@@ -4,7 +4,7 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : Mar 15, 2021, 10:50:14 PM
+    Created on : Mar 17, 2021, 5:51:10 PM
     Author     : Chrisann Lee
 */
 
@@ -37,29 +37,20 @@ td>input{
     border: 1px solid #ccc;
     margin-left:20px
 }
-.img{
-    width:150px;
-    box-sizing: border-box;
-}
-.img img{
-    width:60%;
-}
-table.product{
-    margin: 15px;
-    width:800px;
-    border: 1px outset rgba(0, 0, 75, 0.1);
-    border-collapse: collapse;
-}
-tr.product_detail>th{
-    height: 30px;
-    font-size: 1.0em;
-    background-color: #F7F7F7;
-}
-tr.product_detail2>td{
-    text-align: center;
-    font-size: 1.0em;
 
+#subCategory, #description{
+    margin-left:20px;
+    padding:10px;
+    font-size:1.0em;
+    border-radius:5px;
+    border: 1px solid #ccc;
 }
+
+.img{
+    width:170px;
+    margin:10px 50px;
+}
+
 
 @font-face{
     font-family: p;

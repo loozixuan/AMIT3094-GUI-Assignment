@@ -1,0 +1,175 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 17, 2021, 10:51:25 AM
+    Author     : Chrisann Lee
+*/
+
+@font-face{
+    font-family: p;
+    src: url(Roboto-Regular.ttf);
+}
+.mainBody{
+    display: flex;
+    box-sizing: border-box;
+}
+
+.header{
+    width: 19%;
+    box-sizing: border-box;                
+    min-height: 100%;               
+    background: #333;
+}
+
+.main{
+    width: 80%;
+    box-sizing: border-box;
+}
+
+@font-face{
+    font-family: p;
+    src: url(Roboto-Regular.ttf);
+}
+
+
+/* nav-book-category*/
+.nav-book-category{
+    display:flex;
+    justify-content: space-around;
+    margin-top:10px;
+    margin-bottom: 40px;
+}
+
+#dropdownMenuButton{
+     border:1px solid #17154f;
+     background:#17154f;
+}
+
+
+.table{
+    border-radius: 6px;
+    padding:10px;
+    border:1px solid #dddddd;
+    width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:10px;
+    height: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.tableUser {
+    margin-left: auto;
+    margin-right: auto;
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.tableUser th{
+    text-align: center;
+    padding-bottom: 5px;
+    color:#101D5F;
+    font-style: normal;
+    font-size: 1.0em;
+} 
+
+.tableUser td {
+    border-top: 2px solid #dddddd;
+    text-align: center;
+    padding: 5px;
+    font-size:0.9em;
+   
+}
+
+.h{
+    font-family: p;
+    transform:translateY(-35px);
+    background-image: radial-gradient(circle, #2609a4, #1d2db8, #1146cb, #095ddc, #1273eb);
+    padding: 8px 20px;
+    width:95%;
+    margin-left: auto;
+    margin-right:auto;
+    color:white;
+    border-radius: 6px;
+    font-size: 1.3em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);
+    display:flex;
+    justify-content:space-between;
+
+}
+
+
+.input-product{
+    background:white;
+     outline: none;
+     font-size:0.9em;
+    
+      
+    
+}
+
+.input-product input{
+     outline: none;
+     border:none;
+     width:180px;
+}
+
+#searchBar{
+    width:200px;
+    height:30px;
+    display:flex;
+    border: 1px solid #1a1aff;
+    border-radius: 4px;
+    box-sizing: border-box; 
+    background: white;
+}
+
+#searchBar input{
+    width:100%;
+    padding:5px 10px;
+    border:none;
+}
+
+
+
+#searchBar input:focus{
+    outline: none;
+}
+
+#searchIconContainer{
+    margin:0px;
+    padding:2px 8px;
+    background-color: rgba(0, 0, 0,0.8);
+    border-top-right-radius:4px;
+    border-bottom-right-radius:4px;
+    color:white;
+    font-size:0.9em;
+}
+
+i{
+    font-size:1.5em;
+}
+i:hover{
+    color:red;
+
+}
+
+a:hover{
+    color:#0033cc;
+}
+
+
+.img{
+    width:50px;
+    box-sizing: border-box;
+}
+
+.fa:hover{
+    color:blue
+}
+
+
