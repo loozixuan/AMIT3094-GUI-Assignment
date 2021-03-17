@@ -1,6 +1,6 @@
 <%-- 
-    Document   : modifyProduct
-    Created on : Mar 17, 2021, 5:50:47 PM
+    Document   : insertProduct
+    Created on : Mar 17, 2021, 7:54:02 PM
     Author     : Chrisann Lee
 --%>
 
@@ -26,29 +26,27 @@
             <div class="container-fluid p-2">
                 <div class="container-db-right p-2">
                     <div class="pageheader-title">
-                        <h4>Edit Product</h4>
+                        <h4>Insert Product</h4>
                         <hr style="margin:0px;border-bottom:1px solid lightgrey;border-top: none;"/>
                         <ul class="breadcrumb">
-                            <li><a href="#">Product</a></li>
-                            <li>Edit Product</li>
+                            <li><a href="#">Insert Product</a></li>
                         </ul>
                     </div>
 
                     <div class="orderDetail">
                         <div class="custInfo">
-                            <h4>Product ID - 123456</h4>
-                            <div class="banner">Product Details</div>
+                            <div class="banner">Insert Product</div>
                             <div class="img">
                                 <img src="../../Client/Share/images/book/business/business1.jpg" class="img"/>
                             </div>
                             <table>
-                                <tr><td>Product ID</td><td>: <input type="text" name="pro_id"  value="123456"></td></tr>
-                                <tr><td>Product Name</td><td>: <input type="text" name="pro_name" value="Lean In"></td></tr>
-                                <tr><td>Author</td><td>: <input type="text" name="author" value="Sherlyn"></td></tr>
+                                <tr><td>Product ID</td><td>: <input type="text" name="pro_id"  value=""></td></tr>
+                                <tr><td>Product Name</td><td>: <input type="text" name="pro_name" value=""></td></tr>
+                                <tr><td>Author</td><td>: <input type="text" name="author" value=""></td></tr>
                                 <tr><td>Description</td><td>: 
-                                        <textarea id="description" name="description" rows="4" cols="30">Motivation</textarea></td>
+                                        <textarea id="description" name="description" rows="4" cols="30"> </textarea></td>
                                 </tr>
-                                <tr><td>Price (RM)</td><td>: <input type="text" name="price" value="122"></td></tr>
+                                <tr><td>Price</td><td>: <input type="text" name="price" value="RM "></td></tr>
                                 <tr><td>Sub Category</td><td>: 
                                         <select name="subCategory" id="subCategory">
                                             <option value="volvo">Volvo</option>
@@ -57,12 +55,11 @@
                                             <option value="audi">Audi</option>
                                         </select></td>
                                 </tr>
-                                <tr><td>Quantity</td><td>: <input type="text" name="quantity" value="123"></td></tr>
-                                <tr><td>Status</td><td>: <input type="text" name="status" value="Available" disabled></td></tr>
+                                <tr><td>Quantity</td><td>: <input type="text" name="quantity" value=""></td></tr>
                             </table>
 
                         </div> 
-                        <div class="delete"><input type="submit" name="update" value="Update" onclick="return confirm('Are you sure to update this book details?');" style='background-image: radial-gradient(circle, #37bd0b, #3dc80d, #42d40f, #48df10, #4eeb12);;'></div>
+                        <div class="delete"><input type="submit" name="add" value="Add" onclick="return confirm('Are you sure to add this product?');" style='background-image: radial-gradient(circle, #37bd0b, #3dc80d, #42d40f, #48df10, #4eeb12);;'></div>
                     </div>
 
                 </div>

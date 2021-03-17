@@ -1,0 +1,73 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 17, 2021, 7:54:14 PM
+    Author     : Chrisann Lee
+*/
+
+.orderDetail{
+    margin:0px 20px 30px 30px;
+    padding:10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.custInfo{
+    margin-left: 20px;
+    margin-left: 20px;
+}
+.banner{
+    color:white;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding:5px 10px;
+    font-size:1.1em;
+    margin: 10px 20px 20px 0px;
+    background-image: radial-gradient(circle, #283ed1, #3b4ddb, #4b5ce5, #5a6bef, #687af8);
+}
+td{
+    font-size:1.0em;
+    padding:5px;
+}
+td>input{
+    width: 300px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-left:20px
+}
+
+#subCategory, #description{
+    margin-left:20px;
+    padding:10px;
+    font-size:1.0em;
+    border-radius:5px;
+    border: 1px solid #ccc;
+}
+
+.img{
+    width:170px;
+    margin:10px 50px;
+}
+
+
+@font-face{
+    font-family: p;
+    src: url(Roboto-Regular.ttf);
+}
+.delete{
+    margin:40px;
+
+}
+.delete>input{
+    font-size:1.0em;
+    padding:10px;
+    background-color:red;
+    color:white;
+    border-radius:5px;
+    border: 1px solid #ccc;
+}
+.delete>input:hover{
+    background-color:#cc0000;
+}
