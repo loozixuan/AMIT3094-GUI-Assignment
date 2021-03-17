@@ -22,7 +22,7 @@ and open the template in the editor.
 
 
     <body>
-        <%@ include file="../Share/header.html" %>
+        <%@ include file="../Share/header.jsp" %>
         <main role="main">
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">

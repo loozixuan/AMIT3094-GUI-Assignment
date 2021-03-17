@@ -46,7 +46,7 @@
                                 <tr><td>Description</td><td>: 
                                         <textarea id="description" name="description" rows="4" cols="30"> </textarea></td>
                                 </tr>
-                                <tr><td>Price</td><td>: <input type="text" name="price" value="RM "></td></tr>
+                                <tr><td>Price (RM)</td><td>: <input type="text" name="price" value=""></td></tr>
                                 <tr><td>Sub Category</td><td>: 
                                         <select name="subCategory" id="subCategory">
                                             <option value="volvo">Volvo</option>
