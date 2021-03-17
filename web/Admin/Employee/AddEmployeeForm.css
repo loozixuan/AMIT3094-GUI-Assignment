@@ -1,0 +1,11 @@
+.add-emp-form .form-control{
+    height: 32px !important;
+}
+
+@media screen and (max-width: 780px){
+    .add-emp-form .form-group{
+        width:100% !important;
+        margin-left:auto;
+        margin-right:auto;
+    }
+}

@@ -35,7 +35,7 @@
                     <table class="table table-emp table-striped">
                         <div class="table-emp-header p-3 d-flex justify-content-between align-items-center">
                             <div>Employee <b>Information</b></div>
-                            <div class="btn-add-emp" style="margin-right: 15px;"><button class="w-100"> <i class="fa fa-plus-circle p-1" aria-hidden="true"></i> Add New Employee</button></div>
+                            <div class="btn-add-emp" style="margin-right: 15px;"><a href="AddEmployeeForm.jsp"><button class="w-100"> <i class="fa fa-plus-circle p-1" aria-hidden="true"></i> Add New Employee</button></a></div>
                         </div>
                         <thead>
                             <tr id="table-title">
@@ -56,8 +56,8 @@
                             <td>Active</td>
                             <td>
                                 <div class="table-action d-flex justify-content-around w-50 mx-auto">
-                                    <div><i class="fa fa-cogs" aria-hidden="true"></i></div>
-                                    <div><i class="fa fa-trash" aria-hidden="true"></i></div>
+                                    <div><a href="UpdateEmployeeForm.jsp"><i class="fa fa-cogs" aria-hidden="true"></i></a></div>
+                                    <div><a href="DeleteEmployeeForm.jsp"><i class="fa fa-trash" aria-hidden="true"></i></a></div>
                                 </div>
                             </td>
                         </tr>
@@ -70,8 +70,8 @@
                             <td>Active</td>
                             <td>
                                 <div class="table-action d-flex justify-content-around w-50 mx-auto">
-                                    <div><i class="fa fa-cogs" aria-hidden="true"></i></div>
-                                    <div><i class="fa fa-trash" aria-hidden="true"></i></div>
+                                    <div><a href="#"><i class="fa fa-cogs" aria-hidden="true"></i></a></div>
+                                    <div><a href="#"><i class="fa fa-trash" aria-hidden="true"></i></a></div>
                                 </div>
                             </td>
                         </tr>

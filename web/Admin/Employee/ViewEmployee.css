@@ -44,11 +44,11 @@
     outline: none !important;
 }
 
-.table-action div:nth-child(1){
+.table-action .fa-cogs{
     color:#2196F3;
 }
 
-.table-action div:nth-child(2){
+.table-action .fa-trash{
     color:red;
 }
 

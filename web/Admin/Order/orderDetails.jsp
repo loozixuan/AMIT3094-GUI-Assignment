@@ -52,11 +52,11 @@
                             <td>RM100</td>
                         </tr>
                     </table>
-                    
-                    <div class="delete"><input type="submit" name="cancel" value="Cancel" onclick="return confirm('Are you sure you want to cancel this order?');"></div>
-<!--                    <div class="delete"><input type="submit" name="delivered" value="Shipping" onclick="return confirm('This order is on shipping?');" style='background-image: radial-gradient(circle, #37bd0b, #3dc80d, #42d40f, #48df10, #4eeb12);;'></div>
 
-                   -->
+                    <div class="delete"><input type="submit" name="cancel" value="Cancel" onclick="return confirm('Are you sure you want to cancel this order?');"></div>
+                    <!--                    <div class="delete"><input type="submit" name="delivered" value="Shipping" onclick="return confirm('This order is on shipping?');" style='background-image: radial-gradient(circle, #37bd0b, #3dc80d, #42d40f, #48df10, #4eeb12);;'></div>
+                    
+                    -->
 
                 </div> 
             </div>
