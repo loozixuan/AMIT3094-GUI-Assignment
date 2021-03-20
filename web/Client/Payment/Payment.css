@@ -7,6 +7,11 @@ and open the template in the editor.
     Created on : Mar 13, 2021, 4:47:44 AM
     Author     : user
 */
+#main{
+    width: 90%;
+    margin: 20px auto;
+}
+
 #productInCart{
     position: relative;
     height: 200px;
@@ -44,8 +49,3 @@ and open the template in the editor.
     margin-top: 0px;
     margin-bottom: 5px;
 }
-
-#bookName{
-    border: 1px solid black;
-}
-

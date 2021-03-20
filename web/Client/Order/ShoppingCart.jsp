@@ -14,7 +14,7 @@
         <link href="ShoppingCart.css" rel="stylesheet"/>
         <title>JSP Page</title>
     </head>
-    <%@include file="../Share/header.html" %>
+    <%@include file="../Share/header.jsp" %>
     <body>
         <h3 id="title">Shopping Cart</h3>
         <div id="main">

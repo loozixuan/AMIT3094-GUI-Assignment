@@ -15,14 +15,64 @@
         <script src="Payment.js"></script>
         <title>JSP Page</title>
     </head>
-    <%@include file="../Share/header.html" %>
+    <%@include file="../Share/header.jsp" %>
     <body>
-        <div class="row justify-content-start">
+        <div class="row justify-content-start" id="main">
+            <div class="col-md-5 order-md-2 mb-5" style="background-color: white;">
+                <h5 style="text-align: center; margin: 20px 0px">Your Cart</h5>
+                <div class="row overflow-hidden" id="productInCart">
+                    <div class="row justify-content-start">
+                        <div class="col-2" id="productImage"><img src="testing1.jpg" /><span class="badge badge-secondary badge-pill bg-warning text-dark">3</span></div>
+                        <div class="col-5 pt-3 bookName">Macmillan-Uk<br/>Hidden in Plain Sight</div>
+                        <div class="col-5 text-end" style="padding-top: 30px;">RM 30.00</div>
+                    </div>
+                    <div class="row justify-content-start">
+                        <div class="col-2" id="productImage"><img src="testing1.jpg" /><span class="badge badge-secondary badge-pill bg-warning text-dark">3</span></div>
+                        <div class="col-5 pt-3 bookName">Macmillan-Uk<br/>Hidden in Plain Sight</div>
+                        <div class="col-5 text-end" style="padding-top: 30px;">RM 30.00</div>
+                    </div>
+                    <div class="row justify-content-start">
+                        <div class="col-2" id="productImage"><img src="testing1.jpg" /><span class="badge badge-secondary badge-pill bg-warning text-dark">3</span></div>
+                        <div class="col-5 pt-3 bookName">Macmillan-Uk<br/>Hidden in Plain Sight</div>
+                        <div class="col-5 text-end" style="padding-top: 30px;">RM 30.00</div>
+                    </div>
+                </div>
+                <div class="row justify-content-start" style="margin-bottom: 0px;">
+                    <div class="col-md-12">
+                        <hr class="mb-3">
+                    </div>
+                </div>
+                <div class="row" id="calculation" style="margin-top: 0px;">
+                    <div class="row justify-content-start">
+                        <div class="col-md-5">Subtotal</div>
+                        <div class="col-md-7 text-end">RM 90.00</div>
+                    </div>
+                    <div class="row justify-content-start">
+                        <div class="col-md-5">Discount</div>
+                        <div class="col-md-7 text-end">(10.00)</div>
+                    </div>
+                    <div class="row justify-content-start">
+                        <div class="col-md-5">Delivery</div>
+                        <div class="col-md-7 text-end">RM 20.00</div>
+                    </div>
+                </div>
+                <div class="row justify-content-start">
+                    <div class="col-md-12">
+                        <hr class="mb-3">
+                    </div>
+                </div>
+                <div class="row justify-content-start">
+                    <div class="row justify-content-start">
+                        <div class="col-md-5">Total</div>
+                        <div class="col-md-7 text-end">RM 100.00</div>
+                    </div>
+                </div>
+            </div>
             <div class="col-md-7">
                 <div class="row justify-content-start">
                     <h5>My Information</h5>
                 </div>
-                <div class="row justify-content-start">
+                <div class="row justify-content-start mb-3">
                     <div class="col-md-6">
                         <label class="form-label col-form-label-sm">Email</label>
                         <input type="email" class="form-control">
@@ -139,56 +189,6 @@
                         <button class="btn btn-primary col-md-12" type="submit">Place Order</button>
                     </div>
                 </div>         
-            </div>
-            <div class="col-md-5" style="background-color: white;">
-                <div class="row overflow-hidden" id="productInCart">
-                    <div class="row justify-content-start">
-                        <div class="col-2" id="productImage"><img src="testing1.jpg" /><span class="badge badge-secondary badge-pill bg-warning text-dark">3</span></div>
-                        <div class="col-5 pt-3 bookName">Macmillan-Uk<br/>Hidden in Plain Sight</div>
-                        <div class="col-5 text-end" style="padding-top: 30px;">RM 30.00</div>
-                    </div>
-                    <div class="row justify-content-start">
-                        <div class="col-2" id="productImage"><img src="testing1.jpg" /><span class="badge badge-secondary badge-pill bg-warning text-dark">3</span></div>
-                        <div class="col-5 pt-3 bookName">Macmillan-Uk<br/>Hidden in Plain Sight</div>
-                        <div class="col-5 text-end" style="padding-top: 30px;">RM 30.00</div>
-                    </div>
-                    <div class="row justify-content-start">
-                        <div class="col-2" id="productImage"><img src="testing1.jpg" /><span class="badge badge-secondary badge-pill bg-warning text-dark">3</span></div>
-                        <div class="col-5 pt-3 bookName">Macmillan-Uk<br/>Hidden in Plain Sight</div>
-                        <div class="col-5 text-end" style="padding-top: 30px;">RM 30.00</div>
-                    </div>
-                </div>
-                <div class="row justify-content-start" style="margin-bottom: 0px;">
-                    <div class="col-md-12">
-                        <hr class="mb-3">
-                    </div>
-                </div>
-                <div class="row" id="calculation" style="margin-top: 0px;">
-                    <div class="row justify-content-start">
-                        <div class="col-md-5">Subtotal</div>
-                        <div class="col-md-7 text-end">RM 90.00</div>
-                    </div>
-                    <div class="row justify-content-start">
-                        <div class="col-md-5">Discount</div>
-                        <div class="col-md-7 text-end">(10.00)</div>
-                    </div>
-                    <div class="row justify-content-start">
-                        <div class="col-md-5">Delivery</div>
-                        <div class="col-md-7 text-end">RM 20.00</div>
-                    </div>
-                    <div class="row justify-content-start">
-                        <div class="col-md-12">
-                            <hr class="mb-3">
-                        </div>
-                    </div>
-                    <div class="row justify-content-start">
-                        <div class="col-md-5">Total</div>
-                        <div class="col-md-7 text-end">RM 100.00</div>
-                    </div>
-                    <div class="row">
-                    
-                    </div>
-                </div>
             </div>
         </div>
     </body>
