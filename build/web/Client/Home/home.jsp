@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
+ <html>
     <head>
         <title>Hobbit Hall</title>
         <meta charset="UTF-8">
@@ -22,6 +16,7 @@ and open the template in the editor.
 
 
     <body>
+  
         <%@ include file="../Share/header.jsp" %>
         <main role="main">
             <div id="myCarousel" class="carousel slide" data-ride="carousel">

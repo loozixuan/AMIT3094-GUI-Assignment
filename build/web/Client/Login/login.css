@@ -19,6 +19,11 @@ and open the template in the editor.
     justify-content:center;
 }
 
+.loginForm{
+    display:flex;
+    flex-direction: column;
+}
+
 .enter{
     color:rgba(0,0,0,0.7);
     margin-top:15px;
@@ -39,7 +44,7 @@ input:focus{
     outline:none;
 }
 
-button{
+#submit{
     width:350px;
     border:none;
     background-color:rgba(204,0,0,0.9);
@@ -49,12 +54,12 @@ button{
     border-radius:2px;
 }
 
-button:hover{
+#submit:hover{
     background-color:rgba(204,0,0,0.8);
    
 }
 
-button:focus{
+#submit:focus{
     outline:none;
 }
 

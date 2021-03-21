@@ -3,7 +3,7 @@
     Created on : Mar 17, 2021, 11:28:24 PM
     Author     : Chrisann Lee
 --%>
-
+<jsp:useBean id="customer" scope="session" class="entity.Customer"/>  
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
         <link href="../Share/base.css" rel="stylesheet">
@@ -22,7 +22,13 @@
                 <div class="header-right">
                     <div class="col-1-2">
                         <div style="display:flex;color:rgb(128, 128, 255)">
+                            
+                            <% String name=customer.getName();
+                            if(name==null){ %>
                             <a href="../Login/login.jsp"><div>Login </div></a><div>/ Signup</div>
+                            <%}else{ %>
+                            <div>Hello ${customer.name}</div>
+                            <% } %>
                         </div>
                         <div>
                             <p id="myAccount">My Account<p>

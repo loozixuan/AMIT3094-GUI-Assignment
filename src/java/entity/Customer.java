@@ -22,18 +22,19 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Chrisann Lee
  */
 @Entity
-@Table(name = "USER")
+@Table(name = "CUSTOMER")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
-    , @NamedQuery(name = "User.findById", query = "SELECT u FROM User u WHERE u.id = :id")
-    , @NamedQuery(name = "User.findByName", query = "SELECT u FROM User u WHERE u.name = :name")
-    , @NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email")
-    , @NamedQuery(name = "User.findByAddress", query = "SELECT u FROM User u WHERE u.address = :address")
-    , @NamedQuery(name = "User.findByContactNumber", query = "SELECT u FROM User u WHERE u.contactNumber = :contactNumber")
-    , @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password")
-    , @NamedQuery(name = "User.findByStatus", query = "SELECT u FROM User u WHERE u.status = :status")})
-public class User implements Serializable {
+    @NamedQuery(name = "Customer.findAll", query = "SELECT c FROM Customer c")
+    , @NamedQuery(name = "Customer.findById", query = "SELECT c FROM Customer c WHERE c.id = :id")
+    , @NamedQuery(name = "Customer.findByName", query = "SELECT c FROM Customer c WHERE c.name = :name")
+    , @NamedQuery(name = "Customer.findByEmail", query = "SELECT c FROM Customer c WHERE c.email = :email")
+    , @NamedQuery(name = "Customer.findByAddress", query = "SELECT c FROM Customer c WHERE c.address = :address")
+    , @NamedQuery(name = "Customer.findByContactNumber", query = "SELECT c FROM Customer c WHERE c.contactNumber = :contactNumber")
+    , @NamedQuery(name = "Customer.findByPassword", query = "SELECT c FROM Customer c WHERE c.password = :password")
+    , @NamedQuery(name = "Customer.findByStatus", query = "SELECT c FROM Customer c WHERE c.status = :status")
+    , @NamedQuery(name = "Customer.findAccount", query = "SELECT c FROM Customer c WHERE c.email = :email AND c.password = :password")})
+public class Customer implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -66,14 +67,14 @@ public class User implements Serializable {
     @Column(name = "STATUS")
     private String status;
 
-    public User() {
+    public Customer() {
     }
 
-    public User(String id) {
+    public Customer(String id) {
         this.id = id;
     }
 
-    public User(String id, String name, String status) {
+    public Customer(String id, String name, String status) {
         this.id = id;
         this.name = name;
         this.status = status;
@@ -145,10 +146,10 @@ public class User implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof User)) {
+        if (!(object instanceof Customer)) {
             return false;
         }
-        User other = (User) object;
+        Customer other = (Customer) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -157,7 +158,7 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.User[ id=" + id + " ]";
+        return "entity.Customer[ id=" + id + " ]";
     }
 
 }
