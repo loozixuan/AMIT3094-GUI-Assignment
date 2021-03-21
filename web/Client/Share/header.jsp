@@ -30,8 +30,8 @@
                             <div>Hello ${customer.name}</div>
                             <% } %>
                         </div>
-                        <div>
-                            <p id="myAccount">My Account<p>
+                        <div id="myAccount" >
+                            <a href="../User/userProfile.jsp"> <p >My Account<p></a>
                         </div>
                     </div>
                     <div class="col-1-2" id="cart">
@@ -54,7 +54,7 @@
                         </div>
                     </li>
                     <li class="nav-title ">
-                        <a class="nav-link" href="#" data-toggle="dropdown"> Chinese Books <i class="fa fa-chevron-down" aria-hidden="true"></a></i> 
+                        <a class="nav-link" href="#" data-toggle="dropdown"> Chinese Books <i class="fa fa-chevron-down" aria-hidden="true"></i></a> 
                         <div class="dropdown-item">
                              <div class='row-item'>
                                 <div>ss</div>

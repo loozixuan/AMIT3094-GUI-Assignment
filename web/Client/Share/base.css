@@ -70,11 +70,12 @@ div.col-1-2{
     font-size:0.9em;
 }
 
-#myAccount{
+#myAccount a{
     color:rgb(204, 0, 0);
     text-align:center;
     font-weight: bold;
     margin-bottom: 0px;
+    
 }
 
 #cart{

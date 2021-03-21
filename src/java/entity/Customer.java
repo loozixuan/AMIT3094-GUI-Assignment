@@ -33,7 +33,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Customer.findByContactNumber", query = "SELECT c FROM Customer c WHERE c.contactNumber = :contactNumber")
     , @NamedQuery(name = "Customer.findByPassword", query = "SELECT c FROM Customer c WHERE c.password = :password")
     , @NamedQuery(name = "Customer.findByStatus", query = "SELECT c FROM Customer c WHERE c.status = :status")
-    , @NamedQuery(name = "Customer.findAccount", query = "SELECT c FROM Customer c WHERE c.email = :email AND c.password = :password")})
+    , @NamedQuery(name = "Customer.findAccount", query = "SELECT c FROM Customer c WHERE c.email = :email AND c.password = :password")
+    , @NamedQuery(name = "Customer.updateAccount", query = "UPDATE Customer SET c.name = :name,c.contactNumber = :contactNumber,c.password = :password WHERE c.email = :email")})
 public class Customer implements Serializable {
 
     private static final long serialVersionUID = 1L;

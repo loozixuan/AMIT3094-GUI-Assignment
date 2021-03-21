@@ -17,6 +17,59 @@ and open the template in the editor.
 }
 
 
+/*sidebar*/
+.col-1-4{
+    width:25%;
+   
+}
+.col-1-4 table{
+    margin-top:40px;
+    background-color: #F0FFF0;
+    width:75%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.col-1-4 td{
+    padding:20px;
+    
+   
+}
+.col-1-4 td>a{
+     color:#808080;
+}
+.col-1-4 td>a:hover{
+     color:black;
+     text-decoration: none;
+}
+
+
+.col-1-4 i{
+    padding-right: 20px;
+    color:#808080;
+}
+
+.col-1-4 i:hover{
+    color:black;
+}
+
+#logout-button{
+    background: none;
+    border:none;
+    color:#808080;
+    margin-left:0px;
+    padding:0px;
+    width:50px
+}
+
+#logout-button:hover{
+    color:black; 
+    outline:none;
+}
+
+#logout-button:focus{
+    outline: none;
+}
+
 
 /*content */
 .update_message{
@@ -72,7 +125,7 @@ td>input{
     border-radius: 5px;
     border: 1px solid #ccc; 
 }
-input[type='submit']{
+#save{
     margin:0px 0px 30px 0px;
     padding:10px;
     background-color:#33cc00;
@@ -81,7 +134,7 @@ input[type='submit']{
     border-radius: 5px;
     border: 1px solid #ccc;
 }
-input[type='submit']:hover{
+#save:hover{
     background-color: #269900;
 }
 .no_register{
