@@ -85,19 +85,20 @@ public class Login extends HttpServlet {
 
             //List<Account> user = query.getResultList();
             Customer customer = (Customer) query.getSingleResult();
-            HttpSession session = request.getSession();
-            session.setAttribute("customer", customer);
-            response.sendRedirect("Client/Home/home.jsp");
 
-            //  response.sendRedirect("Client/Home/home.jsp");
-//            RequestDispatcher rd = request.getRequestDispatcher("Client/Home/home.jsp");
-//            rd.forward(request, response);
-//                if (user != null) {
-//
-//
-//                }
+            if (customer != null) {
+                HttpSession session = request.getSession();
+                session.setAttribute("customer", customer);
+                response.sendRedirect("Client/Home/home.jsp");
+            }
+
         } else {
-            response.sendRedirect("Client/Login/welcome.html");
+            //response.sendRedirect("Client/Login/welcome.html");
+            String errorMessage = "Invalid user";
+            request.setAttribute("errorMessage", errorMessage);
+            RequestDispatcher rd = request.getRequestDispatcher("Client/Login/login.jsp");
+            rd.include(request, response);
+
         }
     }
 

@@ -26,17 +26,17 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Chrisann Lee
  */
 @Entity
-@Table(name = "ADMIN")
+@Table(name = "ONLINEADMIN")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Admin.findAll", query = "SELECT a FROM Admin a")
-    , @NamedQuery(name = "Admin.findById", query = "SELECT a FROM Admin a WHERE a.id = :id")
-    , @NamedQuery(name = "Admin.findByName", query = "SELECT a FROM Admin a WHERE a.name = :name")
-    , @NamedQuery(name = "Admin.findByEmail", query = "SELECT a FROM Admin a WHERE a.email = :email")
-    , @NamedQuery(name = "Admin.findByRole", query = "SELECT a FROM Admin a WHERE a.role = :role")
-    , @NamedQuery(name = "Admin.findByPassword", query = "SELECT a FROM Admin a WHERE a.password = :password")
-    , @NamedQuery(name = "Admin.findByStatus", query = "SELECT a FROM Admin a WHERE a.status = :status")})
-public class Admin implements Serializable {
+    @NamedQuery(name = "Onlineadmin.findAll", query = "SELECT o FROM Onlineadmin o")
+    , @NamedQuery(name = "Onlineadmin.findById", query = "SELECT o FROM Onlineadmin o WHERE o.id = :id")
+    , @NamedQuery(name = "Onlineadmin.findByName", query = "SELECT o FROM Onlineadmin o WHERE o.name = :name")
+    , @NamedQuery(name = "Onlineadmin.findByEmail", query = "SELECT o FROM Onlineadmin o WHERE o.email = :email")
+    , @NamedQuery(name = "Onlineadmin.findByRole", query = "SELECT o FROM Onlineadmin o WHERE o.role = :role")
+    , @NamedQuery(name = "Onlineadmin.findByPassword", query = "SELECT o FROM Onlineadmin o WHERE o.password = :password")
+    , @NamedQuery(name = "Onlineadmin.findByStatus", query = "SELECT o FROM Onlineadmin o WHERE o.status = :status")})
+public class Onlineadmin implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -71,17 +71,17 @@ public class Admin implements Serializable {
     @Size(min = 1, max = 10)
     @Column(name = "STATUS")
     private String status;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "admin")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "onlineadmin")
     private List<PromotionUpdate> promotionUpdateList;
 
-    public Admin() {
+    public Onlineadmin() {
     }
 
-    public Admin(String id) {
+    public Onlineadmin(String id) {
         this.id = id;
     }
 
-    public Admin(String id, String name, String email, String role, String password, String status) {
+    public Onlineadmin(String id, String name, String email, String role, String password, String status) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -157,10 +157,10 @@ public class Admin implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Admin)) {
+        if (!(object instanceof Onlineadmin)) {
             return false;
         }
-        Admin other = (Admin) object;
+        Onlineadmin other = (Onlineadmin) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -169,7 +169,7 @@ public class Admin implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Admin[ id=" + id + " ]";
+        return "entity.Onlineadmin[ id=" + id + " ]";
     }
 
 }

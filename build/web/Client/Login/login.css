@@ -28,6 +28,7 @@ and open the template in the editor.
     color:rgba(0,0,0,0.7);
     margin-top:15px;
     margin-bottom:15px;
+    text-align: center;
 }
 
 input{

@@ -1,0 +1,51 @@
+.table-sales-body{
+    background: white;
+    box-shadow: 0.1rem 0.1rem 0.2rem rgb(0 0 0 / 10%);
+    border-radius: 3px;
+}
+
+.table-sales #table-title{
+    border-top: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey !important;
+    text-align: center;
+}
+
+.table-sales td{
+    text-align: center;
+}
+
+.table>:not(:last-child)>:last-child>*{
+    border-bottom-color: lightgray !important;
+    padding: 10px !important;
+}
+
+.table>:not(caption)>*>*{
+    padding: 15px !important;
+}
+
+.table-sales-header{
+    background: #299be4;
+    border-radius: 2px;
+    color:white;
+}
+
+.table-action .fa-cogs{
+    color:#2196F3;
+}
+
+.table-action .fa-trash{
+    color:red;
+}
+
+.table{
+    margin-bottom: 0px !important;
+}
+
+.sales-date{
+    background: aliceblue;
+    border: none;
+    border-radius: 2px;
+    text-align: center;
+    font-size: 0.95rem;
+    outline: none;
+}

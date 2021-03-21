@@ -1,0 +1,11 @@
+.order-customer-tab ul li a{
+    color:black;
+}
+
+.order-customer-tab ul li a:active, a:target{
+    color:red;
+}
+
+.order-customer-tab ul li a:hover{
+    color:limegreen;
+}

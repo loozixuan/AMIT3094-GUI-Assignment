@@ -49,7 +49,7 @@ public class Payment implements Serializable {
     @Column(name = "METHOD")
     private String method;
     @OneToMany(mappedBy = "paymentId")
-    private List<Order1> order1List;
+    private List<CustomerOrder> customerOrderList;
 
     public Payment() {
     }
@@ -88,12 +88,12 @@ public class Payment implements Serializable {
     }
 
     @XmlTransient
-    public List<Order1> getOrder1List() {
-        return order1List;
+    public List<CustomerOrder> getCustomerOrderList() {
+        return customerOrderList;
     }
 
-    public void setOrder1List(List<Order1> order1List) {
-        this.order1List = order1List;
+    public void setCustomerOrderList(List<CustomerOrder> customerOrderList) {
+        this.customerOrderList = customerOrderList;
     }
 
     @Override

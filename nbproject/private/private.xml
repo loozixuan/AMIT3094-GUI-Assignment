@@ -3,39 +3,37 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Admin/Share/adminPanel.css</file>
+            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Admin/Employee/ViewEmployee.jsp</file>
             <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Client/Home/home.css</file>
             <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Admin/Share/adminHeader.html</file>
-            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Admin/Product/insertProduct.css</file>
-            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/src/java/entity/OrderDetail.java</file>
-            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/src/java/entity/User.java</file>
-            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Admin/Employee/ViewEmployee.jsp</file>
-            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Client/Order/ShoppingCart.jsp</file>
-            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Admin/Employee/ViewEmployee.css</file>
-            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Client/User/userProfile.css</file>
-            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Client/Share/header.jsp</file>
-            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Client/Login/login.css</file>
-            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Admin/Product/editProduct.jsp</file>
-            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Client/Share/header.html</file>
-            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Client/Login/login.jsp</file>
-            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Admin/Product/insertProduct.jsp</file>
-            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Client/Order/OrderDetails.jsp</file>
-            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/src/java/entity/Category.java</file>
-            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Client/User/userProfile.jsp</file>
-            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Admin/Promotion/Promotion.jsp</file>
-            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Admin/Product/editProduct.css</file>
-            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Admin/Dashboard/dashboard.jsp</file>
-            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Client/Product/ProductCatolog.css</file>
-            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Admin/Share/adminSidebar.html</file>
-            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Admin/Order/customerOrder.jsp</file>
-            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Client/Share/base.css</file>
-            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Client/Share/userSidebar.css</file>
-            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/src/java/controller/LoginServlet.java</file>
             <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Client/Share/userSidebar.jsp</file>
-            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Admin/Product/product.jsp</file>
-            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Client/Product/ProductDescription.jsp</file>
-            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Client/Product/ProductDescription.css</file>
+            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Admin/Share/adminSidebar.html</file>
+            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Client/Order/ShoppingCart.jsp</file>
+            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Admin/Product/insertProduct.css</file>
+            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Admin/Product/editProduct.jsp</file>
+            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/src/java/controller/Login.java</file>
             <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Client/Home/home.jsp</file>
+            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Client/Share/userSidebar.css</file>
+            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Admin/Promotion/Promotion.jsp</file>
+            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Admin/Product/insertProduct.jsp</file>
+            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Client/Login/login.css</file>
+            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Client/Share/header.html</file>
+            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Client/Order/OrderDetails.jsp</file>
+            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Client/Product/ProductDescription.css</file>
+            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Admin/Dashboard/dashboard.jsp</file>
+            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Admin/Share/adminPanel.css</file>
+            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Admin/Employee/ViewEmployee.css</file>
+            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Client/Login/login.jsp</file>
+            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Admin/Order/customerOrder.jsp</file>
+            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Client/Product/ProductCatolog.css</file>
+            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Client/User/userProfile.css</file>
+            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Admin/Product/editProduct.css</file>
+            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Admin/Product/product.jsp</file>
+            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Client/Share/header.jsp</file>
+            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Client/Share/base.css</file>
+            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Client/Product/ProductDescription.jsp</file>
+            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Client/User/userProfile.jsp</file>
         </group>
     </open-files>
 </project-private>

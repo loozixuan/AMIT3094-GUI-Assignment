@@ -12,4 +12,5 @@
     </jdbc-connection-pool>
     <jdbc-resource enabled="true" jndi-name="java:app/jdbc/hobbitdb" object-type="user" pool-name="derby_net_hobbitdb_nbuserPool"/>
     <jdbc-resource enabled="true" jndi-name="java:app/jdbc/hobbitdb" object-type="user" pool-name="derby_net_hobbitdb_nbuserPool"/>
+    <jdbc-resource enabled="true" jndi-name="java:app/jdbc/hobbitdb" object-type="user" pool-name="derby_net_hobbitdb_nbuserPool"/>
 </resources>

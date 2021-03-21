@@ -19,8 +19,12 @@ and open the template in the editor.
     <body>
         <%@ include file="../Share/header.jsp" %>
         <div class="loginContainer">
-
+  <% String error=request.getParameter("errorMessage");
+                if(error!=null){%>
+                <p><%= error%></p>
+                <% } %>
             <h3>Login to my account</h3>
+          
             <form action="../../Login" action="get">
                 <div class="loginForm">
                     <p class="enter">Enter your e-mail and password:</p>

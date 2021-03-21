@@ -45,7 +45,7 @@ public class PromotionUpdate implements Serializable {
     private Date date;
     @JoinColumn(name = "ADMIN_ID", referencedColumnName = "ID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
-    private Admin admin;
+    private Onlineadmin onlineadmin;
     @JoinColumn(name = "PROMOTION_CODE", referencedColumnName = "CODE", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private PromotionCode promotionCode1;
@@ -82,12 +82,12 @@ public class PromotionUpdate implements Serializable {
         this.date = date;
     }
 
-    public Admin getAdmin() {
-        return admin;
+    public Onlineadmin getOnlineadmin() {
+        return onlineadmin;
     }
 
-    public void setAdmin(Admin admin) {
-        this.admin = admin;
+    public void setOnlineadmin(Onlineadmin onlineadmin) {
+        this.onlineadmin = onlineadmin;
     }
 
     public PromotionCode getPromotionCode1() {

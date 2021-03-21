@@ -31,17 +31,17 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Chrisann Lee
  */
 @Entity
-@Table(name = "ORDER")
+@Table(name = "CUSTOMER_ORDER")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Order1.findAll", query = "SELECT o FROM Order1 o")
-    , @NamedQuery(name = "Order1.findById", query = "SELECT o FROM Order1 o WHERE o.id = :id")
-    , @NamedQuery(name = "Order1.findByCustomerId", query = "SELECT o FROM Order1 o WHERE o.customerId = :customerId")
-    , @NamedQuery(name = "Order1.findByDate", query = "SELECT o FROM Order1 o WHERE o.date = :date")
-    , @NamedQuery(name = "Order1.findByTotalAmount", query = "SELECT o FROM Order1 o WHERE o.totalAmount = :totalAmount")
-    , @NamedQuery(name = "Order1.findByDiscount", query = "SELECT o FROM Order1 o WHERE o.discount = :discount")
-    , @NamedQuery(name = "Order1.findByStatus", query = "SELECT o FROM Order1 o WHERE o.status = :status")})
-public class Order1 implements Serializable {
+    @NamedQuery(name = "CustomerOrder.findAll", query = "SELECT c FROM CustomerOrder c")
+    , @NamedQuery(name = "CustomerOrder.findById", query = "SELECT c FROM CustomerOrder c WHERE c.id = :id")
+    , @NamedQuery(name = "CustomerOrder.findByCustomerId", query = "SELECT c FROM CustomerOrder c WHERE c.customerId = :customerId")
+    , @NamedQuery(name = "CustomerOrder.findByDate", query = "SELECT c FROM CustomerOrder c WHERE c.date = :date")
+    , @NamedQuery(name = "CustomerOrder.findByTotalAmount", query = "SELECT c FROM CustomerOrder c WHERE c.totalAmount = :totalAmount")
+    , @NamedQuery(name = "CustomerOrder.findByDiscount", query = "SELECT c FROM CustomerOrder c WHERE c.discount = :discount")
+    , @NamedQuery(name = "CustomerOrder.findByStatus", query = "SELECT c FROM CustomerOrder c WHERE c.status = :status")})
+public class CustomerOrder implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -77,17 +77,17 @@ public class Order1 implements Serializable {
     @JoinColumn(name = "PROMOTION_CODE", referencedColumnName = "CODE")
     @ManyToOne
     private PromotionCode promotionCode;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "order1")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerOrder")
     private List<OrderDetail> orderDetailList;
 
-    public Order1() {
+    public CustomerOrder() {
     }
 
-    public Order1(String id) {
+    public CustomerOrder(String id) {
         this.id = id;
     }
 
-    public Order1(String id, String customerId, Date date, double totalAmount, double discount) {
+    public CustomerOrder(String id, String customerId, Date date, double totalAmount, double discount) {
         this.id = id;
         this.customerId = customerId;
         this.date = date;
@@ -178,10 +178,10 @@ public class Order1 implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Order1)) {
+        if (!(object instanceof CustomerOrder)) {
             return false;
         }
-        Order1 other = (Order1) object;
+        CustomerOrder other = (CustomerOrder) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -190,7 +190,7 @@ public class Order1 implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Order1[ id=" + id + " ]";
+        return "entity.CustomerOrder[ id=" + id + " ]";
     }
 
 }
