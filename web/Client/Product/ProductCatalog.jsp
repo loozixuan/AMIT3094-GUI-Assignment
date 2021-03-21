@@ -3,7 +3,8 @@
     Created on : Mar 12, 2021, 2:01:45 PM
     Author     : zixua
 --%>
-
+<%@page import="java.util.List"%>
+<%@page import="entity.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -19,6 +20,11 @@
     </head>
     <!--Header-->
     <%@include file="../Share/header.html" %>
+
+    <!-- retrieve session object, prodList -->
+    <%
+        List<Product> prodList = (List) session.getAttribute("prodList");
+    %>
 
     <body>
         <div class="product-catalog-container d-flex justify-content-around p-4">
@@ -39,7 +45,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="prod-list-container w-75 p-2">
                 <div class="prod-title-container p-2">
                     <div class="prod-title">
@@ -56,42 +61,21 @@
                     </div>
                 </div>
 
+                <!-- Load Product List -->
                 <div class="prod-container row p-2 d-flex justify-content-between">
+                    <% for (Product product : prodList) {%>
                     <div class="book-body p-2 mb-3">
-                        <a href="ProductDescription.jsp"><img src="../Share/images/book/business/business1.jpg" src="book" style="max-width: 100%"/></a>
-                        <div>Stats & Curiosities</div>
-                        <div>RM 100</div>
-                        <li>Sold Out</li>
+                        <a href="ProductDescription.jsp"><img src=<%= product.getImage()%> src="book-image" style="max-width: 100%"/></a>
+                        <div><%= product.getName()%></div>
+                        <div>RM <%= product.getPrice()%></div>
+                        <% if (product.getStockQuantity() <= 0) { %>
+                        <li class="sold-out"> Sold Out</li>
+                            <% } else { %>
+                        <li class="in-stock"> In Stock</li>
+                            <% } %>
                         <button class="btn-cart">Add To Cart</button>
                     </div>
-                    <div class="book-body p-2 mb-3">
-                        <img src="../Share/images/book/business/business2.jpg" src="book" style="max-width: 100%"/>
-                        <div>Rebuilding Your Business Model</div>
-                        <div>RM 200</div>
-                        <li>Sold Out</li>
-                        <button class="btn-cart">Add To Cart</button>
-                    </div>
-                    <div class="book-body p-2 mb-3">
-                        <img src="../Share/images/book/business/business3.jpg" src="book" style="max-width: 100%"/>
-                        <div>HBR's 10 Must Reads on Communication</div>
-                        <div>RM99.99</div>
-                        <li>Sold Out</li>
-                        <button class="btn-cart">Add To Cart</button>
-                    </div>
-                    <div class="book-body p-2 mb-3">
-                        <img src="../Share/images/book/business/business4.jpg" src="book" style="max-width: 100%"/>
-                        <div>Creating Business Planning</div>
-                        <div>RM88.88</div>
-                        <li>Sold Out</li>
-                        <button class="btn-cart">Add To Cart</button>
-                    </div>
-                    <div class="book-body p-2 mb-3">
-                        <img src="../Share/images/book/business/business3.jpg" src="book" style="max-width: 100%"/>
-                        <div>HBR's 10 Must Reads on Communication</div>
-                        <div>RM99.99</div>
-                        <li>In Stock</li>
-                        <button class="btn-cart">Add To Cart</button>
-                    </div>
+                    <% }%>
                 </div>
             </div>
         </div>

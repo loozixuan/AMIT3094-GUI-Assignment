@@ -29,7 +29,7 @@
                     <div><img src="../Share/images/book/business/business1.jpg" alt="book"/></div>
                 </div>
                 <div class="info-body p-4">
-
+                    <a href="../../ViewProducts"/>View</a>
                     <div>Stats & Curiosities</div>
                     <div class="author-info d-flex justify-content-between align-items-center">
                         <div>

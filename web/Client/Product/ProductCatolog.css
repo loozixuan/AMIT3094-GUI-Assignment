@@ -74,10 +74,13 @@ select{
     content: "\25CF";
 }
 
-/*.book-body img{
-    width: 250px;
-    height: 350px;
-}*/
+.sold-out{
+    color:#be1e2d;
+}
+
+.in-stock{
+    color: green;
+}
 
 .row{
     margin:0px !important;
