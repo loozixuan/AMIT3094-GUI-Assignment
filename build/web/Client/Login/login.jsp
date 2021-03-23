@@ -19,7 +19,7 @@ and open the template in the editor.
     <body>
         <%@ include file="../Share/header.jsp" %>
         <div class="loginContainer">
-  <% String error=request.getParameter("errorMessage");
+            <% String error=(String)request.getAttribute("errorMessage") ;
                 if(error!=null){%>
                 <p><%= error%></p>
                 <% } %>

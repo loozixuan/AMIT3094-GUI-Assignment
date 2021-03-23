@@ -8,7 +8,6 @@ package controller;
 import entity.Customer;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.persistence.EntityManager;
@@ -78,8 +77,8 @@ public class Login extends HttpServlet {
 
         if (email != null && password != null && matcher.matches() == true) {
 
-            Query query = em.createNamedQuery("Customer.findAccount");  //get from database
-
+            Query query = em.createNamedQuery("Customer.findAccount");
+            //TODO -hash password
             query.setParameter("email", email);
             query.setParameter("password", password);
 
@@ -90,14 +89,21 @@ public class Login extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setAttribute("customer", customer);
                 response.sendRedirect("Client/Home/home.jsp");
+            } else {
+                String errorMessage = "No user found";
+                request.setAttribute("errorMessage", errorMessage);
+                RequestDispatcher rd = request.getRequestDispatcher("Client/Login/login.jsp");
+                rd.include(request, response);
+
             }
 
         } else {
-            //response.sendRedirect("Client/Login/welcome.html");
-            String errorMessage = "Invalid user";
+
+            String errorMessage = "Please fill in all the field required";
             request.setAttribute("errorMessage", errorMessage);
             RequestDispatcher rd = request.getRequestDispatcher("Client/Login/login.jsp");
             rd.include(request, response);
+            // response.sendRedirect("Client/Login/login.jsp");
 
         }
     }

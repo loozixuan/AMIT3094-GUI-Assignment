@@ -38,28 +38,42 @@
             </div>
 
             <div class="col-3-4">
+                <% String successMessage=(String)request.getAttribute("successMessage"); 
+                if(successMessage!=null){ %>
+                <div>${successMessage}</div>
+                <% } %>
+                 <% String errorMessage=(String)request.getAttribute("errorMessage"); 
+                if(errorMessage!=null){ %>
+                <div>${errorMessage}</div>
+                <% } %>
 
                 <% if (customer.getName() != null) { %>
 
-                <form action="" method="post">
+                <form action="../../ChangePassword" method="post">
                     <div class="row">
                         <label>Name :<span class="text-danger">*</span></label><br>
-                        <input type="text" name="name" placeholder="Name" value="${customer.name}">
+                        <input type="text" name="name" placeholder="Name" value="${customer.name}" required>
                     </div>
                     <div class="row">
                         <label for="phone">Phone :<span class="text-danger">*</span></label><br>
-                        <input type="text" name="phone" placeholder="Phone Number" value="${customer.contactNumber}">
+                        <input type="text" name="phone" placeholder="Phone Number" value="${customer.contactNumber}" required>
                     </div>
                     <div class="row">
                         <label for="email">Email :</label><br>
                         <input type="text" name="email" placeholder="Email Address" value="${customer.email}" disabled>
+                        <input type="hidden" name="hidden_email" placeholder="Email Address" value="${customer.email}">
+                        <span class="text-danger"></span>
+                    </div>
+                        <div class="row">
+                        <label for="address">Address :</label><br>
+                        <input type="text" name="address" placeholder="Address" value="${customer.address}" required>
                         <span class="text-danger"></span>
                     </div>
 
                     <h4>Password change</h4>
                     <table>
                         <tr><td>Current password (leave blank to leave unchanged)</td></tr>
-                        <tr><td> <input type="password" name="current_password" placeholder="Current Password" value="${customer.password}" ></td></tr>
+                        <tr><td> <input type="password" name="current_password" placeholder="Current Password" value="" ></td></tr>
                         <tr><td style="color:red;"><?php echo $currentErr;?></td></tr>
                         <tr><td>New password (leave blank to leave unchanged)</td></tr>
                         <tr><td> <input type="password" name="new_password" placeholder="New Password" value="" ></td></tr>
@@ -68,6 +82,7 @@
                         <tr><td> <input type="password" name="confirm_password" placeholder="Confirm Password" value="" ></td></tr>
                         <tr><td style="color:red;"><?php echo $confirmErr;?></td></tr>
                     </table>
+                    <input type="hidden" name="hidden_password" placeholder="Current Password" value="${customer.password}" >
                     <input type="submit" name="submit" value="Save Changes" id="save">
                 </form>
                 <%} else { %>
