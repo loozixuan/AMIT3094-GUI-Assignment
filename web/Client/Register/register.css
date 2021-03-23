@@ -1,0 +1,59 @@
+ 
+.register{
+    padding-top:100px;
+    padding-bottom:100px;
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content:center;
+}
+
+.enter{
+    color:rgba(0,0,0,0.7);
+    margin-top:15px;
+    margin-bottom:15px;
+}
+
+
+input{
+    border:1px solid #ccc;
+    padding:10px 15px;
+    margin-top:10px;
+    margin-bottom:10px;
+    width:350px; 
+    border-radius:2px;
+    
+}
+
+input:focus{
+    outline:none;
+}
+
+button{
+    width:170px;
+    border:none;
+    background-color:rgb(180, 180, 180);
+    color:white;
+    padding:10px;
+    margin:10px 5px;
+    border-radius:2px;
+}
+
+button:hover{
+    background-color: rgba(204,0,0,0.8);
+   
+}
+
+button:focus{
+    outline:none;
+}
+
+.link{
+    font-size:0.8em;
+    color:rgba(204,0,0,0.9);
+}
+
+p{
+    margin:0px;
+}
+
