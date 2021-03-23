@@ -42,6 +42,7 @@ public class ViewProducts extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         // Get Query String value from URL defined
         String subcategory = request.getParameter("subcategory");
         String category = request.getParameter("category");

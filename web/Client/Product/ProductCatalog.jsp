@@ -70,7 +70,7 @@
                 <div class="prod-container row p-2 d-flex justify-content-between">
                     <% for (Product product : prodList) {%>
                     <div class="book-body p-2 mb-3">
-                        <a href="ProductDescription.jsp"><img src=<%= product.getImage()%> src="book-image" style="max-width: 100%"/></a>
+                        <a href="../../LoadProductDesc?productid=<%= product.getId()%>&subcategory=<%= product.getSubcategoryId().getId()%>"><img src=<%= product.getImage()%> src="book-image" style="max-width: 100%"/></a>
                         <div><%= product.getName()%></div>
                         <div class="pt-3">RM <%= product.getPrice()%></div>
                         <% if (product.getStockQuantity() <= 0) { %>
