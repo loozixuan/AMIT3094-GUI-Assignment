@@ -73,12 +73,13 @@
                         <a href="../../LoadProductDesc?productid=<%= product.getId()%>&subcategory=<%= product.getSubcategoryId().getId()%>"><img src=<%= product.getImage()%> src="book-image" style="max-width: 100%"/></a>
                         <div><%= product.getName()%></div>
                         <div class="pt-3">RM <%= product.getPrice()%></div>
-                        <% if (product.getStockQuantity() <= 0) { %>
+                        <% if (product.getStockQuantity() <= 0) {%>
                         <li class="sold-out"> Sold Out</li>
-                            <% } else { %>
+                        <a href="../../LoadProductDesc?productid=<%= product.getId()%>&subcategory=<%= product.getSubcategoryId().getId()%>"><button class="btn-cart" disabled="">Add To Cart</button></a>
+                        <% } else {%>
                         <li class="in-stock"> In Stock</li>
-                            <% }%>
                         <a href="../../LoadProductDesc?productid=<%= product.getId()%>&subcategory=<%= product.getSubcategoryId().getId()%>"><button class="btn-cart">Add To Cart</button></a>
+                        <% }%>
                     </div>
                     <% }%>
                 </div>

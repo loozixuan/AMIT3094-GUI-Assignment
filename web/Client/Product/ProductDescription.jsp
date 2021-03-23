@@ -92,7 +92,7 @@
                     </div>
                     <!-- Transfer Information to Shopping Cart -->
                     <div>
-                        <a href="../../Order?productid=<%= product.getId()%>"><button class="btn-cart">Add To Cart</button></a>
+                        <a href="../../Order?productid=<%= product.getId()%>"><button class="btn-cart" id="cart-add">Add To Cart</button></a>
                     </div>
                 </div>
 
@@ -153,6 +153,7 @@
 //                console.log(currentVal);
                 document.getElementById('qty').value;
                 if ((currentVal + 1) > document.getElementById('qty').value) {
+                    $(".btn-cart").attr("disabled", true);
                     var qty_status = "<div class='qty-status-text'>Out Of Stock !</div>"
                     $(".qty_status").append(qty_status);
                     document.getElementById("up").disabled = true;
@@ -178,6 +179,7 @@
                 if ((currentVal + 1) > document.getElementById('qty').value) {
                     $(".qty_status").text('');
                     document.getElementById("up").disabled = false;
+                    $(".btn-cart").attr("disabled", false);
                 }
             });
         });

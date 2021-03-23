@@ -113,3 +113,8 @@ a .btn-cart{
 .btn-cart:hover{
     opacity: 0.8;
 }
+
+button:disabled {
+    background: #dddddd;
+}
+
