@@ -3,6 +3,7 @@
     Created on : Mar 12, 2021, 2:01:45 PM
     Author     : zixua
 --%>
+<%@page import="entity.Subcategory"%>
 <%@page import="java.util.List"%>
 <%@page import="entity.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -19,11 +20,15 @@
         <title>Hobbit Hall Book Store</title>
     </head>
     <!--Header-->
-    <%@include file="../Share/header.html" %>
+    <%@include file="../Share/header.jsp" %>
 
-    <!-- retrieve session object, prodList -->
+    <!-- Retrieve session object -->
     <%
         List<Product> prodList = (List) session.getAttribute("prodList");
+        List<Subcategory> subcategoryTitle = (List) session.getAttribute("subcategoryTitle");
+        List<Subcategory> subcategoryList = (List) session.getAttribute("subcategoryList");
+        int countProduct = 0;
+        int countSubcategory = 1;
     %>
 
     <body>
@@ -31,27 +36,27 @@
             <div class="prod-filter-container d-flex flex-column p-2">
                 <h5 class="p-2" style="color:#323e48;"><b>Categories</b></h5>
                 <div class="sub-ctg d-flex flex-column">
+                    <% for (Subcategory subcategory : subcategoryList) {%>
                     <div>
-                        <i class="fa fa-briefcase" aria-hidden="true"></i><a href="#">Business</a>
+                        <i class="fa fa-book" aria-hidden="true"></i><a href="../../ViewProducts?subcategory=<%=countSubcategory%>&category=1"/><%= subcategory.getName()%></a>
+                        <%countSubcategory++;%>
                     </div>
-                    <div>
-                        <i class="fa fa-pinterest" aria-hidden="true"></i><a href="#">Art</a>
-                    </div>
-                    <div>
-                        <i class="fa fa-user-circle" aria-hidden="true"></i><a href="#">Young Adult</a>
-                    </div>
-                    <div>
-                        <i class="fa fa-commenting-o" aria-hidden="true"></i><a href="#">Self Help</a>
-                    </div>
+                    <% }%>
                 </div>
             </div>
             <div class="prod-list-container w-75 p-2">
                 <div class="prod-title-container p-2">
+                    <!-- Retrieve Product Title from Database -->
                     <div class="prod-title">
-                        Business
+                        <% for (Subcategory subcategory : subcategoryTitle) {%>
+                        <%= subcategory.getName()%>
+                        <% }%>
                     </div>
-                    <div class="d-flex justify-content-between">
-                        <span style="color: #677279; font-size: 0.9rem;"><b>Showing 1 - 5 of 5 products</b></span>
+                    <% for (Product product : prodList) {
+                            countProduct++;
+                        }%>
+                    <div class="d-flex justify-content-between pt-3">
+                        <span style="color: #677279; font-weight:500 ; font-size: 0.9rem;">Showing 1 - <%= countProduct%> of <%= countProduct%> products</span>
                         <select name="filters" class="book-filters">
                             <option value="lowTHigh">Price: Low to High</option>
                             <option value="highTLow">Price: High to Low</option>
@@ -67,13 +72,13 @@
                     <div class="book-body p-2 mb-3">
                         <a href="ProductDescription.jsp"><img src=<%= product.getImage()%> src="book-image" style="max-width: 100%"/></a>
                         <div><%= product.getName()%></div>
-                        <div>RM <%= product.getPrice()%></div>
+                        <div class="pt-3">RM <%= product.getPrice()%></div>
                         <% if (product.getStockQuantity() <= 0) { %>
                         <li class="sold-out"> Sold Out</li>
                             <% } else { %>
                         <li class="in-stock"> In Stock</li>
-                            <% } %>
-                        <button class="btn-cart">Add To Cart</button>
+                            <% }%>
+                        <a href="../../LoadProductDesc?productid=<%= product.getId()%>&subcategory=<%= product.getSubcategoryId().getId()%>"><button class="btn-cart">Add To Cart</button></a>
                     </div>
                     <% }%>
                 </div>

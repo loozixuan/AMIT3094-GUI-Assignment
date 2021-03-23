@@ -5,10 +5,8 @@
  */
 package controller;
 
-import entity.Category;
-import java.io.IOException;
 import entity.Product;
-import entity.Subcategory;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -25,8 +23,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author zixua
  */
-@WebServlet(name = "ViewProducts", urlPatterns = {"/ViewProducts"})
-public class ViewProducts extends HttpServlet {
+@WebServlet(name = "LoadProductDesc", urlPatterns = {"/LoadProductDesc"})
+public class LoadProductDesc extends HttpServlet {
 
     @PersistenceContext
     EntityManager em;
@@ -42,30 +40,26 @@ public class ViewProducts extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Get Query String value from URL defined
+
+        String productID = request.getParameter("productid");
         String subcategory = request.getParameter("subcategory");
-        String category = request.getParameter("category");
 
-        // Find product based on subcategory id and status
-        Query query = em.createNativeQuery("SELECT * FROM PRODUCT WHERE SUBCATEGORY_ID ='"
+        Query query = em.createNamedQuery("Product.findById").setParameter("id", productID);
+        List<Product> productInfo = query.getResultList();
+
+        Query queryStr = em.createNativeQuery("SELECT * FROM PRODUCT WHERE SUBCATEGORY_ID ='"
                 + subcategory + "' AND STATUS='Active'", Product.class);
-        List<Product> prodList = query.getResultList();
+        List<Product> prodList = queryStr.getResultList();
 
-        Query subcategoryQuery = em.createNamedQuery("Subcategory.findById").setParameter("id", subcategory);
-        List<Subcategory> subcategoryTitle = subcategoryQuery.getResultList();
-
-        Query categoryQuery = em.createNativeQuery("SELECT * FROM SUBCATEGORY WHERE CATEGORY_ID ='"
-                + category + "' ", Subcategory.class);
-        List<Subcategory> subcategoryList = categoryQuery.getResultList();
-
-        // Store attributes in HttpSession
         HttpSession session = request.getSession();
+        session.setAttribute("productInfo", productInfo);
         session.setAttribute("prodList", prodList);
-        session.setAttribute("subcategoryTitle", subcategoryTitle);
-        session.setAttribute("subcategoryList", subcategoryList);
 
-        // forward to productCatalog.jsp
-        response.sendRedirect("Client/Product/ProductCatalog.jsp");
+//        try (PrintWriter out = response.getWriter()) {
+//            out.print(prodList);
+//        }
+        // forward to productDescription.jsp
+        response.sendRedirect("Client/Product/ProductDescription.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

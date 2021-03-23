@@ -19,6 +19,12 @@
     max-width: 100%;
 }
 
+.image-body img:hover{
+    transform: scale(1.05);
+    transition-duration: 1s;
+    cursor: pointer;
+}
+
 .small-image img{
     width:75px;
     border: 2px solid var(--primary-button-button);
@@ -95,7 +101,7 @@
 .btn-cart,.btn-des-cart{
     background: var(--primary-button-button);
     border: none;
-    width: 100%;
+    width: 55%;
     position: relative;
     padding: 0 30px;
     line-height: 40px;
@@ -120,10 +126,15 @@
     width: 90%;
 }
 
-.price-info div:nth-child(1), .stock-info div:nth-child(1){
+.price-info div:nth-child(1), .stock-info div:nth-child(1), .stock-quantity-info div:nth-child(1){
     padding-right: 30px;
     color: var(--heading-color);
     font-weight: 620;
+}
+
+.stock-quantity-info div:nth-child(2){
+    font-size: 1rem;
+    color: #677279;
 }
 
 .price-info div:nth-child(2){
@@ -133,15 +144,15 @@
 }
 
 .stock-info div:nth-child(2){
-    color:var(--product-in-stock-color);
+    /*    color:var(--product-in-stock-color);*/
     font-size: 1rem;
     font-weight: 520;
 }
-
+/*
 .stock-info div:nth-child(2):before {
     padding-right: 5px;
     content: "\25CF";
-}
+}*/
 
 .button{
     border: 1px solid lightgray;
@@ -184,6 +195,11 @@ input::-webkit-inner-spin-button {
     font-family: var(--header-title-text);
     font-size: 1.1rem;
     font-weight: bold;
+}
+
+.fa-circle:before{
+    font-size: 0.6rem;
+    padding-right: 8px;
 }
 
 @media screen and (max-width: 992px) {
