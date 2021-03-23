@@ -46,10 +46,10 @@
                         <a class="nav-link" href="#" data-toggle="dropdown"> English Books <i class="fa fa-chevron-down" aria-hidden="true"></a></i> 
                         <div class="dropdown-item">
                             <div class='row-item'>
-                                <div>ss</div>
-                                <div>ss</div>
-                                <div>ss</div>
-                                <div>ss</div>
+                                  <div><a href="../../ViewProducts?subcategory=1&category=1"/>Business</a></div>
+                        <div><a href="../../ViewProducts?subcategory=2&category=1"/>Art</a></div>
+                        <div><a href="../../ViewProducts?subcategory=3&category=1"/>Young Adult</a></div>
+                        <div><a href="../../ViewProducts?subcategory=4&category=1"/>Self Help</a></div>
                             </div>
                         </div>
                     </li>
