@@ -75,7 +75,7 @@
                         <div class="pt-3">RM <%= product.getPrice()%></div>
                         <% if (product.getStockQuantity() <= 0) {%>
                         <li class="sold-out"> Sold Out</li>
-                        <a href="../../LoadProductDesc?productid=<%= product.getId()%>&subcategory=<%= product.getSubcategoryId().getId()%>"><button class="btn-cart" disabled="">Add To Cart</button></a>
+                        <a href="../../LoadProductDesc?productid=<%= product.getId()%>&subcategory=<%= product.getSubcategoryId().getId()%>"><button class="btn-cart" disabled>Add To Cart</button></a>
                         <% } else {%>
                         <li class="in-stock"> In Stock</li>
                         <a href="../../LoadProductDesc?productid=<%= product.getId()%>&subcategory=<%= product.getSubcategoryId().getId()%>"><button class="btn-cart">Add To Cart</button></a>
