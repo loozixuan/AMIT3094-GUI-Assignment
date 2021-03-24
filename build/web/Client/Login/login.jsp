@@ -12,7 +12,9 @@ and open the template in the editor.
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <link rel="icon" href="../Share/images/logoBook.png"/>
+         <link rel="icon" href="Client/Share/images/logoBook.png"/>
         <link href="login.css" rel="stylesheet">
+         <link href="Client/Login/login.css" rel="stylesheet">
     </head>
 
 
@@ -21,11 +23,11 @@ and open the template in the editor.
         <div class="loginContainer">
             <% String error=(String)request.getAttribute("errorMessage") ;
                 if(error!=null){%>
-                <p><%= error%></p>
+                <p class="errorMessage"><%= error%></p>
                 <% } %>
             <h3>Login to my account</h3>
           
-            <form action="../../Login" action="get">
+            <form action="../../Login" method="get">
                 <div class="loginForm">
                     <p class="enter">Enter your e-mail and password:</p>
                     <input type="text" name="email" placeholder="Email" value=""/>

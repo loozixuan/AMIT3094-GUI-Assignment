@@ -10,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="icon" href="../images/logo-book.png"/>
-        <link rel="stylesheet" href="editProduct.css"/>
+        <link rel="stylesheet" href="InsertProduct.css"/>
         <link rel="icon" href="../Share/images/logo-book.png"/>
         <title>Hobbit Hall</title>
     </head>
@@ -33,8 +33,8 @@
                         </ul>
                     </div>
 
-                    <div class="orderDetail">
-                        <div class="custInfo">
+                    <div class="productDetail">
+                        <div class="productInfo">
                             <div class="banner">Insert Product</div>
                             <div class="img">
                                 <img src="../../Client/Share/images/book/business/business1.jpg" class="img"/>

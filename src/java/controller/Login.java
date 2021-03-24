@@ -8,8 +8,8 @@ package controller;
 import entity.Customer;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -20,6 +20,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.security.MessageDigest;
+import java.util.Base64;
 
 /**
  *
@@ -69,27 +71,41 @@ public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String email_regex = "^[A-Za-z0-9+_.-]+@(.+)$";
+
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        Pattern pattern = Pattern.compile(email_regex);
-        Matcher matcher = pattern.matcher(email);
+        String encodedPassword = "";
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+            encodedPassword = Base64.getEncoder().encodeToString(hash);
 
-        if (email != null && password != null && matcher.matches() == true) {
+        } catch (Exception ex) {
+            try (PrintWriter out = response.getWriter()) {
+                out.print(ex.getMessage());
+            }
 
-            Query query = em.createNamedQuery("Customer.findAccount");
-            //TODO -hash password
-            query.setParameter("email", email);
-            query.setParameter("password", password);
+        }
 
-            //List<Account> user = query.getResultList();
-            Customer customer = (Customer) query.getSingleResult();
+        if (!email.equals("") && !password.equals("")) {
+            try {
+                Query query = em.createNamedQuery("Customer.findAccount");
+                //TODO -hash password
+                query.setParameter("email", email);
+                query.setParameter("password", encodedPassword);
 
-            if (customer != null) {
-                HttpSession session = request.getSession();
-                session.setAttribute("customer", customer);
-                response.sendRedirect("Client/Home/home.jsp");
-            } else {
+                // Customer customer = (Customer) query.getSingleResult();
+                List<Customer> cust = query.getResultList();
+                Customer customer = cust.get(0);
+
+                if (customer != null) {
+                    HttpSession session = request.getSession();
+                    session.setAttribute("customer", customer);
+                    response.sendRedirect("Client/Home/home.jsp");
+
+                }
+
+            } catch (Exception ex) {
                 String errorMessage = "No user found";
                 request.setAttribute("errorMessage", errorMessage);
                 RequestDispatcher rd = request.getRequestDispatcher("Client/Login/login.jsp");
@@ -106,6 +122,7 @@ public class Login extends HttpServlet {
             // response.sendRedirect("Client/Login/login.jsp");
 
         }
+
     }
 
     /**

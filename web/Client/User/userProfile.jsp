@@ -49,7 +49,7 @@
 
                 <% if (customer.getName() != null) { %>
 
-                <form action="../../ChangePassword" method="post">
+                <form action="../../UpdateUserProfile" method="post">
                     <div class="row">
                         <label>Name :<span class="text-danger">*</span></label><br>
                         <input type="text" name="name" placeholder="Name" value="${customer.name}" required>

@@ -51,7 +51,7 @@ and open the template in the editor.
 
 .table{
     border-radius: 6px;
-    padding:10px;
+    padding:5px;
     border:1px solid #dddddd;
     width: 100%;
     display: block;
@@ -172,4 +172,14 @@ a:hover{
     color:blue
 }
 
+.no_product{
+    margin:60px;
+    text-align: center;
+    background-color:white;
+    
+}
+.no_product h1{
+    color:rgb(51, 204, 204);
+    padding:10px;
+}
 
