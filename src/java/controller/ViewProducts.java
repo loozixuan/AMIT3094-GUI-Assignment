@@ -46,10 +46,12 @@ public class ViewProducts extends HttpServlet {
         // Get Query String value from URL defined
         String subcategory = request.getParameter("subcategory");
         String category = request.getParameter("category");
+        String name = request.getParameter("name");
+        String order = request.getParameter("order");
 
         // Find product based on subcategory id and status
         Query query = em.createNativeQuery("SELECT * FROM PRODUCT WHERE SUBCATEGORY_ID ='"
-                + subcategory + "' AND STATUS='Active'", Product.class);
+                + subcategory + "' AND STATUS='Active' ORDER BY " + name + " " + order, Product.class);
         List<Product> prodList = query.getResultList();
 
         Query subcategoryQuery = em.createNamedQuery("Subcategory.findById").setParameter("id", subcategory);

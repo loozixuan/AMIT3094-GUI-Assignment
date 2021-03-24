@@ -71,7 +71,6 @@
                         <% }%>
                     </div>
 
-
                     <input type="hidden" id="qty" value="<%= product.getStockQuantity()%>"/>
 
                     <div class="input-group">
@@ -107,6 +106,7 @@
                 </div>
             </div>
             <% }%>
+
 
             <div class="product-item-card p-2 mx-auto">
                 <span class="section-title p-2" style="margin:20px;">You may also like this</span>

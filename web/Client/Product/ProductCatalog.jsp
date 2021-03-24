@@ -29,6 +29,7 @@
         List<Subcategory> subcategoryList = (List) session.getAttribute("subcategoryList");
         int countProduct = 0;
         int countSubcategory = 1;
+        String test = "";
     %>
 
     <body>
@@ -38,8 +39,30 @@
                 <div class="sub-ctg d-flex flex-column">
                     <% for (Subcategory subcategory : subcategoryList) {%>
                     <div>
-                        <i class="fa fa-book" aria-hidden="true"></i><a href="../../ViewProducts?subcategory=<%=countSubcategory%>&category=1"/><%= subcategory.getName()%></a>
+                        <i class="fa fa-book" aria-hidden="true"></i><a href="../../ViewProducts?name=price&order=asc&subcategory=<%=countSubcategory%>&category=1"/><%= subcategory.getName()%></a>
                         <%countSubcategory++;%>
+                    </div>
+                    <% }%>
+                    <% for (int i = 0; i < 1; i++) {%>
+                    <div class="filter-container d-flex flex-column pt-4">
+                        <h5 class="p-1" style="color:#323e48;"><b>Filters</b></h5>
+
+                        <div style="padding:5px">
+                            <i class="fa fa-money" aria-hidden="true"></i>
+                            <a href="../../ViewProducts?name=price&order=asc&subcategory=<%= prodList.get(i).getSubcategoryId().getId()%>&category=<%= prodList.get(i).getSubcategoryId().getCategoryId().getId()%>" >Price Low to High</a>
+                        </div>
+                        <div style="padding:5px">
+                            <i class="fa fa-money" aria-hidden="true"></i>
+                            <a href="../../ViewProducts?name=price&order=desc&subcategory=<%= prodList.get(i).getSubcategoryId().getId()%>&category=<%= prodList.get(i).getSubcategoryId().getCategoryId().getId()%>">Price High to Low</a>
+                        </div>
+                        <div style="padding:5px">
+                            <i class="fa fa-sort-alpha-asc" aria-hidden="true"></i>
+                            <a href="../../ViewProducts?name=name&order=asc&subcategory=<%= prodList.get(i).getSubcategoryId().getId()%>&category=<%= prodList.get(i).getSubcategoryId().getCategoryId().getId()%>">Alphabetically, A-Z</a>
+                        </div>
+                        <div style="padding:5px">
+                            <i class="fa fa-sort-alpha-desc" aria-hidden="true"></i>
+                            <a href="../../ViewProducts?name=name&order=desc&subcategory=<%= prodList.get(i).getSubcategoryId().getId()%>&category=<%= prodList.get(i).getSubcategoryId().getCategoryId().getId()%>">Alphabetically, Z-A</a>
+                        </div>
                     </div>
                     <% }%>
                 </div>
@@ -57,12 +80,12 @@
                         }%>
                     <div class="d-flex justify-content-between pt-3">
                         <span style="color: #677279; font-weight:500 ; font-size: 0.9rem;">Showing 1 - <%= countProduct%> of <%= countProduct%> products</span>
-                        <select name="filters" class="book-filters">
-                            <option value="lowTHigh">Price: Low to High</option>
-                            <option value="highTLow">Price: High to Low</option>
-                            <option value="A-Z">Alphabetically, A-Z</option>
-                            <option value="Z-A">Alphabetically, Z-A</option>
-                        </select>
+                        <!--                        <select name="filters" class="book-filters">
+                                                    <option value="price asc">Price: Low to High</option>
+                                                    <option value="price desc">Price: High to Low</option>
+                                                    <option value="A-Z">Alphabetically, A-Z</option>
+                                                    <option value="Z-A">Alphabetically, Z-A</option>
+                                                </select>-->
                     </div>
                 </div>
 

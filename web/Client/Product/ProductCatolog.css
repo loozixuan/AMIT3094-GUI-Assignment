@@ -4,7 +4,7 @@
     background: #fff;
     box-shadow: 0.1rem 0.1rem 0.2rem rgb(0 0 0 / 10%);
     border-radius: 2px;
-    max-height: 275px;
+    max-height: 485px;
 }
 
 .prod-list-container{
@@ -16,6 +16,14 @@
     flex-wrap: wrap;
     min-height: 680px;
     border-radius: 2px;
+}
+
+.filter-container a{
+    padding:5px !important;
+}
+
+.filter-container div{
+    border-bottom:1px solid white !important;
 }
 
 .prod-title{
