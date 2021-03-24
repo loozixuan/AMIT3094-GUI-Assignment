@@ -159,13 +159,18 @@ li>a{
 
 /*dropdown-item structure*/
 .row-item{
-    margin:20px;
+    margin:20px 20px 40px 20px;
     display:flex;
     justify-content: space-around;
+    width:100%;
 }
 
 a{
     text-decoration: none;
+}
+
+.subCategory{
+    width:25%;
 }
 
 

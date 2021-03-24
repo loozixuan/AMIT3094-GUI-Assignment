@@ -4,6 +4,8 @@
     Author     : Chrisann Lee
 --%>
 <jsp:useBean id="customer" scope="session" class="entity.Customer"/>  
+<%@page import="entity.Subcategory,java.util.List"%>
+<% List<Subcategory> subCategoryList = (List<Subcategory>) session.getAttribute("subCategoryList"); %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
 <link href="../Share/base.css" rel="stylesheet">
@@ -40,17 +42,27 @@
             </div>
         </div>
     </div>
+
+
     <div class="navigation">
         <ul class="nav-inner">
             <li class="nav-title ">
-                <a class="nav-link" href="#" data-toggle="dropdown"> English Books <i class="fa fa-chevron-down" aria-hidden="true"></a></i> 
+                <a class="nav-link" href="" data-toggle="dropdown"> English Books <i class="fa fa-chevron-down" aria-hidden="true"></a></i> 
                 <div class="dropdown-item">
+
                     <div class='row-item'>
-                        <div><a href="../../ViewProducts?subcategory=1&category=1&name=name&order=desc"/>Business</a></div>
-                        <div><a href="../../ViewProducts?subcategory=2&category=1&name=name&order=desc"/>Art</a></div>
-                        <div><a href="../../ViewProducts?subcategory=3&category=1&name=name&order=desc"/>Young Adult</a></div>
-                        <div><a href="../../ViewProducts?subcategory=4&category=1&name=name&order=desc"/>Self Help</a></div>
+
+                        <% for (int i = 0; i < subCategoryList.size(); i++) {
+                                Subcategory subCategory = subCategoryList.get(i);
+                        %>
+                        <% if (subCategory.getCategoryId().getId().equalsIgnoreCase("1") ) {%>
+                        <div class="subCategory"><a href="../../ViewProducts?subcategory=1&category=1&name=name&order=desc"/><%= subCategory.getName()%></a></div>
+
+                        <% }
+                              }%>
                     </div>
+
+
                 </div>
             </li>
             <li class="nav-title ">
