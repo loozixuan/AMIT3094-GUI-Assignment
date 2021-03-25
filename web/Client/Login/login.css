@@ -97,3 +97,16 @@ p{
     margin:0px;
 }
 
+.send_email{
+    margin:50px 150px;
+    text-align: center;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+   
+}
+.send_email h4{
+    padding:20px;
+}
+

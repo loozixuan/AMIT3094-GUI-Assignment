@@ -45,7 +45,7 @@ and open the template in the editor.
                     <p class="question">New customer? </p><p class="link"> Create your account</p> 
                 </div>
                 <div class="rowQuestion">
-                    <p class="question">Lost password? </p><p class="link"> Recover password</p>
+                    <p class="question">Lost password? </p><a href="../../ForgotPassword?action=1"><p class="link"> Recover password</p></a>
                 </div>
             </div>
 

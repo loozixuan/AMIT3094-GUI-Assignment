@@ -70,7 +70,7 @@
                             </div>
                         </div>
                     </div>
-                    <% if (proList != null) { %>
+                    <% if (!proList.isEmpty()) { %>
                     <div class="table">       
                         <div class="h">
                             <div>Product Catalog</div>

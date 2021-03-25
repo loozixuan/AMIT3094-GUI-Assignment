@@ -75,7 +75,7 @@ div.col-1-2{
     text-align:center;
     font-weight: bold;
     margin-bottom: 0px;
-    
+
 }
 
 #cart{
@@ -84,7 +84,7 @@ div.col-1-2{
 }
 
 #cartLabel{
-    
+
     color:rgb(204, 0, 0);
     font-size: 1.6em;
 
@@ -114,19 +114,19 @@ div.col-1-2{
     width: 100%;
     left: 0;
     z-index: 1;
-    
+
 }
 
 .nav-title:hover .dropdown-item{ 
     display: block; 
-    
+
 }
 .nav-title .dropdown-item{ 
     margin-top:8px;
     border-top: 1px solid rgb(230, 230, 230); 
     background-color: #FEFFFC;
-   
-      
+
+
 }
 
 ul{
@@ -157,20 +157,28 @@ li>a{
 
 }
 
+.dropdown-item{
+    padding:20px 20px 40px 20px;
+}
+
 /*dropdown-item structure*/
 .row-item{
-    margin:20px 20px 40px 20px;
+
     display:flex;
     justify-content: space-around;
-    width:100%;
+
 }
 
 a{
     text-decoration: none;
 }
 
-.subCategory{
+.subCategory a{
+    padding-top:8px;
+    padding-bottom: 8px;
     width:25%;
+    color:rgba(0,0,0,0.9);
+
 }
 
 

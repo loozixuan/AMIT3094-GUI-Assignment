@@ -50,16 +50,18 @@
                 <a class="nav-link" href="" data-toggle="dropdown"> English Books <i class="fa fa-chevron-down" aria-hidden="true"></a></i> 
                 <div class="dropdown-item">
 
-                    <div class='row-item'>
+                    <div class='row-item d-flex justify-content-between flex-wrap'>
 
                         <% for (int i = 0; i < subCategoryList.size(); i++) {
                                 Subcategory subCategory = subCategoryList.get(i);
                         %>
-                        <% if (subCategory.getCategoryId().getId().equalsIgnoreCase("1") ) {%>
-                        <div class="subCategory"><a href="../../ViewProducts?subcategory=1&category=1&name=name&order=desc"/><%= subCategory.getName()%></a></div>
+                        <% if (subCategory.getCategoryId().getId().equalsIgnoreCase("1")) {%>
+                        <div class="subCategory justify-content-center d-flex w-25">
+                            <a href="../../ViewProducts?subcategory=1&category=1&name=name&order=desc"/><%= subCategory.getName()%></a>
+                        </div>
 
                         <% }
-                              }%>
+                            }%>
                     </div>
 
 
@@ -68,22 +70,36 @@
             <li class="nav-title ">
                 <a class="nav-link" href="#" data-toggle="dropdown"> Chinese Books <i class="fa fa-chevron-down" aria-hidden="true"></i></a> 
                 <div class="dropdown-item">
-                    <div class='row-item'>
-                        <div>ss</div>
-                        <div>ss</div>
-                        <div>ss</div>
-                        <div>ss</div>
+                    <div class='row-item d-flex justify-content-between flex-wrap'>
+
+                        <% for (int i = 0; i < subCategoryList.size(); i++) {
+                                Subcategory subCategory = subCategoryList.get(i);
+                        %>
+                        <% if (subCategory.getCategoryId().getId().equalsIgnoreCase("2")) {%>
+                        <div class="subCategory justify-content-center d-flex w-25">
+                            <a href="../../ViewProducts?subcategory=1&category=1&name=name&order=desc"/><%= subCategory.getName()%></a>
+                        </div>
+
+                        <% }
+                            }%>
                     </div>
                 </div>
             </li>
             <li class="nav-title ">
                 <a class="nav-link" href="#" data-toggle="dropdown"> Malay Books <i class="fa fa-chevron-down" aria-hidden="true"></a></i> 
                 <div class="dropdown-item">
-                    <div class='row-item'>
-                        <div>ss</div>
-                        <div>ss</div>
-                        <div>ss</div>
-                        <div>ss</div>
+                   <div class='row-item d-flex justify-content-between flex-wrap'>
+
+                        <% for (int i = 0; i < subCategoryList.size(); i++) {
+                                Subcategory subCategory = subCategoryList.get(i);
+                        %>
+                        <% if (subCategory.getCategoryId().getId().equalsIgnoreCase("3")) {%>
+                        <div class="subCategory justify-content-center d-flex w-25">
+                            <a href="../../ViewProducts?subcategory=1&category=1&name=name&order=desc"/><%= subCategory.getName()%></a>
+                        </div>
+
+                        <% }
+                            }%>
                     </div>
                 </div>
             </li>

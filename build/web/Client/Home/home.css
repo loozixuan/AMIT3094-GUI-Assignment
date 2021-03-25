@@ -255,6 +255,7 @@ and open the template in the editor.
    margin:40px 30px;
    display:flex;
    width:95%;
+   height:500px;
 }
 
 .children-bookImg-container{

@@ -90,7 +90,6 @@ public class Login extends HttpServlet {
         if (!email.equals("") && !password.equals("")) {
             try {
                 Query query = em.createNamedQuery("Customer.findAccount");
-                //TODO -hash password
                 query.setParameter("email", email);
                 query.setParameter("password", encodedPassword);
 
