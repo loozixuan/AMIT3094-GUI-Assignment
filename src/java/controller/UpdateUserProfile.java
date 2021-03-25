@@ -167,7 +167,7 @@ public class UpdateUserProfile extends HttpServlet {
                     utx.commit();
                     String message = "Account details changed successfully.";
                     request.setAttribute("successMessage", message);
-                    RequestDispatcher rd = request.getRequestDispatcher("Client/User/userProfile.jsp");
+                    RequestDispatcher rd = request.getRequestDispatcher("/Client/User/userProfile.jsp");
                     rd.forward(request, response);
                 }
 
@@ -180,7 +180,7 @@ public class UpdateUserProfile extends HttpServlet {
 
         } else {
             request.setAttribute("errorMessage", error);
-            RequestDispatcher rd = request.getRequestDispatcher("Client/User/userProfile.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("<%=request.getContextPath()%>/Client/User/userProfile.jsp");
             rd.forward(request, response);
 
         }

@@ -54,18 +54,17 @@ public class JavaMailUtil {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(myAccountEmail));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
-            message.setSubject("My First Java Email");
-            message.setText("Hey There");
+            message.setSubject("Hobbit Hall");
             String htmlCode = "<html>\n"
                     + "<head>\n"
-                    + "<title>KWANG TAT</title>\n"
+                    + "<title>Hobbit Hall</title>\n"
                     + "</head>\n"
                     + "<body>\n"
                     + "<p style='text-align:center;font-size:2.2em;color:rgb(51, 204, 204);'>Almost there!</p>\n"
-                    + "<p style='text-align:center;font-size:1.5em;'>Hi,$name</p>\n"
-                    + "<p style='text-align:center;font-size:1.3em;'>You have successfully created an account at KWANG TAT website</p>\n"
-                    + "<p style='text-align:center;font-size:1.3em;'>Click the button below to Log in your account.</p>\n"
-                    + "<a href='http://localhost:48180/HobbitHall/Client/Login/login.jsp'><input style='border: 2px solid black;background-color:white;padding:10px;margin-top:20px;margin-bottom:20px;margin-right:480px;margin-left:480px;display:block;font-size:1.3em;' type='button' name='Log in' value='Log in now!'/></a>\n"
+                    + "<p style='text-align:center;font-size:1.5em;'>Hi,customer</p>\n"
+                    + "<p style='text-align:center;font-size:1.3em;'>You have requested to change your password</p>\n"
+                    + "<p style='text-align:center;font-size:1.3em;'>Click the button below to change your password.</p>\n"
+                    + "<a href='http://localhost:48180/HobbitHall/Client/Login/ChangePassword.jsp'><input style='border: 2px solid black;background-color:white;padding:10px;margin-top:20px;margin-bottom:20px;margin-right:480px;margin-left:480px;display:block;font-size:1.3em;' type='button' name='Log in' value='Change Password'/></a>\n"
                     + "</body>\n"
                     + "</html>";
             message.setContent(htmlCode, "text/html");

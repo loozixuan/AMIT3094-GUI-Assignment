@@ -5,12 +5,26 @@
  */
 package controller;
 
+import entity.Customer;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.util.Base64;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.annotation.Resource;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.transaction.UserTransaction;
 
 /**
  *
@@ -18,6 +32,11 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "ForgotPassword", urlPatterns = {"/ForgotPassword"})
 public class ForgotPassword extends HttpServlet {
+
+    @PersistenceContext
+    EntityManager em;
+    @Resource
+    UserTransaction utx;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -60,10 +79,85 @@ public class ForgotPassword extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String email = request.getParameter("email");
-        JavaMailUtil.sendMail(email);
-        response.sendRedirect("Client/Login/SendedEmail.jsp");
+        String action = request.getParameter("action");
 
+        if (action.equals("email")) {
+            String email = request.getParameter("email");
+            JavaMailUtil.sendMail(email);
+            response.sendRedirect("Client/Login/SendedEmail.jsp");
+
+        } else {
+//        try (PrintWriter out = response.getWriter()) {
+//            out.print("hello");
+//        }
+            String email = request.getParameter("email");
+            String password_regex = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$";
+            String email_regex = "^\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$";
+            String newPassword = request.getParameter("new_password");
+            String confirmPassword = request.getParameter("confirm_password");
+            String encodedNewPassword = "";
+            if (!email.equals("") && !newPassword.equals("") && !confirmPassword.equals("")) {
+                Pattern pattern = Pattern.compile(password_regex);
+                Matcher matcher = pattern.matcher(newPassword);
+                Pattern patternEmail = Pattern.compile(email_regex);
+                Matcher matcherEmail = patternEmail.matcher(email);
+
+                //Encrypt password
+                try {
+                    MessageDigest digest = MessageDigest.getInstance("SHA-256");
+                    byte[] hash = digest.digest(newPassword.getBytes(StandardCharsets.UTF_8));
+                    encodedNewPassword = Base64.getEncoder().encodeToString(hash);
+                } catch (Exception ex) {
+                    try (PrintWriter out = response.getWriter()) {
+                        out.print(ex.getMessage());
+                    }
+
+                }
+
+                if (matcherEmail.matches() && matcher.matches() && newPassword.equals(confirmPassword)) {
+                    try {
+                        Query query = em.createNamedQuery("Customer.findByEmail");  //get from database
+                        query.setParameter("email", email);
+                        List<Customer> customer = query.getResultList();
+
+                        Customer customerDetails = customer.get(0);
+
+                        if (customerDetails != null) {
+                            customerDetails.setPassword(encodedNewPassword);
+                            utx.begin();
+                            em.merge(customerDetails);
+                            utx.commit();
+                            String message = "Account details changed successfully.";
+                            request.setAttribute("successMessage", message);
+                            RequestDispatcher rd = request.getRequestDispatcher("Client/User/Login.jsp");
+                            rd.forward(request, response);
+                        }
+
+                    } catch (Exception ex) {
+                        String message = "No user found.";
+                        request.setAttribute("errorMessage", message);
+                        RequestDispatcher rd = request.getRequestDispatcher("Client/User/ChangePassword.jsp");
+                        rd.forward(request, response);
+
+                    }
+
+                } else {
+                    String message = "Please enter a valid email or password. New Password must same with the Confirm Password";
+                    request.setAttribute("errorMessage", message);
+                    RequestDispatcher rd = request.getRequestDispatcher("Client/User/ChangePassword.jsp");
+                    rd.forward(request, response);
+
+                }
+
+            } else {
+                String message = "Please enter a valid email or password. New Password must same with the Confirm Password";
+                request.setAttribute("errorMessage", message);
+                RequestDispatcher rd = request.getRequestDispatcher("Client/User/ChangePassword.jsp");
+                rd.forward(request, response);
+
+            }
+
+        }
     }
 
     /**

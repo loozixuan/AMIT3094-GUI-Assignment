@@ -24,7 +24,7 @@
         <%@ include file="../Share/header.jsp" %>
         <div class="loginContainer">
             <div class="send_email">
-                <h4>System has send an email to your email account.Please click the link that provided in email to change your password.</h4>
+                <h4>System has sent an email to your email account.Please click the button that provided in the email to change your password.</h4>
             </div>
 
         </div>

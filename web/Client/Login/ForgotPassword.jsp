@@ -26,7 +26,7 @@
            
             <h3>Forgot Password</h3>
             
-            <form action="../../ForgotPassword" method="post">
+            <form action="../../ForgotPassword?action=email" method="post">
                 <div class="loginForm">
                     <p class="enter">Enter your e-mail:</p>
                     <input type="text" name="email" placeholder="Email" value=""/>

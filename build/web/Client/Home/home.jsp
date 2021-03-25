@@ -10,8 +10,9 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="icon" href="../Share/images/logoBook.png"/>
-        <link href="home.css" rel="stylesheet">
+        <link rel="icon" href="<%=request.getContextPath()%>/Client/Share/images/logoBook.png"/>
+        <link href="<%=request.getContextPath()%>/Client/Home/home.css" rel="stylesheet">
+            
     </head>
 
 

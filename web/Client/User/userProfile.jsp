@@ -13,8 +13,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <link rel="icon" href="../Share/images/logoBook.png"/>
-        <link href="userProfile.css" rel="stylesheet">
+        <link rel="icon" href="<%=request.getContextPath()%>/Client/Share/images/logoBook.png"/>
+        <link href="<%=request.getContextPath()%>/Client/User/userProfile.css" rel="stylesheet">
     </head>
     <body>
         <%@ include file="../Share/header.jsp" %>
@@ -29,7 +29,7 @@
                         <td><a href="#"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>Orders</a></td>
                     </tr>
                     <tr>
-                    <form action="../../Logout" action="get">
+                    <form action="/HobbitHall/Logout" action="get">
                         <td><i class="fa fa-sign-out" aria-hidden="true"></i><input type="submit" name="submit" value="Logout" id="logout-button"></td>
                     </form> 
                     </tr>
@@ -40,11 +40,11 @@
             <div class="col-3-4">
                 <% String successMessage=(String)request.getAttribute("successMessage"); 
                 if(successMessage!=null){ %>
-                <div>${successMessage}</div>
+                <div class="responceMessage" style="color:green">${successMessage}</div>
                 <% } %>
                  <% String errorMessage=(String)request.getAttribute("errorMessage"); 
                 if(errorMessage!=null){ %>
-                <div>${errorMessage}</div>
+                <div class="responceMessage" style="color:red;">${errorMessage}</div>
                 <% } %>
 
                 <% if (customer.getName() != null) { %>

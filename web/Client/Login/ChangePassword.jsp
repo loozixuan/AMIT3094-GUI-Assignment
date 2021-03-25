@@ -1,9 +1,11 @@
+<%-- 
+    Document   : ChangePassword
+    Created on : Mar 25, 2021, 8:42:54 PM
+    Author     : Chrisann Lee
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <title>Hobbit Hall</title>
@@ -26,18 +28,15 @@ and open the template in the editor.
                 if (error != null) {%>
             <p class="errorMessage"><%= error%></p>
             <% }%>
-             <% String success = (String) request.getAttribute("successMessage");
-                if (success != null) {%>
-            <p class="errorMessage" style="color:green"><%= success%></p>
-            <% }%>
             <h3>Login to my account</h3>
 
-            <form action="/HobbitHall/Login" method="get">
+            <form action="../../ForgotPassword" method="post">
                 <div class="loginForm">
                     <p class="enter">Enter your e-mail and password:</p>
                     <input type="text" name="email" placeholder="Email" value=""/>
-                    <input type="password" name="password" placeholder="Password" value=""/>
-
+                    <input type="password" name="new_password" placeholder="New Password" value=""/>
+                    <input type="password" name="confirm_password" placeholder="Confirm Password" value=""/>
+                    <p style="font-size:0.8em;">Password requires 8 characters, at least 1 letter and 1 number.</p>
                     <div>
                         <input type="submit" value="Login" id="submit"/>
                     </div>
@@ -45,18 +44,10 @@ and open the template in the editor.
 
             </form>
 
-            <div style="margin-top:20px;margin-bottom:10px;">
-                <div class="rowQuestion">
-                    <p class="question">New customer? </p><p class="link"> Create your account</p> 
-                </div>
-                <div class="rowQuestion">
-                    <p class="question">Lost password? </p><a href="../../ForgotPassword?action=1"><p class="link"> Recover password</p></a>
-                </div>
-            </div>
-
         </div>
 
         <%@ include file="../Share/footer.html" %>
 
     </body>
 </html>
+
