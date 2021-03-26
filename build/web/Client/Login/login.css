@@ -8,10 +8,8 @@ and open the template in the editor.
     Author     : Chrisann Lee
 */
 
-
-
 .loginContainer{
-    padding-top:100px;
+    padding-top:80px;
     padding-bottom:100px;
     display:flex;
     flex-direction:column;

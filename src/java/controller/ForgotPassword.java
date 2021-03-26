@@ -127,7 +127,7 @@ public class ForgotPassword extends HttpServlet {
                             utx.begin();
                             em.merge(customerDetails);
                             utx.commit();
-                            String message = "Account details changed successfully.";
+                            String message = "Account details changed successfully. Please login to your account";
                             request.setAttribute("successMessage", message);
                             RequestDispatcher rd = request.getRequestDispatcher("Client/Login/login.jsp");
                             rd.forward(request, response);
@@ -142,7 +142,7 @@ public class ForgotPassword extends HttpServlet {
                     }
 
                 } else {
-                    String message = "Please enter a valid email or password. New Password must same with the Confirm Password";
+                    String message = "Please enter a valid email or password. New Password must same with the Confirm Password.";
                     request.setAttribute("errorMessage", message);
                     RequestDispatcher rd = request.getRequestDispatcher("Client/Login/ChangePassword.jsp");
                     rd.include(request, response);
