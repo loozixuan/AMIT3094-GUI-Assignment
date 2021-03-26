@@ -51,6 +51,11 @@ select{
     border-bottom: 1px solid lightgray;
     padding:12px;
 }
+.sub-ctg-none div{
+
+    padding:12px;
+}
+
 
 .sub-ctg div a{
     color:black;

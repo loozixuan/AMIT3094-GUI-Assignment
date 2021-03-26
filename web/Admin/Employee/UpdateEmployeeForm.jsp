@@ -77,7 +77,7 @@
                             <label for="inputRole">Role</label>
                             <select name="role" id="inputRole" class="form-control">
                                 <option selected>Choose...</option>
-                                <option value="manager">Manager</option>
+                                <option value="admin">Admin</option>
                                 <option value="staff">Staff</option>
                             </select>
                         </div>

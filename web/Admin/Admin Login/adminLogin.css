@@ -8,6 +8,11 @@
     justify-content:center;
 }
 
+.adminlogin{
+    display:flex;
+    flex-direction: column;
+}
+
 .enter{
     color:rgba(0,0,0,0.7);
     margin-top:15px;
@@ -29,27 +34,27 @@ input:focus{
     outline:none;
 }
 
-button{
-    width:50px;
+#submit{
+    width:300px;
     border:none;
-    background-color:rgb(180, 180, 180);
+    background-color:rgba(180,180,180);
     color:white;
     padding:10px;
-    margin:10px 5px;
+    margin:10px 0px;
     border-radius:2px;
 }
 
-button:hover{
-    background-color: rgba(204,0,0,0.8);
+#submit:hover{
+    background-color:rgba(204,0,0,0.8);
    
 }
 
-button:focus{
+#submit:focus{
     outline:none;
 }
 
 .link{
-    font-size:0.8em;
+    font-size:0.9em;
     color:rgba(204,0,0,0.9);
 }
 

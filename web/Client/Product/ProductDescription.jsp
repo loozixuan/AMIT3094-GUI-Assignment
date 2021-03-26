@@ -111,17 +111,17 @@
             <div class="product-item-card p-2 mx-auto">
                 <span class="section-title p-2" style="margin:20px;">You may also like this</span>
                 <div class="prod-container row p-2 d-flex justify-content-between">
-                    <% for (Product product : prodList) {%>
+                    <% for (int i = 0; i < 4; i++) {%>
                     <div class="product-item-body p-3">
-                        <a href="../../LoadProductDesc?productid=<%= product.getId()%>&subcategory=<%= product.getSubcategoryId().getId()%>"><img src=<%= product.getImage()%> src="book-image" style="max-width: 100%"/></a>
-                        <div><%= product.getName()%></div>
-                        <div class="pt-3">RM <%= product.getPrice()%></div>
-                        <% if (product.getStockQuantity() <= 0) {%>
+                        <a href="../../LoadProductDesc?productid=<%= prodList.get(i).getId()%>&subcategory=<%= prodList.get(i).getSubcategoryId().getId()%>"><img src=<%= prodList.get(i).getImage()%> src="book-image" style="max-width: 100%"/></a>
+                        <div><%= prodList.get(i).getName()%></div>
+                        <div class="pt-3">RM <%= prodList.get(i).getPrice()%></div>
+                        <% if (prodList.get(i).getStockQuantity() <= 0) {%>
                         <li class="sold-out"> Sold Out</li>
-                        <a href="../../LoadProductDesc?productid=<%= product.getId()%>&subcategory=<%= product.getSubcategoryId().getId()%>"><button class="btn-cart w-100" disabled>Add To Cart</button></a>
+                        <a href="../../LoadProductDesc?productid=<%= prodList.get(i).getId()%>&subcategory=<%= prodList.get(i).getSubcategoryId().getId()%>"><button class="btn-cart w-100" disabled>Add To Cart</button></a>
                         <% } else {%>
                         <li class="in-stock"> In Stock</li>
-                        <a href="../../LoadProductDesc?productid=<%= product.getId()%>&subcategory=<%= product.getSubcategoryId().getId()%>"><button class="btn-cart w-100">Add To Cart</button></a>
+                        <a href="../../LoadProductDesc?productid=<%= prodList.get(i).getId()%>&subcategory=<%= prodList.get(i).getSubcategoryId().getId()%>"><button class="btn-cart w-100">Add To Cart</button></a>
                         <% }%>
                     </div>
                     <% }%>

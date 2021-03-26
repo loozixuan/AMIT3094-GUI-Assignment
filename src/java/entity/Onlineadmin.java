@@ -35,7 +35,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Onlineadmin.findByEmail", query = "SELECT o FROM Onlineadmin o WHERE o.email = :email")
     , @NamedQuery(name = "Onlineadmin.findByRole", query = "SELECT o FROM Onlineadmin o WHERE o.role = :role")
     , @NamedQuery(name = "Onlineadmin.findByPassword", query = "SELECT o FROM Onlineadmin o WHERE o.password = :password")
-    , @NamedQuery(name = "Onlineadmin.findByStatus", query = "SELECT o FROM Onlineadmin o WHERE o.status = :status")})
+    , @NamedQuery(name = "Onlineadmin.findByStatus", query = "SELECT o FROM Onlineadmin o WHERE o.status = :status")
+    , @NamedQuery(name = "Onlineadmin.findAccount", query = "SELECT c FROM Onlineadmin c WHERE c.email = :email AND c.password = :password")})
 public class Onlineadmin implements Serializable {
 
     private static final long serialVersionUID = 1L;

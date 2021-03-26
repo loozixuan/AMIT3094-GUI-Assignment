@@ -83,12 +83,9 @@
                             </td>
                         </tr>
                         <%}%>
-                        <%} else {%>
-                        <div>
-                            dasndlnkn
-                        </div>
-                        <%}%>
                     </table>
+                    <%} else {%>
+                    <%}%>
                 </div>
             </div>
         </div>

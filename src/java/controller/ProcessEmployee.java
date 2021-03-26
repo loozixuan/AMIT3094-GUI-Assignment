@@ -59,9 +59,6 @@ public class ProcessEmployee extends HttpServlet {
         if (action.equalsIgnoreCase("update")) {
             doPostUpdate(request, response);
         }
-        if (action.equalsIgnoreCase("view")) {
-            doPostView(request, response);
-        }
         if (action.equalsIgnoreCase("delete")) {
             doPostDelete(request, response);
         }
