@@ -27,7 +27,7 @@ input{
     margin-bottom:10px;
     width:350px; 
     border-radius:2px;
-    
+
 }
 
 input:focus{
@@ -37,7 +37,8 @@ input:focus{
 #submit{
     width:300px;
     border:none;
-    background-color:rgba(180,180,180);
+    background-color:rgba(204,0,0,0.8);
+    cursor: pointer;
     color:white;
     padding:10px;
     margin:10px 0px;
@@ -45,8 +46,7 @@ input:focus{
 }
 
 #submit:hover{
-    background-color:rgba(204,0,0,0.8);
-   
+    border:2px solid black;
 }
 
 #submit:focus{

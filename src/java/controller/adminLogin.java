@@ -11,6 +11,7 @@ import java.io.PrintWriter;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -66,42 +67,6 @@ public class adminLogin extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-
-        if (email.equals("lyuenkuan@gmail.com") && password.equals("zxcvbnm")) {
-
-            response.sendRedirect("Admin/Dashboard/dashboard.jsp");
-
-            try {
-                Query query = em.createNamedQuery("Onlineadmin.findAccount");
-                query.setParameter("email", email);
-                query.setParameter("password", password);
-
-                List<Onlineadmin> ad = query.getResultList();
-                Onlineadmin admin = ad.get(0);
-
-                if (admin != null) {
-                    HttpSession session = request.getSession();
-                    session.setAttribute("admin", admin);
-                    response.sendRedirect("Admin/Dashboard/dashboard.jsp");
-
-                }
-
-            } catch (Exception e) {
-                String errMsg = "The user not found.";
-                request.setAttribute("errMsg", errMsg);
-                response.sendRedirect("Admin/Dashboard/dashboard.jsp");
-
-            }
-        } else {
-
-            String errMsg = "Invalid email or password.";
-            request.setAttribute("errMsg", errMsg);
-            response.sendRedirect("Admin/Dashboard/dashboard.jsp");
-
-        }
-
     }
 
     /**
@@ -115,7 +80,44 @@ public class adminLogin extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+
+        if (!email.equals("") && !password.equals("")) {
+            try {
+                Query query = em.createNativeQuery("SELECT * FROM ONLINEADMIN WHERE EMAIL ='"
+                        + email + "' AND PASSWORD='" + password + "'", entity.Onlineadmin.class);
+//                Query query = em.createNamedQuery("Onlineadmin.findByAccount");
+//                query.setParameter("email", email);
+//                query.setParameter("password", password);
+
+                List<Onlineadmin> ad = query.getResultList();
+                Onlineadmin admin = ad.get(0);
+
+                if (admin != null) {
+                    HttpSession session = request.getSession();
+                    session.setAttribute("admin", admin);
+                    response.sendRedirect("Admin/SalesRecord/ViewSalesRecord.jsp");
+                }
+
+            } catch (Exception ex) {
+                try (PrintWriter out = response.getWriter()) {
+                    out.print(ex.getMessage());
+                }
+                String errMsg = "The user not found.";
+                request.setAttribute("errMsg", errMsg);
+                RequestDispatcher rd = request.getRequestDispatcher("Admin/Dashboard/dashboard.jsp");
+                rd.forward(request, response);
+            }
+        } else {
+
+            String errMsg = "Invalid email or password. Please enter again";
+            request.setAttribute("errMsg", errMsg);
+            RequestDispatcher rd = request.getRequestDispatcher("Admin/Admin Login/adminLogin.jsp");
+            rd.forward(request, response);
+
+        }
+
     }
 
     /**
