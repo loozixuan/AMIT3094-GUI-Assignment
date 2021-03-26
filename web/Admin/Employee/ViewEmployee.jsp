@@ -77,8 +77,8 @@
                             <%}%>
                             <td>
                                 <div class="table-action d-flex justify-content-around w-50 mx-auto">
-                                    <div><a href="UpdateEmployeeForm.jsp?action=update&empid=<%=admin.getId()%>"><i class="fa fa-cogs" aria-hidden="true"></i></a></div>
-                                    <div><a href="DeleteEmployeeForm.jsp?action=delete&empid=<%=admin.getId()%>"><i class="fa fa-trash" aria-hidden="true"></i></a></div>
+                                    <div><a href="UpdateEmployeeForm.jsp?action=update&email=<%=admin.getEmail()%>"><i class="fa fa-cogs" aria-hidden="true"></i></a></div>
+                                    <div><a href="DeleteEmployeeForm.jsp?action=delete&email=<%=admin.getEmail()%>"><i class="fa fa-trash" aria-hidden="true"></i></a></div>
                                 </div>
                             </td>
                         </tr>

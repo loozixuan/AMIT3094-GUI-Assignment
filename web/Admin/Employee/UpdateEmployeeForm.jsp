@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="UpdateEmployeeForm.css" rel="stylesheet"/>
+        <link href="/HobbitHall/Admin/Employee/UpdateEmployeeForm.css" rel="stylesheet"/>
         <link rel="icon" href="../Share/images/logo-book.png"/>
         <title>Hobbit Hall Book Store</title>
     </head>
@@ -33,37 +33,50 @@
 
 
                 <div class="update-emp-form p-3">
-                    <form action="/HobbitHall/ProcessEmployee/action=update" method="post">
-
+                    <form action="/HobbitHall/ProcessEmployee?action=update" method="POST">
+                        <div class="msg pb-2">
+                            <% String success_msg = (String) request.getAttribute("success_msg");
+                                if (success_msg != null) { %>
+                            <div class="sucess-msg" style="color:green">
+                                ${success_msg}
+                            </div>
+                            <% } %>
+                            <% String err_msg = (String) request.getAttribute("err_msg");
+                                if (err_msg != null) { %>
+                            <div class="err-msg" style="color:red">
+                                ${err_msg}
+                            </div>
+                            <% }%>
+                        </div>
                         <div>
                             <div class="form-group w-50">
                                 <label for="name">Name :</label>
-                                <input type="text" class="form-control" id="name" name="name" value="">
+                                <input type="text" class="form-control" id="name" name="name">
                             </div>
                             <div class="form-group w-50">
                                 <label for="email">Email : </label>
-                                <input type="email" class="form-control" id="email" name="email" value="">
+                                <input type="email" class="form-control" id="email" name="email">
                             </div>
                             <div class="form-group w-50">
                                 <label for="cpwd">Current Password :</label>
-                                <input type="password" class="form-control" id="cpwd" name="currentpassword" value="">
+                                <input type="password" class="form-control" id="cpwd" name="currentpassword">
                             </div>
                         </div>
                         <div>
                             <div class="form-group w-50">
                                 <label for="pwd">New Password :</label>
-                                <input type="password" class="form-control" id="pwd" name="password" value="">
+                                <input type="password" class="form-control" id="pwd" name="password">
                                 <small id="passwordGuide" class="form-text text-muted">
                                     *Password should should consists of 6 characters including 1 digit and 1 alphabet
                                 </small>
                             </div>
                             <div class="form-group w-50">
                                 <label for="pwd">Confirmed Password :</label>
-                                <input type="password" class="form-control" id="pwd" name="cpassword" value="">
+                                <input type="password" class="form-control" id="pwd" name="cpassword">
                             </div>
                             <div class="form-group w-50">
                                 <label for="inputRole">Role</label>
-                                <select id="inputRole" class="form-control">
+                                <select name="role" id="inputRole" class="form-control">
                                     <option selected>Choose...</option>
                                     <option value="manager">Manager</option>
                                     <option value="staff">Staff</option>

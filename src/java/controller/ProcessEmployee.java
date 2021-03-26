@@ -55,9 +55,11 @@ public class ProcessEmployee extends HttpServlet {
         String action = request.getParameter("action");
         if (action.equalsIgnoreCase("add")) {
             doPostAdd(request, response);
-        } else if (action.equalsIgnoreCase("update")) {
+        }
+        if (action.equalsIgnoreCase("update")) {
             doPostUpdate(request, response);
-        } else {
+        }
+        if (action.equalsIgnoreCase("delete")) {
             doPostDelete(request, response);
         }
     }
@@ -170,7 +172,6 @@ public class ProcessEmployee extends HttpServlet {
 
         String err_msg = "";
         boolean validate = false;
-        boolean validate_null = false;
 
         String email_regex = "^[A-Za-z0-9+_.-]+@(.+)$";
         String password_regex = "^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{6,}$";  //>=1 Number, >=1 Character , 6 Characters
@@ -183,28 +184,23 @@ public class ProcessEmployee extends HttpServlet {
         if (name.isEmpty() || currentpassword.isEmpty() || newpassword.isEmpty() || cpassword.isEmpty() || email.isEmpty() || role == null) {
             err_msg = "All fields must be filled in";
         } else {
-            validate_null = true;
+            if (email_matcher.matches() != true || new_password_matcher.matches() != true || !newpassword.equals(cpassword)) {
+                err_msg = "Please enter a valid email and password. Confirm password must same with new password";
+            } else {
+                validate = true;
+            }
         }
 
-        if (email_matcher.matches() != true) {
-            err_msg = "Email format wrong. Please enter again";
-        } else if (new_password_matcher.matches() != true) {
-            err_msg = "Password format wrong E.g. (At least One Digit, One Character and 6 Characters). Please enter again";
-
-        } else if (!newpassword.equals(cpassword)) {
-            err_msg = "Password and Confirmed password not same. Please enter agai";
-        } else {
-            validate = true;
-        }
-
-        if (validate == true && validate_null == true) {
+        if (validate == true) {
             try {
-                // Decrypt current password to match with database         
+                // Decode current password to match with database         
                 String encodedCurrentPassword = "";
                 String encodedNewPassword = "";
                 MessageDigest digest = MessageDigest.getInstance("SHA-256");
                 byte[] hash = digest.digest(currentpassword.getBytes(StandardCharsets.UTF_8));
                 encodedCurrentPassword = Base64.getEncoder().encodeToString(hash);
+
+                // encoded new password to store in database
                 byte[] hashcode = digest.digest(newpassword.getBytes(StandardCharsets.UTF_8));
                 encodedNewPassword = Base64.getEncoder().encodeToString(hashcode);
 
@@ -227,8 +223,12 @@ public class ProcessEmployee extends HttpServlet {
                     request.setAttribute("success_msg", success_msg);
                     RequestDispatcher rd = request.getRequestDispatcher("Admin/Employee/UpdateEmployeeForm.jsp");
                     rd.forward(request, response);
+                } else {
+                    err_msg = "Current password not match. Please enter again";
+                    request.setAttribute("err_msg", err_msg);
+                    RequestDispatcher rd = request.getRequestDispatcher("Admin/Employee/UpdateEmployeeForm.jsp");
+                    rd.forward(request, response);
                 }
-
             } catch (Exception ex) {
                 try (PrintWriter out = response.getWriter()) {
                     out.println(ex.getMessage());

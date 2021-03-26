@@ -1,7 +1,24 @@
 .update-emp-form .form-control{
     height: 32px !important;
 }
+.err-msg {
+    color: red;
+    width: 590px;
+    background: white;
+    padding: 10px;
+    border: 1px solid red;
+}
 
+.sucess-msg{
+    width: 500px;
+    background: white;
+    padding: 10px;
+    border: 1px solid green;
+}
+
+.err-msg:before {
+    content: "\25CF";
+}
 @media screen and (max-width: 780px){
     .update-emp-form .form-group{
         width:100% !important;
