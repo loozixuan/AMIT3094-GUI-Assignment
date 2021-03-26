@@ -49,7 +49,7 @@ public class ForgotPassword extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.sendRedirect("Client/Login/ForgotPassword.jsp");
+        //response.sendRedirect("Client/Login/ForgotPassword.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -87,9 +87,9 @@ public class ForgotPassword extends HttpServlet {
             response.sendRedirect("Client/Login/SendedEmail.jsp");
 
         } else {
-//        try (PrintWriter out = response.getWriter()) {
-//            out.print("hello");
-//        }
+//            try (PrintWriter out = response.getWriter()) {
+//                out.print("hello");
+//            }
             String email = request.getParameter("email");
             String password_regex = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$";
             String email_regex = "^\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$";
@@ -129,31 +129,31 @@ public class ForgotPassword extends HttpServlet {
                             utx.commit();
                             String message = "Account details changed successfully.";
                             request.setAttribute("successMessage", message);
-                            RequestDispatcher rd = request.getRequestDispatcher("Client/User/Login.jsp");
+                            RequestDispatcher rd = request.getRequestDispatcher("Client/Login/login.jsp");
                             rd.forward(request, response);
                         }
 
                     } catch (Exception ex) {
                         String message = "No user found.";
                         request.setAttribute("errorMessage", message);
-                        RequestDispatcher rd = request.getRequestDispatcher("Client/User/ChangePassword.jsp");
-                        rd.forward(request, response);
+                        RequestDispatcher rd = request.getRequestDispatcher("Client/Login/ChangePassword.jsp");
+                        rd.include(request, response);
 
                     }
 
                 } else {
                     String message = "Please enter a valid email or password. New Password must same with the Confirm Password";
                     request.setAttribute("errorMessage", message);
-                    RequestDispatcher rd = request.getRequestDispatcher("Client/User/ChangePassword.jsp");
-                    rd.forward(request, response);
+                    RequestDispatcher rd = request.getRequestDispatcher("Client/Login/ChangePassword.jsp");
+                    rd.include(request, response);
 
                 }
 
             } else {
                 String message = "Please enter a valid email or password. New Password must same with the Confirm Password";
                 request.setAttribute("errorMessage", message);
-                RequestDispatcher rd = request.getRequestDispatcher("Client/User/ChangePassword.jsp");
-                rd.forward(request, response);
+                RequestDispatcher rd = request.getRequestDispatcher("Client/Login/ChangePassword.jsp");
+                rd.include(request, response);
 
             }
 

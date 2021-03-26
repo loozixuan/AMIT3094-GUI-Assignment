@@ -30,7 +30,7 @@
             <% }%>
             <h3>Login to my account</h3>
 
-            <form action="../../ForgotPassword" method="post">
+            <form action="/HobbitHall/ForgotPassword?action=change" method="post">
                 <div class="loginForm">
                     <p class="enter">Enter your e-mail and password:</p>
                     <input type="text" name="email" placeholder="Email" value=""/>

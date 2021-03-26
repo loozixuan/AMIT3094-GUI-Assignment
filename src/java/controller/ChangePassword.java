@@ -99,7 +99,6 @@ public class ChangePassword extends HttpServlet {
             Matcher matcher = pattern.matcher(newPassword);
             Pattern patternEmail = Pattern.compile(email_regex);
             Matcher matcherEmail = patternEmail.matcher(email);
-            String password = "";
 
             //Encrypt password
             try {
@@ -110,7 +109,6 @@ public class ChangePassword extends HttpServlet {
                 try (PrintWriter out = response.getWriter()) {
                     out.print(ex.getMessage());
                 }
-
             }
 
             if (matcherEmail.matches() && matcher.matches() && newPassword.equals(confirmPassword)) {

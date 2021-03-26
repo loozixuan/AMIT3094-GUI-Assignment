@@ -57,7 +57,7 @@
                         %>
                         <% if (subCategory.getCategoryId().getId().equalsIgnoreCase("1")) {%>
                         <div class="subCategory justify-content-center d-flex w-25">
-                            <a href="../../ViewProducts?subcategory=1&category=1&name=name&order=desc"/><%= subCategory.getName()%></a>
+                            <a href="/HobbitHall/ViewProducts?subcategory=E001&category=1&name=name&order=desc"/><%= subCategory.getName()%></a>
                         </div>
 
                         <% }
