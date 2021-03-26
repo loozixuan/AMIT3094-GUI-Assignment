@@ -9,7 +9,7 @@ and open the template in the editor.
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link href="../Share/adminPanel.css" rel="stylesheet">
+<link href="/HobbitHall/Admin/Share/adminPanel.css" rel="stylesheet">
 
 <!--mobile navigation bar start-->
 <div class="mobile_nav">
@@ -34,11 +34,11 @@ and open the template in the editor.
 <!--sidebar start-->
 <div class="sidebar">
     <div class="profile_info">
-        <img src="../Share/images/user-avatar.png" class="profile_image" alt="user-image">
+        <img src="<%= request.getContextPath()%>/Admin/Share/images/user-avatar.png" class="profile_image" alt="user-image">
         <h4>User Name</h4>
     </div>
-    <a href="../Dashboard/dashboard.jsp"><i class="fa fa-home" aria-hidden="true"></i></i><span>Dashboard</span></a>
-    <a href="../../ViewEmployeeInfo" class="dropdown-btn"><i class="fa fa-user-circle-o" aria-hidden="true"></i><span>Employee</span></a>
+    <a href="/HobbitHall/Admin/Dashboard/dashboard.jsp"><i class="fa fa-home" aria-hidden="true"></i></i><span>Dashboard</span></a>
+    <a href="/HobbitHall/ViewEmployeeInfo" class="dropdown-btn"><i class="fa fa-user-circle-o" aria-hidden="true"></i><span>Employee</span></a>
     <a href="#" class="dropdown-btn"><i class="fa fa-book" aria-hidden="true"></i><span>Product <i class="fa fa-caret-down"></i></span></a>
     <div class="dropdown-container">
         <a href="#" class="dropdown-list">Insert Product</a>

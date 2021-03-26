@@ -28,8 +28,6 @@
         List<Subcategory> subcategoryTitle = (List) session.getAttribute("subcategoryTitle");
         List<Subcategory> subcategoryList = (List) session.getAttribute("subcategoryList");
         int countProduct = 0;
-        int countSubcategory = 1;
-        String test = "";
     %>
 
     <body>
@@ -39,10 +37,10 @@
                 <div class="sub-ctg d-flex flex-column">
                     <% for (Subcategory subcategory : subcategoryList) {%>
                     <div>
-                        <i class="fa fa-book" aria-hidden="true"></i><a href="../../ViewProducts?name=price&order=asc&subcategory=<%=countSubcategory%>&category=1"/><%= subcategory.getName()%></a>
-                        <%countSubcategory++;%>
+                        <i class="fa fa-book" aria-hidden="true"></i><a href="../../ViewProducts?name=price&order=asc&subcategory=<%= subcategory.getId()%>&category=<%= subcategory.getCategoryId().getId()%>"/><%= subcategory.getName()%></a>
                     </div>
                     <% }%>
+                    <% if (!prodList.isEmpty()) { %>
                     <% for (int i = 0; i < 1; i++) {%>
                     <div class="filter-container d-flex flex-column pt-4">
                         <h5 class="p-1" style="color:#323e48;"><b>Filters</b></h5>
@@ -63,10 +61,34 @@
                             <i class="fa fa-sort-alpha-desc" aria-hidden="true"></i>
                             <a href="../../ViewProducts?name=name&order=desc&subcategory=<%= prodList.get(i).getSubcategoryId().getId()%>&category=<%= prodList.get(i).getSubcategoryId().getCategoryId().getId()%>">Alphabetically, Z-A</a>
                         </div>
+                    </div>  
+                    <% }%>
+                    <% } else {%>
+                    <div class="filter-container d-flex flex-column pt-4">
+                        <h5 class="p-1" style="color:#323e48;"><b>Filters</b></h5>
+
+                        <div style="padding:5px">
+                            <i class="fa fa-money" aria-hidden="true"></i>
+                            <a href="#" >Price Low to High</a>
+                        </div>
+                        <div style="padding:5px">
+                            <i class="fa fa-money" aria-hidden="true"></i>
+                            <a href="#" >Price High to Low</a>
+                        </div>
+                        <div style="padding:5px">
+                            <i class="fa fa-sort-alpha-asc" aria-hidden="true"></i>
+                            <a href="#" >Alphabetically, A-Z</a>
+                        </div>
+                        <div style="padding:5px">
+                            <i class="fa fa-sort-alpha-desc" aria-hidden="true"></i>
+                            <a href="#" >Alphabetically, Z-A</a>
+                        </div>
                     </div>
                     <% }%>
+
                 </div>
             </div>
+
             <div class="prod-list-container w-75 p-2">
                 <div class="prod-title-container p-2">
                     <!-- Retrieve Product Title from Database -->
@@ -75,6 +97,7 @@
                         <%= subcategory.getName()%>
                         <% }%>
                     </div>
+                    <% if (!prodList.isEmpty()) { %>
                     <% for (Product product : prodList) {
                             countProduct++;
                         }%>
@@ -87,8 +110,16 @@
                                                     <option value="Z-A">Alphabetically, Z-A</option>
                                                 </select>-->
                     </div>
+                    <% } else {%>
+                    <div class="prod-container row p-2 d-flex justify-content-between">
+                        <div class="d-flex justify-content-between pt-3" style="padding-left:0">
+                            <span style="color: #677279; font-weight:500 ; font-size: 0.9rem;">Showing 0 products</span>
+                        </div>
+                    </div>
+                    <%}%>
                 </div>
 
+                <% if (!prodList.isEmpty()) { %>
                 <!-- Load Product List -->
                 <div class="prod-container row p-2 d-flex justify-content-between">
                     <% for (Product product : prodList) {%>
@@ -106,6 +137,13 @@
                     </div>
                     <% }%>
                 </div>
+                <% } else {%>
+
+                <div class="prod-container mt-4 p-2 d-block w-75 mx-auto">
+                    <div class="product-err-msg text-center p-1">Sorry, this product category currently don't have any products.
+                        <br />Please browse other category to continue your shopping.</div>
+                </div>
+                <%}%>
             </div>
         </div>
     </body>

@@ -14,10 +14,9 @@
         <title>Hobbit Hall Book Store</title>
     </head>
     <body>
-        <!--Header-->
-        <%@ include file="../Share/adminHeader.html" %>
+        <%@ include file="../Share/adminHeader.jsp" %>
         <!--Sidebar-->
-        <%@ include file="../Share/adminSidebar.html" %>
+        <%@ include file="../Share/adminSidebar.jsp" %>
 
         <!--Content-->
         <div class="content">

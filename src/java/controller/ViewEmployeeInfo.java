@@ -5,15 +5,13 @@
  */
 package controller;
 
-import entity.Category;
+import entity.Onlineadmin;
 import java.io.IOException;
-import entity.Product;
-import entity.Subcategory;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,8 +23,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author zixua
  */
-@WebServlet(name = "ViewProducts", urlPatterns = {"/ViewProducts"})
-public class ViewProducts extends HttpServlet {
+@WebServlet(name = "ViewEmployeeInfo", urlPatterns = {"/ViewEmployeeInfo"})
+public class ViewEmployeeInfo extends HttpServlet {
 
     @PersistenceContext
     EntityManager em;
@@ -42,41 +40,16 @@ public class ViewProducts extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        Query query = em.createNamedQuery("Onlineadmin.findAll");
+        List<Onlineadmin> adminList = query.getResultList();
 
-        try {
-            // Get Query String value from URL defined
-            String subcategory = request.getParameter("subcategory");
-            String category = request.getParameter("category");
-            String name = request.getParameter("name");
-            String order = request.getParameter("order");
+        HttpSession session = request.getSession();
+        session.setAttribute("adminList", adminList);
 
-            // Find product based on subcategory id and status
-            Query query = em.createNativeQuery("SELECT * FROM PRODUCT WHERE SUBCATEGORY_ID ='"
-                    + subcategory + "' AND STATUS='Active' ORDER BY " + name + " " + order, Product.class);
-            List<Product> prodList = query.getResultList();
-
-            Query subcategoryQuery = em.createNamedQuery("Subcategory.findById").setParameter("id", subcategory);
-            List<Subcategory> subcategoryTitle = subcategoryQuery.getResultList();
-
-            Query categoryQuery = em.createNativeQuery("SELECT * FROM SUBCATEGORY WHERE CATEGORY_ID ='"
-                    + category + "' ", Subcategory.class);
-            List<Subcategory> subcategoryList = categoryQuery.getResultList();
-
-            // Store attributes in HttpSession
-            HttpSession session = request.getSession();
-            session.setAttribute("prodList", prodList);
-            session.setAttribute("subcategoryTitle", subcategoryTitle);
-            session.setAttribute("subcategoryList", subcategoryList);
-
-            // forward to productCatalog.jsp
-            response.sendRedirect("Client/Product/ProductCatalog.jsp");
-        } catch (Exception ex) {
-
-            try (PrintWriter out = response.getWriter()) {
-                out.print(ex.getMessage());
-            }
-            response.sendRedirect("Client/Product/ProductCatalog.jsp");
-        }
+//        try (PrintWriter out = response.getWriter()) {
+//            out.print(adminList);
+//        }
+        response.sendRedirect("Admin/Employee/ViewEmployee.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

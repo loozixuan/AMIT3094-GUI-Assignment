@@ -4,7 +4,6 @@
     background: #fff;
     box-shadow: 0.1rem 0.1rem 0.2rem rgb(0 0 0 / 10%);
     border-radius: 2px;
-    max-height: 485px;
 }
 
 .prod-list-container{
@@ -16,6 +15,14 @@
     flex-wrap: wrap;
     min-height: 680px;
     border-radius: 2px;
+}
+
+.product-err-msg{
+    border-bottom: 1px solid lightgray;
+    border-top: 1px solid lightgrey; 
+    color: #677279;
+    font-style: italic;
+    font-size: 0.95rem;
 }
 
 .filter-container a{
