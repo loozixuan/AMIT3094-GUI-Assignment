@@ -37,8 +37,8 @@
                         <div class="msg pb-2">
                             <% String success_msg = (String) request.getAttribute("success_msg");
                                 if (success_msg != null) { %>
-                            <div class="sucess-msg" style="color:green">
-                                ${success_msg}
+                            <div class="sucess-msg text-center" style="color:green">
+                                <i class="fa fa-check-square" aria-hidden="true"></i> ${success_msg}
                             </div>
                             <% } %>
                             <% String err_msg = (String) request.getAttribute("err_msg");
@@ -48,41 +48,40 @@
                             </div>
                             <% }%>
                         </div>
-                        <div>
-                            <div class="form-group w-50">
-                                <label for="name">Name :</label>
-                                <input type="text" class="form-control" id="name" name="name">
-                            </div>
-                            <div class="form-group w-50">
-                                <label for="email">Email : </label>
-                                <input type="email" class="form-control" id="email" name="email">
-                            </div>
-                            <div class="form-group w-50">
-                                <label for="cpwd">Current Password :</label>
-                                <input type="password" class="form-control" id="cpwd" name="currentpassword">
-                            </div>
+
+                        <div class="form-group w-50">
+                            <label for="name">Name :</label>
+                            <input type="text" class="form-control" id="name" name="name">
                         </div>
-                        <div>
-                            <div class="form-group w-50">
-                                <label for="pwd">New Password :</label>
-                                <input type="password" class="form-control" id="pwd" name="password">
-                                <small id="passwordGuide" class="form-text text-muted">
-                                    *Password should should consists of 6 characters including 1 digit and 1 alphabet
-                                </small>
-                            </div>
-                            <div class="form-group w-50">
-                                <label for="pwd">Confirmed Password :</label>
-                                <input type="password" class="form-control" id="pwd" name="cpassword">
-                            </div>
-                            <div class="form-group w-50">
-                                <label for="inputRole">Role</label>
-                                <select name="role" id="inputRole" class="form-control">
-                                    <option selected>Choose...</option>
-                                    <option value="manager">Manager</option>
-                                    <option value="staff">Staff</option>
-                                </select>
-                            </div>
+                        <div class="form-group w-50">
+                            <label for="email">Email : </label>
+                            <input type="email" class="form-control" id="email" name="email">
                         </div>
+                        <div class="form-group w-50">
+                            <label for="cpwd">Current Password :</label>
+                            <input type="password" class="form-control" id="cpwd" name="currentpassword">
+                        </div>
+
+                        <div class="form-group w-50">
+                            <label for="pwd">New Password :</label>
+                            <input type="password" class="form-control" id="pwd" name="password">
+                            <small id="passwordGuide" class="form-text text-muted">
+                                *Password should should consists of 6 characters including 1 digit and 1 alphabet
+                            </small>
+                        </div>
+                        <div class="form-group w-50">
+                            <label for="pwd">Confirmed Password :</label>
+                            <input type="password" class="form-control" id="pwd" name="cpassword">
+                        </div>
+                        <div class="form-group w-50">
+                            <label for="inputRole">Role</label>
+                            <select name="role" id="inputRole" class="form-control">
+                                <option selected>Choose...</option>
+                                <option value="manager">Manager</option>
+                                <option value="staff">Staff</option>
+                            </select>
+                        </div>
+
                         <div>
                             <button type="submit" class="btn btn-primary mt-2" style="width:78px;">Update</button>
                             <button type="reset" class="btn btn-primary mt-2" style="width:78px;">Reset</button>

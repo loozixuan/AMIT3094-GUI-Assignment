@@ -8,10 +8,10 @@ package controller;
 import entity.Onlineadmin;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,8 +23,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author zixua
  */
-@WebServlet(name = "ViewEmployeeInfo", urlPatterns = {"/ViewEmployeeInfo"})
-public class ViewEmployeeInfo extends HttpServlet {
+@WebServlet(name = "ViewDeleteEmpInfo", urlPatterns = {"/ViewDeleteEmpInfo"})
+public class ViewDeleteEmpInfo extends HttpServlet {
 
     @PersistenceContext
     EntityManager em;
@@ -40,17 +40,20 @@ public class ViewEmployeeInfo extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Query query = em.createNativeQuery("SELECT * FROM ONLINEADMIN WHERE STATUS ='Active'", Onlineadmin.class);
-//        Query query = em.createNamedQuery("Onlineadmin.findAll");
+        String id = request.getParameter("id");
+
+        Query query = em.createNamedQuery("Onlineadmin.findById").setParameter("id", id);
         List<Onlineadmin> adminList = query.getResultList();
 
-        HttpSession session = request.getSession();
-        session.setAttribute("adminList", adminList);
-
-//        try (PrintWriter out = response.getWriter()) {
-//            out.print(adminList);
-//        }
-        response.sendRedirect("Admin/Employee/ViewEmployee.jsp");
+        try {
+            HttpSession session = request.getSession();
+            session.setAttribute("admin", adminList);
+            response.sendRedirect("Admin/Employee/DeleteEmployeeForm.jsp");
+        } catch (Exception ex) {
+            try (PrintWriter out = response.getWriter()) {
+                out.println(ex.getMessage());
+            }
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

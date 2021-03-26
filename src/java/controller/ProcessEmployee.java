@@ -59,6 +59,9 @@ public class ProcessEmployee extends HttpServlet {
         if (action.equalsIgnoreCase("update")) {
             doPostUpdate(request, response);
         }
+        if (action.equalsIgnoreCase("view")) {
+            doPostView(request, response);
+        }
         if (action.equalsIgnoreCase("delete")) {
             doPostDelete(request, response);
         }
@@ -243,7 +246,44 @@ public class ProcessEmployee extends HttpServlet {
 
     protected void doPostDelete(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String id = request.getParameter("id");
 
+        Query query = em.createNamedQuery("Onlineadmin.findById").setParameter("id", id);
+        List<Onlineadmin> adminList = query.getResultList();
+
+        Onlineadmin admin = adminList.get(0);
+        try {
+            if (admin != null) {
+                admin.setStatus("Inactive");
+                utx.begin();
+                em.merge(admin);
+                utx.commit();
+                String success_msg = "Admin with ID " + admin.getId() + " has been deleted successfully";
+                request.setAttribute("success_msg", success_msg);
+                RequestDispatcher rd = request.getRequestDispatcher("Admin/Employee/DeleteEmployeeForm.jsp");
+                rd.forward(request, response);
+            }
+        } catch (Exception ex) {
+            try (PrintWriter out = response.getWriter()) {
+                out.println(ex.getMessage());
+            }
+        }
+    }
+
+    protected void doPostView(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String id = request.getParameter("id");
+
+        Query query = em.createNamedQuery("Onlineadmin.findById").setParameter("id", id);
+        List<Onlineadmin> adminList = query.getResultList();
+
+        try {
+
+        } catch (Exception ex) {
+            try (PrintWriter out = response.getWriter()) {
+                out.println(ex.getMessage());
+            }
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

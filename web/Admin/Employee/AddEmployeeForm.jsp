@@ -74,8 +74,8 @@
                         <div class="msg pb-2">
                             <% String success_msg = (String) request.getAttribute("success_msg");
                                 if (success_msg != null) { %>
-                            <div class="sucess-msg" style="color:green">
-                                ${success_msg}
+                            <div class="sucess-msg text-center" style="color:green">
+                                <i class="fa fa-check-square" aria-hidden="true"></i> ${success_msg}
                             </div>
                             <% } %>
                             <% String err_msg = (String) request.getAttribute("err_msg");
