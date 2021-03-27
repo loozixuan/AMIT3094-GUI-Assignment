@@ -20,6 +20,7 @@
     </head>
     <%
         List<Product> productSearch = (List) request.getAttribute("product");
+        List<Subcategory> subcategoryList = (List) request.getAttribute("subcategoryList");
         String catID = "";
         int countP = 0;
         String keyword = (String) request.getAttribute("keyword");
@@ -29,15 +30,15 @@
     <body>
         <div class="product-catalog-container d-flex justify-content-around p-4">
             <div class="prod-filter-container d-flex flex-column p-2">
-                <h5 class="p-2" style="color:#323e48;"><b>Recommended Categories</b></h5>
-                <% if (!productSearch.isEmpty()) { %>
-                <% for (Product product : productSearch) {
-                        catID = product.getSubcategoryId().getName();
-                        countP++;
-                    }%>
+                <h5 class="p-2 text-center" style="color:#323e48;"><b>Recommended Categories</b></h5>
+                <% if (!subcategoryList.isEmpty()) { %>
+                <% for (Subcategory subcategory : subcategoryList) {%>
                 <div class="sub-ctg d-flex flex-column">
-                    <div> <%= catID%> </div>
+                    <div>
+                        <i class="fa fa-book" aria-hidden="true"></i><a href="../../HobbitHall/ViewProducts?name=price&order=asc&subcategory=<%= subcategory.getId()%>&category=<%= subcategory.getCategoryId().getId()%>"/><%= subcategory.getName()%></a>
+                    </div>
                 </div>
+                <% }%>
                 <%} else {%>
                 <div class="sub-ctg-none d-flex flex-column" style="border-bottom:none !important">
                     <div></div>

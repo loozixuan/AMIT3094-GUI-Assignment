@@ -85,21 +85,22 @@ public class adminLogin extends HttpServlet {
                     HttpSession session = request.getSession();
                     session.setAttribute("admin", admin);
                     response.sendRedirect("Admin/Dashboard/dashboard.jsp");
-
                 }
 
             } catch (Exception e) {
+//                try (PrintWriter out = response.getWriter()) {
+//                    out.print(e.getMessage());
+//                }
                 String errMsg = "The user not found.";
                 request.setAttribute("errMsg", errMsg);
                 response.sendRedirect("Admin/Dashboard/dashboard.jsp");
 
             }
         } else {
-
             String errMsg = "Invalid email or password.";
             request.setAttribute("errMsg", errMsg);
             response.sendRedirect("Admin/Dashboard/dashboard.jsp");
-
+            //include
         }
 
     }

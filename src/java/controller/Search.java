@@ -8,6 +8,9 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import entity.Product;
+import entity.Subcategory;
+import java.util.Collections;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -90,6 +93,18 @@ public class Search extends HttpServlet {
 
             request.setAttribute("product", productR);
             request.setAttribute("keyword", search);
+            try {
+                Product prod = productR.get(0);
+
+                String catID = prod.getSubcategoryId().getCategoryId().getId();
+
+                Query categoryQuery = em.createNativeQuery("SELECT * FROM SUBCATEGORY WHERE CATEGORY_ID ='"
+                        + catID + "' ", Subcategory.class);
+                List<Subcategory> subcategoryList = categoryQuery.getResultList();
+                request.setAttribute("subcategoryList", subcategoryList);
+            } catch (Exception ex) {
+                request.setAttribute("subcategoryList", Collections.<String>emptyList());
+            }
 
             RequestDispatcher rd = request.getRequestDispatcher("Client/Search/Search.jsp");
             rd.forward(request, response);
