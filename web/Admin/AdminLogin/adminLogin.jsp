@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" href="images/logo-book.png"/>
 
-        <link href="adminLogin.css" rel="stylesheet">
+        <link href="/HobbitHall/Admin/AdminLogin/adminLogin.css" rel="stylesheet">
     </head>
 
 
@@ -15,9 +15,15 @@
 
         <div class="content" align="center">
             <div class="login">
+                <% String err_msg = (String) request.getAttribute("errMsg");
+                    if (err_msg != null) { %>
+                <div class="err-msg" style="color:red">
+                    ${err_msg}
+                </div>
+                <% }%>
                 <h3>Login as Administrator</h3>
 
-                <form action="../../adminLogin" method="post">
+                <form action="/HobbitHall/LoginAdmin" method="POST">
                     <div class="adminlogin">
                         <p class="enter">Please fill in the information below :</p>
                         <input type="email" name="email" placeholder="Email"/>

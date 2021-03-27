@@ -9,23 +9,30 @@ import entity.Onlineadmin;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import javax.annotation.Resource;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.transaction.UserTransaction;
 
 /**
  *
- * @author asus
+ * @author zixua
  */
-@WebServlet(name = "adminLogin", urlPatterns = {"/adminLogin"})
-public class adminLogin extends HttpServlet {
+@WebServlet(name = "LoginAdmin", urlPatterns = {"/LoginAdmin"})
+public class LoginAdmin extends HttpServlet {
 
+    @PersistenceContext
     EntityManager em;
+    @Resource
+    UserTransaction utx;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,19 +45,19 @@ public class adminLogin extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet adminLogin</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet adminLogin at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+//        response.setContentType("text/html;charset=UTF-8");
+//        try (PrintWriter out = response.getWriter()) {
+//            /* TODO output your page here. You may use following sample code. */
+//            out.println("<!DOCTYPE html>");
+//            out.println("<html>");
+//            out.println("<head>");
+//            out.println("<title>Servlet LoginAdmin</title>");
+//            out.println("</head>");
+//            out.println("<body>");
+//            out.println("<h1>Servlet LoginAdmin at " + request.getContextPath() + "</h1>");
+//            out.println("</body>");
+//            out.println("</html>");
+//        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -65,43 +72,7 @@ public class adminLogin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-
-        if (email.equals("lyuenkuan@gmail.com") && password.equals("zxcvbnm")) {
-
-            response.sendRedirect("Admin/Dashboard/dashboard.jsp");
-
-            try {
-                Query query = em.createNamedQuery("Onlineadmin.findAccount");
-                query.setParameter("email", email);
-                query.setParameter("password", password);
-
-                List<Onlineadmin> ad = query.getResultList();
-                Onlineadmin admin = ad.get(0);
-
-                if (admin != null) {
-                    HttpSession session = request.getSession();
-                    session.setAttribute("admin", admin);
-                    response.sendRedirect("Admin/Dashboard/dashboard.jsp");
-
-                }
-
-            } catch (Exception e) {
-                String errMsg = "The user not found.";
-                request.setAttribute("errMsg", errMsg);
-                response.sendRedirect("Admin/Dashboard/dashboard.jsp");
-
-            }
-        } else {
-
-            String errMsg = "Invalid email or password.";
-            request.setAttribute("errMsg", errMsg);
-            response.sendRedirect("Admin/Dashboard/dashboard.jsp");
-
-        }
-
+//        processRequest(request, response);
     }
 
     /**
@@ -115,7 +86,34 @@ public class adminLogin extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        if (!email.equals("") && !password.equals("")) {
+            try {
+                Query query = em.createNamedQuery("Onlineadmin.findByAccount").setParameter("email", email).setParameter("password", password);
+
+                List<Onlineadmin> adminList = query.getResultList();
+
+                Onlineadmin admin = adminList.get(0);
+                if (admin != null) {
+                    HttpSession session = request.getSession();
+                    session.setAttribute("admin", admin);
+                    response.sendRedirect("Admin/Dashboard/dashboard.jsp");
+//                    RequestDispatcher rd = request.getRequestDispatcher("Admin/Dashboard/Dashboard.jsp");
+//                    rd.forward(request, response);
+                }
+
+            } catch (Exception ex) {
+                try (PrintWriter out = response.getWriter()) {
+                    out.println(ex.getMessage());
+                }
+            }
+        } else {
+            String errMsg = "Invalid email or password. Please enter again";
+            request.setAttribute("errMsg", errMsg);
+            RequestDispatcher rd = request.getRequestDispatcher("Admin/AdminLogin/adminLogin.jsp");
+            rd.forward(request, response);
+        }
     }
 
     /**
