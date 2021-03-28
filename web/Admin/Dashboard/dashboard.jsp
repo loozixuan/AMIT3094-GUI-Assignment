@@ -34,12 +34,6 @@
                         </ul>
                     </div>
                     <br/>
-                    <% String errMsg = (String) request.getAttribute("errMsg");
-                        if (errMsg != null) { %>
-                    <div class="err-msg" style="color:red">
-                        ${errMsg}
-                    </div>
-                    <% }%>
                     <div class="info-card d-flex p-2">
                         <div class="card-container p-3">
                             <h5 class="card-title">Today Sales</h5>

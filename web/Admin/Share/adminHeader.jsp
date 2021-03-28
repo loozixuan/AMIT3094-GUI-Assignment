@@ -30,7 +30,7 @@ and open the template in the editor.
             <img src="<%=request.getContextPath()%>/Admin/Share/images/logo-book.png" style="position:relative;width:70px;top:5px"/>
         </div>
         <div class="right_area">
-            <input type="text" placeholder="Search..">
+            <a href="../../LoginAdmin?action=logout"><i class="fa fa-sign-out" aria-hidden="true"></i><span class="pl-2">Logout</span></a>
         </div>
     </div>
 </header>

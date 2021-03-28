@@ -8,14 +8,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <%
-            String path = request.getContextPath() + "/Admin/Employee/AddEmployeeForm.css";
-            String path2 = request.getContextPath() + "/Admin/Share/adminPanel.css";
-        %>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <!--        <link href="AddEmployeeForm.css" rel="stylesheet"/>-->
-        <link href="<%=path%>" rel="stylesheet"/>
-        <link href="<%=path2%>" rel="stylesheet"/>
+        <link href="/HobbitHall/Admin/Employee/AddEmployeeForm.css" rel="stylesheet"/>
+        <link href="/HobbitHall/Admin/Share/adminPanel.css" rel="stylesheet"/>
         <link rel="icon" href="../Share/images/logo-book.png"/>
         <title>Hobbit Hall Book Store</title>
     </head>
@@ -24,14 +19,11 @@
         <%@ include file="../Share/adminHeader.jsp" %>
         <!--Sidebar-->
         <%@ include file="../Share/adminSidebar.jsp" %>
-
         <%
             String name = (String) request.getAttribute("name");
             String email = (String) request.getAttribute("email");
             String password = (String) request.getAttribute("password");
             String cpassword = (String) request.getAttribute("cpassword");
-        %>
-        <%
             if (name == null) {
                 name = "";
             } else {
@@ -56,6 +48,7 @@
                 cpassword = cpassword;
             }
         %>
+
         <div>
             <!--Content-->
             <div class="content">
@@ -68,8 +61,6 @@
                             <li>Add Employee</li>
                         </ul>
                     </div>
-
-
                     <div class="add-emp-form p-3">
                         <div class="msg pb-2">
                             <% String success_msg = (String) request.getAttribute("success_msg");
@@ -89,7 +80,7 @@
                     <form action="/HobbitHall/ProcessEmployee?action=add" method="POST">
                         <div class="form-group w-50">
                             <label for="name">Name :</label>
-                            <input type="text" class="form-control" name="name" id="name" value="<%= name%>">
+                            <input type="text" class="form-control" name="newname" id="name" value="<%= name%>">
                         </div>
                         <div class="form-group w-50">
                             <label for="email">Email : </label>
@@ -108,11 +99,18 @@
                         </div>
                         <div class="form-group w-50">
                             <label for="inputRole">Role</label>
-                            <select name="role" id="inputRole" class="form-control">
+                            <%if (admin.getRole().equalsIgnoreCase("admin")) {%>
+                            <select name="roleAdmin" id="inputRole" class="form-control">
                                 <option selected>Choose Role...</option>
                                 <option value="admin">Admin</option>
                                 <option value="staff">Staff</option>
                             </select>
+                            <%} else {%>
+                            <select name="roleAdmin" id="inputRole" class="form-control">
+                                <option selected>Choose Role...</option>
+                                <option value="staff">Staff</option>
+                            </select>
+                            <%}%>
                         </div>
                         <div>
                             <button type="submit" class="btn btn-primary mt-2" style="width:78px;">Submit</button>

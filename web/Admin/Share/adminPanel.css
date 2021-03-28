@@ -58,15 +58,18 @@ header{
     color: #19B3D3;
 }
 
-.right_area input{
-    margin-top:22px;
+.right_area a{
+    position: relative;
+    top: 30px;
     margin-right: 50px;
     padding: 10px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-    border:none;
-    outline: none;
     width: 175px;
     line-height: initial;
+    text-decoration: none;
+}
+
+.right_area a:hover{
+    color:#7a80b4;
 }
 
 .logout_btn{
@@ -117,10 +120,10 @@ header{
 }
 
 .sidebar .profile_info h4{
-    color: #ccc;
+    color: lavender;
     margin-top: 0;
     margin-bottom:10px;
-    font-size: 1.05rem;
+    font-size: 0.95rem;
 }
 
 .sidebar a{

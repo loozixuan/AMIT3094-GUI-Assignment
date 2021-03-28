@@ -66,34 +66,39 @@ public class ProcessEmployee extends HttpServlet {
 
     protected void doPostAdd(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String name = request.getParameter("name");
+        String newname = request.getParameter("newname");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String cpassword = request.getParameter("cpassword");
-        String role = request.getParameter("role");
+        String roleAdmin = request.getParameter("roleAdmin");
 
 //        String err_msg = "";
         boolean validation = false;
 
+        String name_regex = "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$";
         String email_regex = "^[A-Za-z0-9+_.-]+@(.+)$"; //email pattern
         String password_regex = "^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{6,}$";  //>=1 Number, >=1 Character , 6 Characters
+
+        Pattern name_pattern = Pattern.compile(name_regex);
+        Matcher name_matcher = name_pattern.matcher(newname);
         Pattern email_pattern = Pattern.compile(email_regex);
         Matcher email_matcher = email_pattern.matcher(email);
-
         Pattern password_pattern = Pattern.compile(password_regex);
         Matcher password_matcher = password_pattern.matcher(password);
 
         StringBuilder sb = new StringBuilder();
 
-        if (name.isEmpty() || password.isEmpty() || email.isEmpty() || role == null) {
+        if (newname.isEmpty() || password.isEmpty() || email.isEmpty() || roleAdmin == null) {
             sb.append("\n All fields must be filled in \n").append("\n");
         } else {
             if (email_matcher.matches() != true) {
 //                err_msg = "Email format wrong. Please reenter";
-                sb.append("\n Email format wrong. Please enter again\n").append("\n");
+                sb.append("\n Please enter a valid email\n").append("\n");
             } else if (password_matcher.matches() != true) {
 //                    err_msg = "Password format wrong E.g. (At least One Digit, One Character and 6 Characters). Please reenter";
-                sb.append("\n Password format wrong. Please enter again \n").append("\n");
+                sb.append("\n Please enter valid password \n").append("\n");
+            } else if (name_matcher.matches() != true) {
+                sb.append("\n Please enter a valid username \n");
             } else if (!password.equals(cpassword)) {
                 sb.append("\n Password and Confirmed password not same. Please enter again \n");
             } else {
@@ -127,17 +132,17 @@ public class ProcessEmployee extends HttpServlet {
 
                     // error coz cannot retrieve any result
                     adminInfo.setId(String.valueOf(countUser));
-                    adminInfo.setName(name);
+                    adminInfo.setName(newname);
                     adminInfo.setEmail(email);
                     adminInfo.setPassword(encodedPassword);
-                    adminInfo.setRole(role);
+                    adminInfo.setRole(roleAdmin);
                     adminInfo.setStatus("Active");
 
                     utx.begin();
                     em.persist(adminInfo);
                     utx.commit();
 
-                    String success_msg = "One " + role + " successfuly added";
+                    String success_msg = "One " + roleAdmin + " successfuly added";
                     request.setAttribute("success_msg", success_msg);
                     RequestDispatcher rd = request.getRequestDispatcher("Admin/Employee/AddEmployeeForm.jsp");
                     rd.forward(request, response);
@@ -151,7 +156,7 @@ public class ProcessEmployee extends HttpServlet {
         } else {
             String errMsg = sb.toString();
             request.setAttribute("err_msg", errMsg);
-            request.setAttribute("name", name);
+            request.setAttribute("name", newname);
             request.setAttribute("email", email);
             request.setAttribute("password", password);
             request.setAttribute("cpassword", cpassword);
@@ -163,29 +168,33 @@ public class ProcessEmployee extends HttpServlet {
 
     protected void doPostUpdate(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String name = request.getParameter("name");
+        String newname = request.getParameter("newname");
         String email = request.getParameter("email");
         String currentpassword = request.getParameter("currentpassword");
         String newpassword = request.getParameter("password");
         String cpassword = request.getParameter("cpassword");
-        String role = request.getParameter("role");
 
         String err_msg = "";
         boolean validate = false;
 
+        String name_regex = "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$";
         String email_regex = "^[A-Za-z0-9+_.-]+@(.+)$";
         String password_regex = "^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{6,}$";  //>=1 Number, >=1 Character , 6 Characters
 
+        Pattern name_pattern = Pattern.compile(name_regex);
+        Matcher name_matcher = name_pattern.matcher(newname);
         Pattern email_pattern = Pattern.compile(email_regex);
         Matcher email_matcher = email_pattern.matcher(email);
         Pattern password_pattern = Pattern.compile(password_regex);
         Matcher new_password_matcher = password_pattern.matcher(newpassword);
 
-        if (name.isEmpty() || currentpassword.isEmpty() || newpassword.isEmpty() || cpassword.isEmpty() || email.isEmpty() || role == null) {
+        if (newname.isEmpty() || currentpassword.isEmpty() || newpassword.isEmpty() || cpassword.isEmpty() || email.isEmpty()) {
             err_msg = "All fields must be filled in";
         } else {
             if (email_matcher.matches() != true || new_password_matcher.matches() != true || !newpassword.equals(cpassword)) {
                 err_msg = "Please enter a valid email and password. Confirm password must same with new password";
+            } else if (name_matcher.matches() != true) {
+                err_msg = "Please enter a valid name";
             } else {
                 validate = true;
             }
@@ -211,9 +220,8 @@ public class ProcessEmployee extends HttpServlet {
 
                 if (admin != null && admin.getPassword().equals(encodedCurrentPassword)) {
                     admin.setEmail(email);
-                    admin.setName(name);
+                    admin.setName(newname);
                     admin.setPassword(encodedNewPassword);
-                    admin.setRole(role);
 
                     utx.begin();
                     em.merge(admin);

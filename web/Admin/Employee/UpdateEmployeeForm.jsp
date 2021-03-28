@@ -18,7 +18,9 @@
         <%@ include file="../Share/adminHeader.jsp" %>
         <!--Sidebar-->
         <%@ include file="../Share/adminSidebar.jsp" %>
-
+        <% String emailSelected = (String) request.getParameter("email");
+            String roleSelected = (String) request.getParameter("roles");
+        %>
         <!--Content-->
         <div class="content">
             <div class="p-3">
@@ -50,12 +52,26 @@
                         </div>
 
                         <div class="form-group w-50">
-                            <label for="name">Name :</label>
-                            <input type="text" class="form-control" id="name" name="name">
+                            <label for="email">Email : </label>
+                            <input type="email" class="form-control" id="email" name="email" value="<%=emailSelected%>" readonly="">
                         </div>
                         <div class="form-group w-50">
-                            <label for="email">Email : </label>
-                            <input type="email" class="form-control" id="email" name="email">
+                            <label for="inputRole">Role</label>
+                            <%if (admin.getRole().equalsIgnoreCase("admin")) {%>
+                            <select name="roleAdmin" id="inputRole" class="form-control">
+                                <option selected>Choose Role...</option>
+                                <option value="admin">Admin</option>
+                                <option value="staff">Staff</option>
+                            </select>
+                            <%} else {%>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="roles" name="roles" value="<%= roleSelected%>" readonly="">
+                            </div>
+                            <%}%>
+                        </div>
+                        <div class="form-group w-50">
+                            <label for="name">Name :</label>
+                            <input type="text" class="form-control" id="name" name="newname">
                         </div>
                         <div class="form-group w-50">
                             <label for="cpwd">Current Password :</label>
@@ -72,14 +88,6 @@
                         <div class="form-group w-50">
                             <label for="pwd">Confirmed Password :</label>
                             <input type="password" class="form-control" id="pwd" name="cpassword">
-                        </div>
-                        <div class="form-group w-50">
-                            <label for="inputRole">Role</label>
-                            <select name="role" id="inputRole" class="form-control">
-                                <option selected>Choose...</option>
-                                <option value="admin">Admin</option>
-                                <option value="staff">Staff</option>
-                            </select>
                         </div>
 
                         <div>

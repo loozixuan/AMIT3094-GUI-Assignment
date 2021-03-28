@@ -8,6 +8,9 @@ package controller;
 import entity.Onlineadmin;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.util.Base64;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
@@ -45,19 +48,10 @@ public class LoginAdmin extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        response.setContentType("text/html;charset=UTF-8");
-//        try (PrintWriter out = response.getWriter()) {
-//            /* TODO output your page here. You may use following sample code. */
-//            out.println("<!DOCTYPE html>");
-//            out.println("<html>");
-//            out.println("<head>");
-//            out.println("<title>Servlet LoginAdmin</title>");
-//            out.println("</head>");
-//            out.println("<body>");
-//            out.println("<h1>Servlet LoginAdmin at " + request.getContextPath() + "</h1>");
-//            out.println("</body>");
-//            out.println("</html>");
-//        }
+        String action = request.getParameter("action");
+        if (action.equals("logout")) {
+            doGet(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -72,7 +66,13 @@ public class LoginAdmin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        processRequest(request, response);
+        HttpSession session = request.getSession(false);
+
+        if (session != null) {
+            session.removeAttribute("admin");
+
+            response.sendRedirect("/HobbitHall/Admin/AdminLogin/adminLogin.jsp");
+        }
     }
 
     /**
@@ -90,7 +90,12 @@ public class LoginAdmin extends HttpServlet {
         String password = request.getParameter("password");
         if (!email.equals("") && !password.equals("")) {
             try {
-                Query query = em.createNamedQuery("Onlineadmin.findByAccount").setParameter("email", email).setParameter("password", password);
+                String encodedPassword = "";
+                MessageDigest digest = MessageDigest.getInstance("SHA-256");
+                byte[] hash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+                encodedPassword = Base64.getEncoder().encodeToString(hash);
+
+                Query query = em.createNamedQuery("Onlineadmin.findByAccount").setParameter("email", email).setParameter("password", encodedPassword);
 
                 List<Onlineadmin> adminList = query.getResultList();
 
@@ -99,8 +104,6 @@ public class LoginAdmin extends HttpServlet {
                     HttpSession session = request.getSession();
                     session.setAttribute("admin", admin);
                     response.sendRedirect("Admin/Dashboard/dashboard.jsp");
-//                    RequestDispatcher rd = request.getRequestDispatcher("Admin/Dashboard/Dashboard.jsp");
-//                    rd.forward(request, response);
                 }
 
             } catch (Exception ex) {

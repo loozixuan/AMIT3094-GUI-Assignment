@@ -20,7 +20,7 @@
     %>
     <body>
         <!--Header-->
-        <%@ include file="../Share/adminHeader.html" %>
+        <%@ include file="../Share/adminHeader.jsp" %>
         <!--Sidebar-->
         <%@ include file="../Share/adminSidebar.jsp" %>
 
@@ -38,7 +38,6 @@
                 </div>
 
                 <div class="table-emp-body p-3 mt-3">
-
                     <table class="table table-emp table-striped">
                         <div class="table-emp-header p-3 d-flex justify-content-between align-items-center">
                             <div>Employee <b>Information</b></div>
@@ -62,23 +61,27 @@
                             </tr>
                         </thead>
                         <% if (!adminList.isEmpty()) {%>
-                        <% for (Onlineadmin admin : adminList) {%>
+                        <% for (Onlineadmin adminUser : adminList) {%>
 
                         <tr>
-                            <td><%=admin.getId()%></td>
-                            <td><%=admin.getName()%></td>
-                            <td><%=admin.getEmail()%></td>
-                            <td><%=admin.getRole()%></td> 
+                            <td><%=adminUser.getId()%></td>
+                            <td><%=adminUser.getName()%></td>
+                            <td><%=adminUser.getEmail()%></td>
+                            <td><%=adminUser.getRole()%></td> 
                             <!--Show differences in status-->
-                            <% if (admin.getStatus().equals("Active")) {%>
-                            <td style="color: green;font-weight: 500"><%=admin.getStatus()%></td>
+                            <% if (adminUser.getStatus().equals("Active")) {%>
+                            <td style="color: green;font-weight: 500"><%=adminUser.getStatus()%></td>
                             <%} else {%>
-                            <td style="color: red;font-weight: 500"><%=admin.getStatus()%></td>
+                            <td style="color: red;font-weight: 500"><%=adminUser.getStatus()%></td>
                             <%}%>
                             <td>
                                 <div class="table-action d-flex justify-content-around w-50 mx-auto">
-                                    <div><a href="UpdateEmployeeForm.jsp?action=update&email=<%=admin.getEmail()%>"><i class="fa fa-cogs" aria-hidden="true"></i></a></div>
-                                    <div><a href="/HobbitHall/ViewDeleteEmpInfo?action=view&email=<%=admin.getEmail()%>&id=<%= admin.getId()%>"><i class="fa fa-trash" aria-hidden="true"></i></a></div>
+                                    <div><a href="UpdateEmployeeForm.jsp?action=update&email=<%=adminUser.getEmail()%>&roles=<%= adminUser.getRole()%>"><i class="fa fa-cogs" aria-hidden="true"></i></a></div>
+                                            <%if (admin.getRole().equalsIgnoreCase("admin")) {%>
+                                    <div><a href="/HobbitHall/ViewDeleteEmpInfo?action=view&email=<%=adminUser.getEmail()%>&id=<%= adminUser.getId()%>"><i class="fa fa-trash" aria-hidden="true"></i></a></div>
+                                            <%} else {%>
+                                    <div><i class="fa fa-trash" aria-hidden="true" style="cursor: not-allowed"></i></div>
+                                        <%}%>
                                 </div>
                             </td>
                         </tr>

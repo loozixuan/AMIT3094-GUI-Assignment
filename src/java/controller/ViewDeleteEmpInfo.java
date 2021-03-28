@@ -47,7 +47,7 @@ public class ViewDeleteEmpInfo extends HttpServlet {
 
         try {
             HttpSession session = request.getSession();
-            session.setAttribute("admin", adminList);
+            session.setAttribute("adminUser", adminList);
             response.sendRedirect("Admin/Employee/DeleteEmployeeForm.jsp");
         } catch (Exception ex) {
             try (PrintWriter out = response.getWriter()) {

@@ -23,7 +23,7 @@
         <%@ include file="../Share/adminSidebar.jsp" %>
         <%
             String id = request.getParameter("id");
-            List<Onlineadmin> admin = (List) session.getAttribute("admin");
+            List<Onlineadmin> adminUser = (List) session.getAttribute("adminUser");
         %>
 
         <!--Content-->
@@ -39,7 +39,7 @@
                 </div>
 
                 <div class="delete-emp-form p-3">
-                    <% for (Onlineadmin adminInfo : admin) {%>
+                    <% for (Onlineadmin adminInfo : adminUser) {%>
                     <form action="/HobbitHall/ProcessEmployee?action=delete&id=<%= adminInfo.getId()%>" method="POST">
                         <% String success_msg = (String) request.getAttribute("success_msg");
                             if (success_msg != null) { %>

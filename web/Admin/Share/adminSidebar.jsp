@@ -4,8 +4,8 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<jsp:useBean id="admin" scope="session" class="entity.Onlineadmin"/>  
-
+<jsp:useBean id="admin" scope="session" class="entity.Onlineadmin"/>
+<jsp:setProperty name="admin" property="*"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
@@ -39,7 +39,10 @@ and open the template in the editor.
         <% if (admin.getName() == null) {%>
         <h4>User Name</h4>
         <%} else {%>
-        <h4><%= admin.getName()%></h4>
+        <div class="d-flex justify-content-evenly" style="width: 105px">
+            <h4><%= admin.getName()%> </h4> 
+            <h4> ( <%= admin.getRole()%> )</h4>
+        </div>
         <%}%>
     </div>
 
@@ -54,7 +57,6 @@ and open the template in the editor.
     <a href=""><i class="fa fa-product-hunt" aria-hidden="true"></i><span>Promotion</span></a>
     <a href="../SalesRecord/ViewSalesTable.jsp"><i class="fa fa-folder" aria-hidden="true"></i><span>Daily Sales</span></a>
     <a href="#"><i class="fa fa-pie-chart"></i><span>Sales Report</span></a>
-    <a href="#"><i class="fa fa-sign-out" aria-hidden="true"></i><span>Logout</span></a>
 </div>
 <!--sidebar end-->
 
