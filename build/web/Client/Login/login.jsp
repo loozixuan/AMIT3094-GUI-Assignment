@@ -15,18 +15,15 @@ and open the template in the editor.
         <link rel="icon" href="/HobbitHall/Client/Share/images/logoBook.png"/>
         <link href="/HobbitHall/Client/Login/login.css" rel="stylesheet">
 
-       
+
     </head>
 
 
     <body>
         <%@ include file="../Share/header.jsp" %>
         <div class="loginContainer">
-            <% String error = (String) request.getAttribute("errorMessage");
-                if (error != null) {%>
-            <p class="errorMessage"><%= error%></p>
-            <% }%>
-             <% String success = (String) request.getAttribute("successMessage");
+
+            <% String success = (String) request.getAttribute("successMessage");
                 if (success != null) {%>
             <p class="errorMessage" style="color:green"><%= success%></p>
             <% }%>
@@ -36,13 +33,16 @@ and open the template in the editor.
                 <div class="loginForm">
                     <p class="enter">Enter your e-mail and password:</p>
                     <input type="text" name="email" placeholder="Email" value=""/>
-                    <input type="password" name="password" placeholder="Password" value=""/>
 
+                    <input type="password" name="password" placeholder="Password" value=""/>
                     <div>
                         <input type="submit" value="Login" id="submit"/>
                     </div>
+                    <% String error = (String) request.getAttribute("errorMessage");
+                        if (error != null) {%>
+                    <div class="errorMessage"><%= error%></div>
+                    <% }%>
                 </div>
-
             </form>
 
             <div style="margin-top:20px;margin-bottom:10px;">
@@ -50,7 +50,7 @@ and open the template in the editor.
                     <p class="question">New customer? </p><p class="link"> Create your account</p> 
                 </div>
                 <div class="rowQuestion">
-                    <p class="question">Lost password? </p><a href="../../ForgotPassword?action=1"><p class="link"> Recover password</p></a>
+                    <p class="question">Lost password? </p><a href="/HobbitHall/ForgotPassword?action=1"><p class="link"> Recover password</p></a>
                 </div>
             </div>
 

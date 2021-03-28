@@ -21,7 +21,7 @@ and open the template in the editor.
     <div class="mobile_nav_items">
         <a href="../Dashboard/dashboard.jsp"><i class="fa fa-home" aria-hidden="true"></i></i><span>Dashboard</span></a>
         <a href=""><i class="fa fa-user-circle-o" aria-hidden="true"></i><span>Staff Info</span></a>
-        <a href=""><i class="fa fa-book" aria-hidden="true"></i><span>Product</span></a>
+        <a href="/HobbitHall/ProcessProduct?action=view"><i class="fa fa-book" aria-hidden="true"></i><span>Product</span></a>
         <a href=""><i class="fa fa-user" aria-hidden="true"></i><span>Order</span></a>
         <a href=""><i class="fa fa-product-hunt" aria-hidden="true"></i><span>Promotion</span></a>
         <a href=""><i class="fa fa-folder" aria-hidden="true"></i><span>Sales</span></a>
@@ -48,10 +48,12 @@ and open the template in the editor.
 
     <a href="/HobbitHall/Admin/Dashboard/dashboard.jsp"><i class="fa fa-home" aria-hidden="true"></i></i><span>Dashboard</span></a>
     <a href="/HobbitHall/ViewEmployeeInfo" class="dropdown-btn"><i class="fa fa-user-circle-o" aria-hidden="true"></i><span>Employee</span></a>
-    <a href="#" class="dropdown-btn"><i class="fa fa-book" aria-hidden="true"></i><span>Product <i class="fa fa-caret-down"></i></span></a>
+    <a href="/HobbitHall/ProcessProduct?action=view" class="dropdown-btn"><i class="fa fa-user-circle-o" aria-hidden="true"></i><span>Product</span></a>
+    <a href="#" class="dropdown-btn"><i class="fa fa-book" aria-hidden="true"></i><span>Insert Product <i class="fa fa-caret-down"></i></span></a>
     <div class="dropdown-container">
-        <a href="#" class="dropdown-list">Insert Product</a>
-        <a href="#" class="dropdown-list">Product Category</a>
+        <a href="/HobbitHall/ProcessProduct?action=insertPage&lang=1" class="dropdown-list">English</a>
+        <a href="/HobbitHall/ProcessProduct?action=insertPage&lang=2" class="dropdown-list">Chinese</a>
+        <a href="/HobbitHall/ProcessProduct?action=insertPage&lang=3" class="dropdown-list">Malay</a>
     </div>
     <a href=""><i class="fa fa-user" aria-hidden="true"></i><span>Order</span></a>
     <a href=""><i class="fa fa-product-hunt" aria-hidden="true"></i><span>Promotion</span></a>

@@ -19,15 +19,11 @@ and open the template in the editor.
 
 .errorMessage{
     color:red;
-    margin:20px;
-    width:400px;
+    font-size: 0.8em;
     text-align: center;
     font-weight: bold;
-    font-size:1.2em;
-    background:white;
-    padding:10px 20px;
-    border-radius:5px;
-     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+ 
+    
     
 }
 

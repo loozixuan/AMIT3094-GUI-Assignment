@@ -80,19 +80,30 @@ public class ForgotPassword extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");
+        String email_regex = "^\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$";
 
         if (action.equals("email")) {
+
             String email = request.getParameter("email");
-            JavaMailUtil.sendMail(email);
-            response.sendRedirect("Client/Login/SendedEmail.jsp");
+            //Email Validation
+            Pattern patternEmail = Pattern.compile(email_regex);
+            Matcher matcherEmail = patternEmail.matcher(email);
+            if (!email.equals(" ") && matcherEmail.matches()) {
+                JavaMailUtil.sendMail(email);
+                response.sendRedirect("Client/Login/SendedEmail.jsp");
+
+            } else {
+                String message = "Please enter a valid emial";
+                request.setAttribute("errorMessage", message);
+                RequestDispatcher rd = request.getRequestDispatcher("Client/Login/ForgotPassword.jsp");
+                rd.include(request, response);
+
+            }
 
         } else {
-//            try (PrintWriter out = response.getWriter()) {
-//                out.print("hello");
-//            }
+
             String email = request.getParameter("email");
             String password_regex = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$";
-            String email_regex = "^\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$";
             String newPassword = request.getParameter("new_password");
             String confirmPassword = request.getParameter("confirm_password");
             String encodedNewPassword = "";
@@ -127,7 +138,7 @@ public class ForgotPassword extends HttpServlet {
                             utx.begin();
                             em.merge(customerDetails);
                             utx.commit();
-                            String message = "Account details changed successfully. Please login to your account";
+                            String message = "Account details changed successfully. Please login to your account.";
                             request.setAttribute("successMessage", message);
                             RequestDispatcher rd = request.getRequestDispatcher("Client/Login/login.jsp");
                             rd.forward(request, response);

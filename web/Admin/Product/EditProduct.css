@@ -30,7 +30,7 @@ td{
     font-size:1.0em;
     padding:5px;
 }
-td>input{
+td>input[type=text]{
     width: 300px;
     padding: 10px;
     border-radius: 5px;
@@ -46,9 +46,10 @@ td>input{
     border: 1px solid #ccc;
 }
 
-.img{
+.img img{
     width:170px;
-    margin:10px 50px;
+    margin:30px 50px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 
@@ -56,11 +57,11 @@ td>input{
     font-family: p;
     src: url(Roboto-Regular.ttf);
 }
-.delete{
+.delete, .update{
     margin:40px;
 
 }
-.delete>input{
+.update>input, .delete>input{
     font-size:1.0em;
     padding:10px;
     background-color:red;
@@ -68,6 +69,16 @@ td>input{
     border-radius:5px;
     border: 1px solid #ccc;
 }
-.delete>input:hover{
+.update>input:hover, .delete>input:hover{
     background-color:#cc0000;
 }
+
+
+
+.errorMessage{
+    color:red;
+    font-weight: bold;
+    padding:20px;
+    text-align: center;
+}
+

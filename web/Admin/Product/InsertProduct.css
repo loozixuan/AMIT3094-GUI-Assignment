@@ -30,7 +30,7 @@ td{
     font-size:1.0em;
     padding:5px;
 }
-td>input{
+td>input[type=text]{
     width: 300px;
     padding: 10px;
     border-radius: 5px;
@@ -62,7 +62,7 @@ td>input{
 }
 .delete>input{
     font-size:1.0em;
-    padding:10px;
+    padding:10px 20px;
     background-color:red;
     color:white;
     border-radius:5px;
@@ -71,3 +71,24 @@ td>input{
 .delete>input:hover{
     background-color:#cc0000;
 }
+
+.errorMessage{
+    color:red;
+    font-weight: bold;
+    padding:20px;
+    text-align: center;
+}
+
+
+.successMessage{
+    color:#000080;
+    font-weight: bold;
+    padding:10px;
+    text-align: center;
+    margin:20px auto;
+    border:1px solid black;
+    width:100px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+

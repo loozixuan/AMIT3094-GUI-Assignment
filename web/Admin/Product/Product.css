@@ -48,6 +48,11 @@ and open the template in the editor.
      background:#17154f;
 }
 
+.dropdown-menu>a{
+    width:164px;
+   
+}
+
 
 .table{
     border-radius: 6px;
@@ -119,19 +124,21 @@ and open the template in the editor.
 }
 
 #searchBar{
-    width:200px;
+    width:230px;
     height:30px;
     display:flex;
     border: 1px solid #1a1aff;
-    border-radius: 4px;
+    border-radius: 5px;
     box-sizing: border-box; 
     background: white;
+    padding:0px;
 }
 
-#searchBar input{
+#searchBar input[type=text]{
     width:100%;
-    padding:5px 10px;
     border:none;
+    border-radius:5px;
+    padding:6px;
 }
 
 
@@ -140,14 +147,16 @@ and open the template in the editor.
     outline: none;
 }
 
-#searchIconContainer{
-    margin:0px;
-    padding:2px 8px;
+#search {
+   width:40px;
+  padding:5px;
     background-color: rgba(0, 0, 0,0.8);
     border-top-right-radius:4px;
     border-bottom-right-radius:4px;
     color:white;
-    font-size:0.9em;
+    font-size:0.7em;
+    padding-bottom:10px;
+    
 }
 
 i{
@@ -183,3 +192,11 @@ a:hover{
     padding:10px;
 }
 
+
+.successMessage{
+    color:green;
+    font-weight: bold;
+    padding:20px;
+    text-align: center;
+    margin-bottom:10px;
+}

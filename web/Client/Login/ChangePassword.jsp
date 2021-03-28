@@ -38,7 +38,7 @@
                     <input type="password" name="confirm_password" placeholder="Confirm Password" value=""/>
                     <p style="font-size:0.8em;">Password requires 8 characters, at least 1 letter and 1 number.</p>
                     <div>
-                        <input type="submit" value="Login" id="submit"/>
+                        <input type="submit" value="Change Password" id="submit"/>
                     </div>
                 </div>
 
