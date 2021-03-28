@@ -108,7 +108,7 @@
                             <%} else {%>
                             <select name="roleAdmin" id="inputRole" class="form-control">
                                 <option selected>Choose Role...</option>
-                                <option value="staff">Staff</option>
+                                <option value="staff" selected>Staff</option>
                             </select>
                             <%}%>
                         </div>

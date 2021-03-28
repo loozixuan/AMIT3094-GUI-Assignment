@@ -6,15 +6,15 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" href="images/logo-book.png"/>
-
         <link href="/HobbitHall/Admin/AdminLogin/adminLogin.css" rel="stylesheet">
     </head>
 
 
-    <body>
+    <body style="background-image: url('/HobbitHall/Admin/Share/images/loginbg.jpeg');
+          background-size: cover;background-repeat: no-repeat;">
 
-        <div class="content" align="center">
-            <div class="login">
+        <div class="content mt-5" align="center">
+            <div class="login" style="margin-top: 80px;">
                 <% String err_msg = (String) request.getAttribute("errMsg");
                     if (err_msg != null) { %>
                 <div class="err-msg" style="color:red">
@@ -30,7 +30,7 @@
                         <input type="password" name="password" placeholder="Password"/>
 
                         <div style = "margin-top:20px; margin-bottom:10px;">
-                            <div class="rowQuestion" style="display:flex;font-size:0.8em;">
+                            <div class="d-flex rowQuestion text-center" style="display:flex;font-size:0.9em;justify-content:center">
                                 <p class="question"></p><p class="link">*Forgot your password?</p>
                             </div>
                         </div>
@@ -43,7 +43,5 @@
             </div>
 
         </div>
-
-
     </body>
 </html>

@@ -64,8 +64,8 @@
                             <input type="text" class="form-control" id="role" value="<%= adminInfo.getRole()%>" readonly>
                         </div>
                         <div>
-                            <button type="submit" class="btn btn-primary mt-2" style="width:78px;">Delete</button>
-                            <button type="reset" class="btn btn-primary mt-2" style="width:78px;">Cancel</button>
+                            <button type="submit" class="btn btn-primary mt-2" style="width:78px;" onclick="return confirm('Are you sure you want to delete?');">Delete</button>
+                            <button onclick="window.location.href = '/HobbitHall/ViewEmployeeInfo'" type="reset" class="btn btn-primary mt-2" style="width:78px;">Cancel</button>
                         </div>
                     </form>
                     <%}%>
