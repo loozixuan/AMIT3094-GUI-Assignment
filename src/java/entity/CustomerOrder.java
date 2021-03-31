@@ -6,8 +6,8 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Chrisann Lee
+ * @author zixua
  */
 @Entity
 @Table(name = "CUSTOMER_ORDER")
@@ -36,10 +36,12 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "CustomerOrder.findAll", query = "SELECT c FROM CustomerOrder c")
     , @NamedQuery(name = "CustomerOrder.findById", query = "SELECT c FROM CustomerOrder c WHERE c.id = :id")
-    , @NamedQuery(name = "CustomerOrder.findByCustomerId", query = "SELECT c FROM CustomerOrder c WHERE c.customerId = :customerId")
     , @NamedQuery(name = "CustomerOrder.findByDate", query = "SELECT c FROM CustomerOrder c WHERE c.date = :date")
-    , @NamedQuery(name = "CustomerOrder.findByTotalAmount", query = "SELECT c FROM CustomerOrder c WHERE c.totalAmount = :totalAmount")
-    , @NamedQuery(name = "CustomerOrder.findByDiscount", query = "SELECT c FROM CustomerOrder c WHERE c.discount = :discount")
+    , @NamedQuery(name = "CustomerOrder.findByName", query = "SELECT c FROM CustomerOrder c WHERE c.name = :name")
+    , @NamedQuery(name = "CustomerOrder.findByEmail", query = "SELECT c FROM CustomerOrder c WHERE c.email = :email")
+    , @NamedQuery(name = "CustomerOrder.findByAddress", query = "SELECT c FROM CustomerOrder c WHERE c.address = :address")
+    , @NamedQuery(name = "CustomerOrder.findByContactNumber", query = "SELECT c FROM CustomerOrder c WHERE c.contactNumber = :contactNumber")
+    , @NamedQuery(name = "CustomerOrder.findByDelivery", query = "SELECT c FROM CustomerOrder c WHERE c.delivery = :delivery")
     , @NamedQuery(name = "CustomerOrder.findByStatus", query = "SELECT c FROM CustomerOrder c WHERE c.status = :status")})
 public class CustomerOrder implements Serializable {
 
@@ -52,33 +54,41 @@ public class CustomerOrder implements Serializable {
     private String id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 12)
-    @Column(name = "CUSTOMER_ID")
-    private String customerId;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "DATE")
     @Temporal(TemporalType.DATE)
     private Date date;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "TOTAL_AMOUNT")
-    private double totalAmount;
+    @Size(min = 1, max = 50)
+    @Column(name = "NAME")
+    private String name;
+    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+    @Size(max = 50)
+    @Column(name = "EMAIL")
+    private String email;
+    @Size(max = 250)
+    @Column(name = "ADDRESS")
+    private String address;
+    @Size(max = 15)
+    @Column(name = "CONTACT_NUMBER")
+    private String contactNumber;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "DISCOUNT")
-    private double discount;
+    @Column(name = "DELIVERY")
+    private double delivery;
     @Size(max = 15)
     @Column(name = "STATUS")
     private String status;
-    @JoinColumn(name = "PAYMENT_ID", referencedColumnName = "ID")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerOrderId")
+    private Collection<Payment> paymentCollection;
+    @JoinColumn(name = "CUSTOMER_ID", referencedColumnName = "ID")
     @ManyToOne
-    private Payment paymentId;
+    private Customer customerId;
     @JoinColumn(name = "PROMOTION_CODE", referencedColumnName = "CODE")
     @ManyToOne
     private PromotionCode promotionCode;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerOrder")
-    private List<OrderDetail> orderDetailList;
+    private Collection<OrderDetail> orderDetailCollection;
 
     public CustomerOrder() {
     }
@@ -87,12 +97,11 @@ public class CustomerOrder implements Serializable {
         this.id = id;
     }
 
-    public CustomerOrder(String id, String customerId, Date date, double totalAmount, double discount) {
+    public CustomerOrder(String id, Date date, String name, double delivery) {
         this.id = id;
-        this.customerId = customerId;
         this.date = date;
-        this.totalAmount = totalAmount;
-        this.discount = discount;
+        this.name = name;
+        this.delivery = delivery;
     }
 
     public String getId() {
@@ -103,14 +112,6 @@ public class CustomerOrder implements Serializable {
         this.id = id;
     }
 
-    public String getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
-    }
-
     public Date getDate() {
         return date;
     }
@@ -119,20 +120,44 @@ public class CustomerOrder implements Serializable {
         this.date = date;
     }
 
-    public double getTotalAmount() {
-        return totalAmount;
+    public String getName() {
+        return name;
     }
 
-    public void setTotalAmount(double totalAmount) {
-        this.totalAmount = totalAmount;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public double getDiscount() {
-        return discount;
+    public String getEmail() {
+        return email;
     }
 
-    public void setDiscount(double discount) {
-        this.discount = discount;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getContactNumber() {
+        return contactNumber;
+    }
+
+    public void setContactNumber(String contactNumber) {
+        this.contactNumber = contactNumber;
+    }
+
+    public double getDelivery() {
+        return delivery;
+    }
+
+    public void setDelivery(double delivery) {
+        this.delivery = delivery;
     }
 
     public String getStatus() {
@@ -143,12 +168,21 @@ public class CustomerOrder implements Serializable {
         this.status = status;
     }
 
-    public Payment getPaymentId() {
-        return paymentId;
+    @XmlTransient
+    public Collection<Payment> getPaymentCollection() {
+        return paymentCollection;
     }
 
-    public void setPaymentId(Payment paymentId) {
-        this.paymentId = paymentId;
+    public void setPaymentCollection(Collection<Payment> paymentCollection) {
+        this.paymentCollection = paymentCollection;
+    }
+
+    public Customer getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Customer customerId) {
+        this.customerId = customerId;
     }
 
     public PromotionCode getPromotionCode() {
@@ -160,12 +194,12 @@ public class CustomerOrder implements Serializable {
     }
 
     @XmlTransient
-    public List<OrderDetail> getOrderDetailList() {
-        return orderDetailList;
+    public Collection<OrderDetail> getOrderDetailCollection() {
+        return orderDetailCollection;
     }
 
-    public void setOrderDetailList(List<OrderDetail> orderDetailList) {
-        this.orderDetailList = orderDetailList;
+    public void setOrderDetailCollection(Collection<OrderDetail> orderDetailCollection) {
+        this.orderDetailCollection = orderDetailCollection;
     }
 
     @Override

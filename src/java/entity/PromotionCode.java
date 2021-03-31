@@ -40,6 +40,16 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "PromotionCode.findByEnddateDate", query = "SELECT p FROM PromotionCode p WHERE p.enddateDate = :enddateDate")})
 public class PromotionCode implements Serializable {
 
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "DISCOUNT_RATE")
+    private double discountRate;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "EXPIRED_DATE")
+    @Temporal(TemporalType.DATE)
+    private Date expiredDate;
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -166,6 +176,22 @@ public class PromotionCode implements Serializable {
     @Override
     public String toString() {
         return "entity.PromotionCode[ code=" + code + " ]";
+    }
+
+    public double getDiscountRate() {
+        return discountRate;
+    }
+
+    public void setDiscountRate(double discountRate) {
+        this.discountRate = discountRate;
+    }
+
+    public Date getExpiredDate() {
+        return expiredDate;
+    }
+
+    public void setExpiredDate(Date expiredDate) {
+        this.expiredDate = expiredDate;
     }
 
 }

@@ -52,7 +52,7 @@
                                 <table>
                                     <tr><td>Product ID</td><td>: <input type="text" name="pro_id"  value="<%=product.getId()%>" readonly></td></tr>
                                     <tr><td>Product Name</td><td>: <input type="text" name="pro_name" value="<%=product.getName()%>"></td></tr>
-                                    <tr><td>Author</td><td>: <input type="text" name="author" value="Sherlyn"></td></tr>
+                                    <tr><td>Author</td><td>: <input type="text" name="author" value="<%=product.getAuthorName() %>"></td></tr>
                                     <tr><td>Description</td><td>: 
                                             <textarea id="description" name="description" rows="4" cols="30"><%=product.getDescription()%></textarea></td>
                                     </tr>

@@ -6,23 +6,22 @@
 package entity;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Chrisann Lee
+ * @author zixua
  */
 @Entity
 @Table(name = "PAYMENT")
@@ -48,8 +47,9 @@ public class Payment implements Serializable {
     @Size(max = 15)
     @Column(name = "METHOD")
     private String method;
-    @OneToMany(mappedBy = "paymentId")
-    private List<CustomerOrder> customerOrderList;
+    @JoinColumn(name = "CUSTOMER_ORDER_ID", referencedColumnName = "ID")
+    @ManyToOne(optional = false)
+    private CustomerOrder customerOrderId;
 
     public Payment() {
     }
@@ -87,13 +87,12 @@ public class Payment implements Serializable {
         this.method = method;
     }
 
-    @XmlTransient
-    public List<CustomerOrder> getCustomerOrderList() {
-        return customerOrderList;
+    public CustomerOrder getCustomerOrderId() {
+        return customerOrderId;
     }
 
-    public void setCustomerOrderList(List<CustomerOrder> customerOrderList) {
-        this.customerOrderList = customerOrderList;
+    public void setCustomerOrderId(CustomerOrder customerOrderId) {
+        this.customerOrderId = customerOrderId;
     }
 
     @Override

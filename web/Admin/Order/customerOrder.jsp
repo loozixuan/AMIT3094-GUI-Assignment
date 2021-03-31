@@ -12,15 +12,15 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" href="../Share/images/logo-book.png"/>
-        <link rel="stylesheet" href="customerOrder.css"/>
+        <link rel="icon" href="/HobbitHall/Admin/Share/images/logo-book.png"/>
+        <link rel="stylesheet" href="/HobbitHall/Admin/Order/customerOrder.css"/>
         <title>Hobbit Hall</title>
     </head>
     <body>
                 <!--Header-->
-        <%@ include file="../Share/adminHeader.html" %>
+        <%@ include file="../Share/adminHeader.jsp" %>
         <!--Sidebar-->
-        <%@ include file="../Share/adminSidebar.html" %>
+        <%@ include file="../Share/adminSidebar.jsp" %>
    
 
         <!--Content-->

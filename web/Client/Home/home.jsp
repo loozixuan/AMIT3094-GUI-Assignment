@@ -94,7 +94,7 @@
 
             <div class="prod-list-container w-90 p-2">
                 <div class="prod-head">
-                     <div id="motivational">Motivational Reads...</div>
+                     <div id="motivational">Self Help Reads...</div>
                       <p id="view-more"><span>View more</span></p>
                 </div>
                
