@@ -6,9 +6,10 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="entity.Product"%>
-<% Product product = (Product) request.getAttribute("product");%>
 <%@page import="entity.Subcategory,java.util.List"%>
-<% List<Subcategory> subCategoryList = (List<Subcategory>) request.getAttribute("subCategoryList");%>
+<% Product product = (Product) request.getAttribute("product");
+List<Subcategory> subCategoryList = (List<Subcategory>) request.getAttribute("subCategoryList");%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -74,7 +75,7 @@
                                 </table>
 
                             </div> 
-                            <div class="update"><input type="submit" name="update" value="Update" onclick="return confirm('Are you sure to update this book details?');" style='background-image: radial-gradient(circle, #37bd0b, #3dc80d, #42d40f, #48df10, #4eeb12);;'></div>
+                            <div class="update"><input type="submit" name="update" value="Update" onclick="return confirm('Are you sure to update this book details?');" style='background-image: radial-gradient(circle, #37bd0b, #3dc80d, #42d40f, #48df10, #4eeb12);'></div>
                         </form>
                     </div>
 

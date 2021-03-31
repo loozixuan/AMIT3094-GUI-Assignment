@@ -94,6 +94,10 @@ public class OrderDetail implements Serializable {
         this.product = product;
     }
 
+    public double getSubtotal() {
+        return this.product.getPrice() * this.productQuantity;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;

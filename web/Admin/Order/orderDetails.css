@@ -27,9 +27,28 @@ and open the template in the editor.
     background-image: radial-gradient(circle, #283ed1, #3b4ddb, #4b5ce5, #5a6bef, #687af8);
 }
 td{
-    font-size:1.0em;
+    font-size:0.9em;
     padding:5px;
 }
+
+.col1{
+    border:none;
+    width:320px;
+    padding:0px;
+}
+
+.col2{
+    border:none;
+    width:130px;
+    color:red;
+    padding:0px; 
+}
+
+.col1:focus, .col2:focus{
+    outline:none;
+    
+}
+
 td>input{
     width: 300px;
     padding: 10px;
@@ -46,18 +65,18 @@ td>input{
 }
 table.product{
     margin: 15px;
-    width:800px;
     border: 1px outset rgba(0, 0, 75, 0.1);
     border-collapse: collapse;
 }
 tr.product_detail>th{
     height: 30px;
-    font-size: 1.0em;
+    text-align: center;
+    font-size: 0.9em;
     background-color: #F7F7F7;
 }
 tr.product_detail2>td{
     text-align: center;
-    font-size: 1.0em;
+    font-size: 0.9em;
 
 }
 
@@ -71,7 +90,7 @@ tr.product_detail2>td{
 }
 .delete>input{
     font-size:1.0em;
-    padding:10px;
+    padding:5px 10px;
     background-color:red;
     color:white;
     border-radius:5px;

@@ -31,6 +31,10 @@
         <servlet-name>ChangePassword</servlet-name>
         <servlet-class>controller.ChangePassword</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>OrderManagement</servlet-name>
+        <servlet-class>controller.OrderManagement</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -58,6 +62,10 @@
     <servlet-mapping>
         <servlet-name>ChangePassword</servlet-name>
         <url-pattern>/ChangePassword</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderManagement</servlet-name>
+        <url-pattern>/OrderManagement</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

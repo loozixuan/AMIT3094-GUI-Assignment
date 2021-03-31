@@ -55,7 +55,7 @@ and open the template in the editor.
         <a href="/HobbitHall/ProcessProduct?action=insertPage&lang=2" class="dropdown-list">Chinese</a>
         <a href="/HobbitHall/ProcessProduct?action=insertPage&lang=3" class="dropdown-list">Malay</a>
     </div>
-    <a href=""><i class="fa fa-user" aria-hidden="true"></i><span>Order</span></a>
+    <a href="/HobbitHall/OrderManagement?action=view"><i class="fa fa-user" aria-hidden="true"></i><span>Order</span></a>
     <a href=""><i class="fa fa-product-hunt" aria-hidden="true"></i><span>Promotion</span></a>
     <a href="../SalesRecord/ViewSalesTable.jsp"><i class="fa fa-folder" aria-hidden="true"></i><span>Daily Sales</span></a>
     <a href="#"><i class="fa fa-pie-chart"></i><span>Sales Report</span></a>

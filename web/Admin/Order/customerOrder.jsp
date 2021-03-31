@@ -4,11 +4,17 @@
     Author     : Chrisann Lee
 --%>
 
+
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
+<%@page import="entity.CustomerOrder,java.util.List"%>
+<% List<CustomerOrder> orderList = (List<CustomerOrder>) request.getAttribute("orderList");
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,11 +23,11 @@
         <title>Hobbit Hall</title>
     </head>
     <body>
-                <!--Header-->
+        <!--Header-->
         <%@ include file="../Share/adminHeader.jsp" %>
         <!--Sidebar-->
         <%@ include file="../Share/adminSidebar.jsp" %>
-   
+
 
         <!--Content-->
         <div class="content">
@@ -32,25 +38,58 @@
                         <hr style="margin:0px;border-bottom:1px solid lightgrey;border-top: none;"/>
                         <ul class="breadcrumb">
                             <li><a href="#">Customer Order</a></li>
-                            <li>Testing</li>
                         </ul>
                     </div>
                     <br/>
+
+                    <% if (!orderList.isEmpty()) {%>
                     <div class="table">       
                         <div class="h">Order Management</div>
                         <table  class="tableUser">
                             <tr>
                                 <th>Order ID</th>
-                                <th>Customer ID</th>
                                 <th>Order Date</th>
+                                <th>Customer Name</th>
+                                <th>Phone</th>
                                 <th>Order Status</th>
-                                <th>Payment</th>
+
                                 <th>Delivered</th>
                                 <th>Cancel</th>
                             </tr>
-                            <tr><td >K4002172</td><td>C002</td><td>2020-09-07</td><td style='color:red'>cancel</td><td>453.61</td><td><input type='submit' name='submit' value='Shipping' class="shipping-button" ></td><td><i class='fas fa-trash-alt'></i></td>
+                            <%
+                                SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+
+                                for (int i = 0; i < orderList.size(); i++) {
+                                    CustomerOrder order = orderList.get(i);
+                                    String orderStatus;
+                                    String color;
+                                    Date dateString = order.getDate();
+
+                                    if (order.getStatus().equalsIgnoreCase("Order Confirmed")) {
+                                        orderStatus = "Paid";
+                                        color = "blue";
+                                    } else if (order.getStatus().equalsIgnoreCase("Shipping")) {
+                                        orderStatus = order.getStatus();
+                                        color = "#00ff00";
+                                    } else {
+                                        color = "red";
+                                        orderStatus = order.getStatus();
+                                    }
+                            %>
+                            <tr>
+                                <td><a href="/HobbitHall/OrderManagement?action=viewSingleOrder&id=<%=order.getId()%>"><%=order.getId()%></a></td>
+                                <td><%=formatter.format(dateString)%></td><td><%=order.getName()%></td>
+                                <td><%=order.getContactNumber()%></td><td style='color:<%=color%>'><%=orderStatus%></td>
+                                <td><a href="/HobbitHall/OrderManagement?action=ship&id=<%=order.getId()%>"><input type='submit' name='submit' value='Shipping' class="shipping-button" ></a></td>
+                                <td><a href="/HobbitHall/OrderManagement?action=cancel&id=<%=order.getId()%>" ><i class='fas fa-trash-alt'></i></a></td>
+                                    <%}%>
                         </table>
                     </div>
+                    <%} else { %>
+                    <div class="no_order">
+                        <h1>No order!</h1>
+                    </div>
+                    <%}%>
 
                 </div>
             </div>

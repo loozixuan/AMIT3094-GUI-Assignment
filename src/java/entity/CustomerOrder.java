@@ -6,8 +6,8 @@
 package entity;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,6 +18,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -28,7 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author zixua
+ * @author user
  */
 @Entity
 @Table(name = "CUSTOMER_ORDER")
@@ -36,6 +37,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "CustomerOrder.findAll", query = "SELECT c FROM CustomerOrder c")
     , @NamedQuery(name = "CustomerOrder.findById", query = "SELECT c FROM CustomerOrder c WHERE c.id = :id")
+    , @NamedQuery(name = "CustomerOrder.findByCustomerID", query = "SELECT c FROM CustomerOrder c WHERE c.customerId = :customer")
     , @NamedQuery(name = "CustomerOrder.findByDate", query = "SELECT c FROM CustomerOrder c WHERE c.date = :date")
     , @NamedQuery(name = "CustomerOrder.findByName", query = "SELECT c FROM CustomerOrder c WHERE c.name = :name")
     , @NamedQuery(name = "CustomerOrder.findByEmail", query = "SELECT c FROM CustomerOrder c WHERE c.email = :email")
@@ -75,33 +77,38 @@ public class CustomerOrder implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "DELIVERY")
-    private double delivery;
+    private final double delivery = 12.00;
     @Size(max = 15)
     @Column(name = "STATUS")
     private String status;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerOrderId")
-    private Collection<Payment> paymentCollection;
     @JoinColumn(name = "CUSTOMER_ID", referencedColumnName = "ID")
-    @ManyToOne
+    @ManyToOne(optional = false)
     private Customer customerId;
     @JoinColumn(name = "PROMOTION_CODE", referencedColumnName = "CODE")
     @ManyToOne
     private PromotionCode promotionCode;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerOrder")
-    private Collection<OrderDetail> orderDetailCollection;
+    private List<OrderDetail> orderDetailList;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "customerOrderId")
+    private Payment payment;
 
     public CustomerOrder() {
+
     }
 
     public CustomerOrder(String id) {
         this.id = id;
+        this.status = "Delivery";
     }
 
-    public CustomerOrder(String id, Date date, String name, double delivery) {
+    public CustomerOrder(String id, Date date, String name, String email, String address, String contactNumber) {
         this.id = id;
         this.date = date;
         this.name = name;
-        this.delivery = delivery;
+        this.email = email;
+        this.address = address;
+        this.contactNumber = contactNumber;
+        this.status = "Delivery";
     }
 
     public String getId() {
@@ -156,10 +163,6 @@ public class CustomerOrder implements Serializable {
         return delivery;
     }
 
-    public void setDelivery(double delivery) {
-        this.delivery = delivery;
-    }
-
     public String getStatus() {
         return status;
     }
@@ -168,21 +171,21 @@ public class CustomerOrder implements Serializable {
         this.status = status;
     }
 
-    @XmlTransient
-    public Collection<Payment> getPaymentCollection() {
-        return paymentCollection;
-    }
-
-    public void setPaymentCollection(Collection<Payment> paymentCollection) {
-        this.paymentCollection = paymentCollection;
-    }
-
     public Customer getCustomerId() {
         return customerId;
     }
 
     public void setCustomerId(Customer customerId) {
         this.customerId = customerId;
+    }
+
+    @XmlTransient
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Payment paymentList) {
+        this.payment = paymentList;
     }
 
     public PromotionCode getPromotionCode() {
@@ -194,12 +197,36 @@ public class CustomerOrder implements Serializable {
     }
 
     @XmlTransient
-    public Collection<OrderDetail> getOrderDetailCollection() {
-        return orderDetailCollection;
+    public List<OrderDetail> getOrderDetailList() {
+        return orderDetailList;
     }
 
-    public void setOrderDetailCollection(Collection<OrderDetail> orderDetailCollection) {
-        this.orderDetailCollection = orderDetailCollection;
+    public void setOrderDetailList(List<OrderDetail> orderDetailList) {
+        this.orderDetailList = orderDetailList;
+    }
+
+    public double getOrderSubtotal() {
+        double subtotal = 0;
+        for (int i = 0; i < orderDetailList.size(); i++) {
+            subtotal += orderDetailList.get(i).getSubtotal();
+        }
+        return subtotal;
+    }
+
+    public double getDiscount() {
+        if (this.promotionCode != null) {
+            return (this.getOrderSubtotal() + this.getDelivery()) * this.promotionCode.getDiscountRate();
+        } else {
+            return 0.00;
+        }
+    }
+
+    public double getOrderTotal() {
+        double total = this.getOrderSubtotal() + this.getDelivery();
+        if (this.promotionCode != null) {
+            total -= this.getDiscount();
+        }
+        return total;
     }
 
     @Override
