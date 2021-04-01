@@ -44,7 +44,14 @@
 
                     <% if (!orderList.isEmpty()) {%>
                     <div class="table">       
-                        <div class="h">Order Management</div>
+                        <div class="h">
+                            <div>Order Management</div>
+                            <form action="/HobbitHall/OrderManagement?action=search" method="post">
+                                <div id="searchBar">
+                                    <input type="text" name="search" placeholder="ID, Phone , yyyy-mm-dd" value="" style="font-size:0.8em">
+                                    <input type="submit" name="search" value="Search"  id="search"/>
+                                </div>
+                            </form></div>
                         <table  class="tableUser">
                             <tr>
                                 <th>Order ID</th>
@@ -58,7 +65,7 @@
                             </tr>
                             <%
                                 SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-
+                                String valid="";
                                 for (int i = 0; i < orderList.size(); i++) {
                                     CustomerOrder order = orderList.get(i);
                                     String orderStatus;
@@ -70,19 +77,22 @@
                                         color = "blue";
                                     } else if (order.getStatus().equalsIgnoreCase("Shipping")) {
                                         orderStatus = order.getStatus();
-                                        color = "#00ff00";
+                                        color = "green";
                                     } else {
                                         color = "red";
                                         orderStatus = order.getStatus();
+                                        valid = "disabled";
                                     }
+
                             %>
+
                             <tr>
                                 <td><a href="/HobbitHall/OrderManagement?action=viewSingleOrder&id=<%=order.getId()%>"><%=order.getId()%></a></td>
                                 <td><%=formatter.format(dateString)%></td><td><%=order.getName()%></td>
                                 <td><%=order.getContactNumber()%></td><td style='color:<%=color%>'><%=orderStatus%></td>
-                                <td><a href="/HobbitHall/OrderManagement?action=ship&id=<%=order.getId()%>"><input type='submit' name='submit' value='Shipping' class="shipping-button" ></a></td>
+                                <td><a href="/HobbitHall/OrderManagement?action=ship&id=<%=order.getId()%>"><input type='submit' name='submit' value='Shipping' class="shipping-button" <%=valid %> ></a></td>
                                 <td><a href="/HobbitHall/OrderManagement?action=cancel&id=<%=order.getId()%>" ><i class='fas fa-trash-alt'></i></a></td>
-                                    <%}%>
+                                        <% valid="";}%>
                         </table>
                     </div>
                     <%} else { %>

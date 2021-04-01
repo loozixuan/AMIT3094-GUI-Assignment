@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package controller;
 
 import java.util.Properties;
@@ -20,9 +25,9 @@ import javax.mail.internet.MimeMessage;
  *
  * @author Chrisann Lee
  */
-public class JavaMailUtil {
+public class JavaMailUtilOrder {
 
-    public static void sendMail(String recipient) {
+    public static void sendMail(String recipient, String orderId, String name) {
         System.out.println("Prepare to send email");
         Properties properties = new Properties();
 
@@ -39,7 +44,7 @@ public class JavaMailUtil {
             }
         });
 
-        Message message = prepareMessage(session, myAccountEmail, recipient);
+        Message message = prepareMessage(session, myAccountEmail, recipient, orderId, name);
         try {
             Transport.send(message);
         } catch (Exception ex) {
@@ -49,22 +54,23 @@ public class JavaMailUtil {
 
     }
 
-    private static Message prepareMessage(Session session, String myAccountEmail, String recipient) {
+    private static Message prepareMessage(Session session, String myAccountEmail, String recipient, String id, String name) {
         try {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(myAccountEmail));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
-            message.setSubject("Hobbit Hall");
+            message.setSubject("Your Order Summary - Hobbit Hall");
             String htmlCode = "<html>\n"
                     + "<head>\n"
                     + "<title>Hobbit Hall</title>\n"
                     + "</head>\n"
-                    + "<body>\n"
-                    + "<p style='text-align:center;font-size:2.2em;color:rgb(51, 204, 204);'>Almost there!</p>\n"
-                    + "<p style='text-align:center;font-size:1.5em;'>Hi,customer</p>\n"
-                    + "<p style='text-align:center;font-size:1.3em;'>You have requested to change your password</p>\n"
-                    + "<p style='text-align:center;font-size:1.3em;'>Click the button below to change your password.</p>\n"
-                    + "<a href='http://localhost:48180/HobbitHall/Client/Login/ChangePassword.jsp'><input style='border: 2px solid black;background-color:white;padding:10px;margin-top:20px;margin-bottom:20px;margin-right:480px;margin-left:450px;display:block;font-size:1.3em;' type='button' name='Log in' value='Change Password'/></a>\n"
+                    + "<body style='margin:30px;'>\n"
+                    + "<p style='font-size:2.2em;color:rgb(51, 204, 204);'>Thank you for shopping online with us</p>\n"
+                    + "<p style='font-size:1.5em;'>Dear " + name + ":</p>\n"
+                    + "<p style='font-size:1.3em;'>Your order is on shipping.(Order No: " + id + ")</p>\n"
+                    + "<p style='font-size:1.3em;'>You can click the button below to check the status of your order.</p>"
+                    + "<p style='font-size:1.3em;'>Please click the (Received) button on the View Order page after you received the order.</p>\n"
+                    + "<a href='http://localhost:48180/HobbitHall/CustomerOrderControl?action=orderDetail&orderID=" + id + "'><input style='border: 2px solid black;background-color:white;padding:10px;margin-top:20px;margin-bottom:20px;margin-right:100px;display:block;font-size:1.3em;' type='button' name='orderDetails' value='View Order Status'/></a>\n"
                     + "</body>\n"
                     + "</html>";
             message.setContent(htmlCode, "text/html");

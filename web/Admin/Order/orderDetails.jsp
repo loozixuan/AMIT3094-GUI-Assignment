@@ -54,55 +54,51 @@
                             <li>Order Details</li>
                         </ul>
                     </div>
+                    <form action="/HobbitHall/OrderManagement?action=Shipping"  method="post">
+                        <div class="orderDetail">
+                            <div class="custInfo">
+                                <h5>Order ID - <%=order.getId()%></h5>
+                                <div class="banner">Customer Details</div>
+                                <table>
+<!--                                    <tr><td>Customer ID   :</td><td><input  type="text" value="<%=custID%>" name="custID"></td></tr>-->
+                                    <tr><td>Customer Name :</td><td><input type="text" value="<%=order.getName()%>"  name="name"></td></tr>
+                                    <tr><td>Email :</td><td><input type="text" value="<%=order.getEmail()%>" name="email"></td></tr>
+                                    <tr><td>Phone Number :</td><td><input type="text" value="<%=order.getContactNumber()%>" name="phone"></td></tr>
+                                    <tr><td>Address :</td><td><input type="text" value="<%=order.getAddress()%>" name="address"></td></tr>
+                                </table>
+                                <div class="banner">Order Details</div>  
+                                <table>
+                                    <tr><td>Order Date  :</td><td><input type="text" value="<%=formatter.format(dateString)%>"  class="col1" readonly></td><td>Order Status :</td><td><input type="text" value="<%=order.getStatus()%>" class="col2" readonly></td></tr>      
+                                    <tr><td></td><td><input type="text" value=""  readonly class="col1" ></td><td>Total Payment :</td><td><input type="text" value="RM <%=payment.getAmount()%>" class="col2" readonly></td></tr>      
+                                </table>
+                                <table class="product">
+                                    <tr class="product_detail">
+                                        <th>Product Code</th>
+                                        <th>Product Name</th>
+                                        <th>Product Image</th>
+                                        <th>Quantity</th>
+                                        <th>Subtotal</th>
+                                    </tr>
 
-                    <div class="orderDetail">
-                        <div class="custInfo">
-                            <h5>Order ID - <%=order.getId()%></h5>
-                            <div class="banner">Customer Details</div>
-                            <table>
-                                <tr><td>Customer ID   :</td><td><input type="text" value="<%=custID%>"></td></tr>
-                                <tr><td>Customer Name :</td><td><input type="text" value="<%=order.getName()%>"></td></tr>
-                                <tr><td>Email :</td><td><input type="text" value="<%=order.getEmail()%>"></td></tr>
-                                <tr><td>Phone Number :</td><td><input type="text" value="<%=order.getContactNumber()%>"></td></tr>
-                                <tr><td>Address :</td><td><input type="text" value="<%=order.getAddress()%>"></td></tr>
-                            </table>
-                            <div class="banner">Order Details</div>  
-                            <table>
-                                <tr><td>Order Date  :</td><td><input type="text" value="<%=formatter.format(dateString)%>"  class="col1" readonly></td><td>Order Status :</td><td><input type="text" value="<%=order.getStatus()%>" class="col2" readonly></td></tr>      
-                                <tr><td></td><td><input type="text" value=""  readonly class="col1" ></td><td>Total Payment :</td><td><input type="text" value="RM <%=payment.getAmount()%>" class="col2" readonly></td></tr>      
-                            </table>
-                            <table class="product">
-                                <tr class="product_detail">
-                                    <th>Product Code</th>
-                                    <th>Product Name</th>
-                                    <th>Product Image</th>
-                                    <th>Quantity</th>
-                                    <th>Subtotal</th>
-                                </tr>
-
-                                <% for (int i = 0; i < orderDetailsList.size(); i++) {
-                                        OrderDetail orderDetail = orderDetailsList.get(i);
-                                %>
-                                <tr class="product_detail2">
-                                    <td><%=orderDetail.getProduct().getId()%></td>
-                                    <td><%=orderDetail.getProduct().getName()%></td>
-                                    <td class="img"><img src="/HobbitHall/Client/Share/images/book/<%=orderDetail.getProduct().getImage()%>"/></td>
-                                    <td><%=orderDetail.getProductQuantity()%></td>
-                                    <td><%=orderDetail.getSubtotal()%></td>
-                                </tr>
-                                <%}%>
-                            </table>
-
-                            <%if (action.equals("cancel")) { %>
-                            <div class="delete"><input type="submit" name="cancel" value="Cancel" onclick="return confirm('Are you sure you want to cancel this order?');"></div>
-                                <%} else if (action.equals("ship")) {%>
-                            <div class="delete"><input type="submit" name="shipping" value="Shipping" onclick="return confirm('Are you sure you want to cancel this order?');" style='background-image: radial-gradient(circle, #37bd0b, #3dc80d, #42d40f, #48df10, #4eeb12);'></div>
-                                <%}%>
-
-
-                        </div> 
-                    </div>
-
+                                    <% for (int i = 0; i < orderDetailsList.size(); i++) {
+                                            OrderDetail orderDetail = orderDetailsList.get(i);
+                                    %>
+                                    <tr class="product_detail2">
+                                        <td><%=orderDetail.getProduct().getId()%></td>
+                                        <td><%=orderDetail.getProduct().getName()%></td>
+                                        <td class="img"><img src="/HobbitHall/Client/Share/images/book/<%=orderDetail.getProduct().getImage()%>"/></td>
+                                        <td><%=orderDetail.getProductQuantity()%></td>
+                                        <td><%=orderDetail.getSubtotal()%></td>
+                                    </tr>
+                                    <%}%>
+                                </table>
+                                <input type="hidden" name="id" value="<%=order.getId()%>"/>
+                                <%if (action.equalsIgnoreCase("ship")) { %>
+                                <div class="delete"><input type="submit" name="shipping" value="Shipping" onclick="return confirm('This order is on shipping?');" style='background-image: radial-gradient(circle, #37bd0b, #3dc80d, #42d40f, #48df10, #4eeb12);'></div>
+                                    <%}%>
+                            </div> 
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

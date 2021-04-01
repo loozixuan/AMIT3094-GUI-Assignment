@@ -91,14 +91,10 @@
 
                             <form action="/HobbitHall/ProcessProduct?action=search" method="post">
                                 <div id="searchBar">
-                                    <input type="text" name="search" placeholder="Search Product" value="">
+                                    <input type="text" name="search" placeholder="ID , Name , Author" value="" style="font-size: 0.8em">
                                     <input type="submit" name="search" value="Search"  id="search"/>
                                 </div>
                             </form>
-
-
-
-
                         </div>
                         <table  class="tableUser">
                             <tr>

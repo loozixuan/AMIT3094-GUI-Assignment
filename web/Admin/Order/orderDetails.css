@@ -25,6 +25,8 @@ and open the template in the editor.
     font-size:1.1em;
     margin: 10px 20px 20px 0px;
     background-image: radial-gradient(circle, #283ed1, #3b4ddb, #4b5ce5, #5a6bef, #687af8);
+    display:flex;
+    justify-content:space-between;
 }
 td{
     font-size:0.9em;
@@ -40,7 +42,7 @@ td{
 .col2{
     border:none;
     width:130px;
-    color:red;
+    color:blue;
     padding:0px; 
 }
 
@@ -72,6 +74,7 @@ tr.product_detail>th{
     height: 30px;
     text-align: center;
     font-size: 0.9em;
+    padding:5px 10px;
     background-color: #F7F7F7;
 }
 tr.product_detail2>td{

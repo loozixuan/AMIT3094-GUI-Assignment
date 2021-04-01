@@ -5,11 +5,13 @@
  */
 package controller;
 
+import entity.Product;
 import java.io.IOException;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -41,10 +43,19 @@ public class Home extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         Query query = em.createNamedQuery("Subcategory.findAll");
         List<entity.Subcategory> subCategoryList = query.getResultList();
+        Query querySelf = em.createNativeQuery("SELECT * FROM PRODUCT WHERE SUBCATEGORY_ID ='E002' AND STATUS='Active'", Product.class);
+        List<entity.Product> productSelfList = querySelf.getResultList();
+        Query queryChild = em.createNativeQuery("SELECT * FROM PRODUCT WHERE SUBCATEGORY_ID ='E017' AND STATUS='Active'", Product.class);
+        List<entity.Product> productChildList = queryChild.getResultList();
+
+        request.setAttribute("productSelfList", productSelfList);
+        request.setAttribute("productChildList", productChildList);
 
         HttpSession session = request.getSession();
         session.setAttribute("subCategoryList", subCategoryList);
-        response.sendRedirect("Client/Home/home.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("Client/Home/home.jsp");
+        rd.forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

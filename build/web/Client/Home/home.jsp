@@ -1,4 +1,9 @@
- <html>
+<%@page import="entity.Product,java.util.List"%>
+<% List<Product> proSelfList = (List<Product>) request.getAttribute("productSelfList");
+    List<Product> proChildList = (List<Product>) request.getAttribute("productChildList");%> 
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
     <head>
         <title>Hobbit Hall</title>
         <meta charset="UTF-8">
@@ -8,16 +13,16 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="icon" href="<%=request.getContextPath()%>/Client/Share/images/logoBook.png"/>
         <link href="<%=request.getContextPath()%>/Client/Home/home.css" rel="stylesheet">
-            
+
     </head>
 
 
     <body>
-  
+
         <%@ include file="../Share/header.jsp" %>
         <main role="main">
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -29,19 +34,19 @@
                 </ol>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="images/poster1.png" alt="poster1"/>
+                        <img src="/HobbitHall/Client/Home/images/poster1.png" alt="poster1"/>
                         <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" style=><rect width="100%" height="100%" fill="#777"/></svg>
 
                     </div>
                     <div class="carousel-item">
-                        <img src="images/poster2.png" alt="poster2"/>
+                        <img src="/HobbitHall/Client/Home/images/poster2.png" alt="poster2"/>
 
                         <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></svg>
 
                     </div>
 
                     <div class="carousel-item">
-                        <img src="images/poster3.png" alt="poster3"/>
+                        <img src="/HobbitHall/Client/Home/images/poster3.png" alt="poster3"/>
                         <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></svg>
                         <div class="container">
                             <div class="carousel-caption text-right">
@@ -66,110 +71,77 @@
                 </div>
                 <div class="buttonCollectionsRow">
                     <div class="buttonCollection-inner">
-                        <div class="buttonImgContainer"><img src="images/buttonBusiness.png" alt="buttonBusiness"/></div>
-                        <p class="buttonCollection"><span>Business Management</span></p>
+                        <div class="buttonImgContainer"><a href="/HobbitHall/ViewProducts?subcategory=E001&category=1&name=name&order=desc"/><img src="/HobbitHall/Client/Home/images/buttonBusiness.png" alt="buttonBusiness"/></a></div>
+                        <p class="buttonCollection"> <a href="/HobbitHall/ViewProducts?subcategory=E001&category=1&name=name&order=desc"/><span>Business Management</span></a></p>
                     </div>
                     <div class="buttonCollection-inner">
-                        <div class="buttonImgContainer"><img src="images/buttonChildren.png" alt="buttonChildren"/></div>
-                        <p class="buttonCollection"><span>Children's Books</span></p>
+                        <div class="buttonImgContainer"><a href="/HobbitHall/ViewProducts?subcategory=E017&category=1&name=name&order=desc"/><img src="/HobbitHall/Client/Home/images/buttonChildren.png" alt="buttonChildren"/></a></div>
+                        <p class="buttonCollection"><a href="/HobbitHall/ViewProducts?subcategory=E017&category=1&name=name&order=desc"/><span>Children's Books</span></a></p>
                     </div>
                     <div class="buttonCollection-inner">
-                        <div class="buttonImgContainer"><img src="images/buttonNovel.png" alt="buttonNovel"/></div>
-                        <p class="buttonCollection"><span>Novel</span></p>
+                        <div class="buttonImgContainer"><a href="/HobbitHall/ViewProducts?subcategory=E018&category=1&name=name&order=desc"/><img src="/HobbitHall/Client/Home/images/buttonNovel.png" alt="buttonNovel"/></a></div>
+                        <p class="buttonCollection"><a href="/HobbitHall/ViewProducts?subcategory=E018&category=1&name=name&order=desc"/><span>Novel</span></a></p>
                     </div>
                     <div class="buttonCollection-inner">
-                        <div class="buttonImgContainer"><img src="images/buttonYoung.png" alt="buttonYoung"/></div>
-                        <p class="buttonCollection"><span>Young Adult</span></p>
+                        <div class="buttonImgContainer"><a href="/HobbitHall/ViewProducts?subcategory=E003&category=1&name=name&order=desc"/><img src="/HobbitHall/Client/Home/images/buttonYoung.png" alt="buttonYoung"/></a></div>
+                        <p class="buttonCollection"><a href="/HobbitHall/ViewProducts?subcategory=E013&category=1&name=name&order=desc"/><span>Young Adult</span></a></p>
                     </div>
                     <div class="buttonCollection-inner">
-                        <div class="buttonImgContainer"><img src="images/buttonSelf.png" alt="buttonSelfHelp"/></div>
-                        <p class="buttonCollection"><span>Self Help</span></p>
+                        <div class="buttonImgContainer"><a href="/HobbitHall/ViewProducts?subcategory=E002&category=1&name=name&order=desc"/><img src="/HobbitHall/Client/Home/images/buttonSelf.png" alt="buttonSelfHelp"/></a></div>
+                        <p class="buttonCollection"><a href="/HobbitHall/ViewProducts?subcategory=E002&category=1&name=name&order=desc"/><span>Self Help</span></a></p>
                     </div>
                     <div class="buttonCollection-inner">
-                        <div class="buttonImgContainer"><img src="images/buttonArt.png" alt="buttonArt"/></div>
-                        <p class="buttonCollection"><span>Art</span></p>
+                        <div class="buttonImgContainer"><a href="/HobbitHall/ViewProducts?subcategory=E019&category=1&name=name&order=desc"/><img src="/HobbitHall/Client/Home/images/buttonArt.png" alt="buttonArt"/></a></div>
+                        <p class="buttonCollection"><a href="/HobbitHall/ViewProducts?subcategory=E019&category=1&name=name&order=desc"/><span>Art</span></a></p>
                     </div>
                 </div>
             </div>
 
             <div class="prod-list-container w-90 p-2">
                 <div class="prod-head">
-                     <div id="motivational">Self Help Reads...</div>
-                      <p id="view-more"><span>View more</span></p>
+                    <div id="motivational">Self Help Reads...</div>
+                    <a href="/HobbitHall/ViewProducts?subcategory=E002&category=1&name=name&order=desc"/><p id="view-more"><span>View more</span></p></a>
                 </div>
-               
+
 
                 <div class="prod-container row d-flex justify-content-between">
+                    <%if (!proSelfList.isEmpty()) {
+                            for (int i = 0; i < 5; i++) {
+                                Product proSelf = proSelfList.get(i);%>
                     <div class="book-body p-4 mb-3">
-                        <a href="ProductDescription.jsp"><img src="../Share/images/book/business/business1.jpg" src="book" style="max-width: 100%"/></a>
-                        <div>Stats & Curiosities</div>
-                        <div>RM 100</div>
-                        <li>Sold Out</li>
+                        <div><a href="ProductDescription.jsp"><img src="/HobbitHall/Client/Share/images/book/<%=proSelf.getImage()%>" src="book" class="bookImg"/></a></div>
+                        <div><%=proSelf.getName()%></div>
+                        <div>RM <%=proSelf.getPrice()%></div>
                         <button class="btn-cart">Add To Cart</button>
                     </div>
-                    <div class="book-body p-4 mb-3">
-                        <img src="../Share/images/book/business/business2.jpg" src="book" style="max-width: 100%"/>
-                        <div>Rebuilding Your Business Model</div>
-                        <div>RM 200</div>
-                        <li>Sold Out</li>
-                        <button class="btn-cart">Add To Cart</button>
-                    </div>
-                    <div class="book-body p-4 mb-3">
-                        <img src="../Share/images/book/business/business3.jpg" src="book" style="max-width: 100%"/>
-                        <div>HBR's 10 Must Reads on Communication</div>
-                        <div>RM99.99</div>
-                        <li>Sold Out</li>
-                        <button class="btn-cart">Add To Cart</button>
-                    </div>
-                    <div class="book-body p-4 mb-3">
-                        <img src="../Share/images/book/business/business4.jpg" src="book" style="max-width: 100%"/>
-                        <div>Creating Business Planning</div>
-                        <div>RM88.88</div>
-                        <li>Sold Out</li>
-                        <button class="btn-cart">Add To Cart</button>
-                    </div>
-                    <div class="book-body p-4 mb-3">
-                        <img src="../Share/images/book/business/business3.jpg" src="book" style="max-width: 100%"/>
-                        <div>HBR's 10 Must Reads on Communication</div>
-                        <div>RM99.99</div>
-                        <li>In Stock</li>
-                        <button class="btn-cart">Add To Cart</button>
-                    </div>
+                    <%}
+                        }%>
+
                 </div>
             </div>
-            
-            
+
+
             <div class="children-book-container">
                 <div class="children-bookImg-container">
                     <h2>Children Books</h2>
                     <p>Explore our featured collection..</p>
-                    <button class="button-shop-now"><span>Shop Now</span></button>
-                    <div><img src="images/childrenBook.png" alt="childrenBook" /></div>    
+                    <a href="/HobbitHall/ViewProducts?subcategory=E017&category=1&name=name&order=desc"/><button class="button-shop-now"><span>Shop Now</span></button></a>
+                    <div><img src="/HobbitHall/Client/Home/images/childrenBook.png" alt="childrenBook" /></div>    
                 </div>
                 <div class="prod-container row d-flex" style="width:60%">
-                     <div class="book-body p-4 mb-3" style="width:33%" >
-                        <img src="../Share/images/book/business/business3.jpg" src="book" style="max-width: 100%"/>
-                        <div class="book-title">HBR's 10 Must Reads on Communication</div>
-                        <div>RM99.99</div>
-                        <li>Sold Out</li>
+                    <%if (!proChildList.isEmpty()) {
+                            for (int i = 0; i < 3; i++) {
+                                Product proChild = proChildList.get(i);%>
+                    <div class="book-body p-4 mb-3" style="width:33%" >
+                        <img src="/HobbitHall/Client/Share/images/book/<%=proChild.getImage()%>" src="book" class="bookImg"/>
+                        <div class="book-title"><%=proChild.getName()%></div>
+                        <div>RM <%=proChild.getPrice()%></div>
                         <button class="btn-cart">Add To Cart</button>
                     </div>
-                    <div class="book-body p-4 mb-3" style="width:33%">
-                        <img src="../Share/images/book/business/business4.jpg" src="book" style="max-width: 100%"/>
-                        <div class="book-title">Creating Business Planning</div>
-                        <div>RM88.88</div>
-                        <li>Sold Out</li>
-                        <button class="btn-cart">Add To Cart</button>
-                    </div>
-                    <div class="book-body p-4 mb-3" style="width:33%">
-                        <img src="../Share/images/book/business/business3.jpg" src="book" style="max-width: 100%"/>
-                        <div class="book-title">HBR's 10 Must Reads on Communication</div>
-                        <div>RM99.99</div>
-                        <li>In Stock</li>
-                        <button class="btn-cart">Add To Cart</button>
-                    </div>
+                    <%}
+                        }%>
                 </div>
-                
+
             </div>
 
 

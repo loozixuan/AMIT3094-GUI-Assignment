@@ -110,12 +110,13 @@ and open the template in the editor.
 
 }
 
-.buttonCollection span {
+.buttonCollection span ,.buttonCollection a{
     cursor: pointer;
     display: inline-block;
     position: relative;
     transition: 0.5s;
     text-align: center;
+    color:rgba(0,0,0,0.9);
 }
 
 .buttonCollection span:after {
@@ -203,7 +204,7 @@ and open the template in the editor.
 .book-body div:nth-child(2){
     padding:5px;
     color:#323e48;
-    height: 50px;
+    height: 70px;
     font-weight: bold;
 }
 
@@ -226,6 +227,11 @@ and open the template in the editor.
 
 .row{
     margin:0px !important;
+}
+
+.bookImg{
+    width:200px;
+    height:280px;
 }
 
 .btn-cart{

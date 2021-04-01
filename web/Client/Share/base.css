@@ -243,6 +243,7 @@ div.link {
     width: auto;
     text-align: center;
     font-size: 14px;
+    padding-bottom:30px;
 }
 
 .Footerrow::after{
