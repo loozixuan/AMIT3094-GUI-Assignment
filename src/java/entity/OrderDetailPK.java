@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
 
 /**
  *
- * @author Chrisann Lee
+ * @author user
  */
 @Embeddable
 public class OrderDetailPK implements Serializable {
@@ -82,5 +82,5 @@ public class OrderDetailPK implements Serializable {
     public String toString() {
         return "entity.OrderDetailPK[ productId=" + productId + ", orderId=" + orderId + " ]";
     }
-
+    
 }

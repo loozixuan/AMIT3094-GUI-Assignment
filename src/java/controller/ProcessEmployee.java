@@ -28,6 +28,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -62,6 +63,39 @@ public class ProcessEmployee extends HttpServlet {
         if (action.equalsIgnoreCase("delete")) {
             doPostDelete(request, response);
         }
+        if (action.equalsIgnoreCase("view")) {
+            doPostView(request, response);
+        }
+        if (action.equalsIgnoreCase("restore")) {
+            doPostRestore(request, response);
+        }
+    }
+
+    protected void doPostRestore(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String email = request.getParameter("email");
+        try {
+            Query query = em.createNamedQuery("Onlineadmin.findByEmail").setParameter("email", email);
+            List<Onlineadmin> adminList = query.getResultList();
+
+            Onlineadmin adminRestore = adminList.get(0);
+            if (adminRestore != null) {
+                adminRestore.setStatus("Active");
+
+                utx.begin();
+                em.merge(adminRestore);
+                utx.commit();
+
+                String success_msg = adminRestore.getName() + " with email " + adminRestore.getEmail() + " has been successfully restored";
+                request.setAttribute("success_msg", success_msg);
+                RequestDispatcher rd = request.getRequestDispatcher("Admin/Employee/ViewDeleteEmployee.jsp");
+                rd.forward(request, response);
+            }
+        } catch (Exception ex) {
+            try (PrintWriter out = response.getWriter()) {
+                out.println(ex.getMessage());
+            }
+        }
     }
 
     protected void doPostAdd(HttpServletRequest request, HttpServletResponse response)
@@ -93,14 +127,14 @@ public class ProcessEmployee extends HttpServlet {
         } else {
             if (email_matcher.matches() != true) {
 //                err_msg = "Email format wrong. Please reenter";
-                sb.append("\n Please enter a valid email\n").append("\n");
+                sb.append("\n Please Enter a Valid Email\n").append("\n");
             } else if (password_matcher.matches() != true) {
 //                    err_msg = "Password format wrong E.g. (At least One Digit, One Character and 6 Characters). Please reenter";
-                sb.append("\n Please enter valid password \n").append("\n");
+                sb.append("\n Please Enter a Valid Password \n").append("\n");
             } else if (name_matcher.matches() != true) {
-                sb.append("\n Please enter a valid username \n");
+                sb.append("\n Please Enter a Valid Username \n");
             } else if (!password.equals(cpassword)) {
-                sb.append("\n Password and Confirmed password not same. Please enter again \n");
+                sb.append("\n Password and Confirmed password not same. Please Enter Again \n");
             } else {
                 validation = true;
             }
@@ -243,6 +277,10 @@ public class ProcessEmployee extends HttpServlet {
                 }
             }
         } else {
+            request.setAttribute("name", newname);
+            request.setAttribute("currentpassword", currentpassword);
+            request.setAttribute("newpassword", newpassword);
+            request.setAttribute("cpassword", cpassword);
             request.setAttribute("err_msg", err_msg);
             RequestDispatcher rd = request.getRequestDispatcher("Admin/Employee/UpdateEmployeeForm.jsp");
             rd.forward(request, response);
@@ -277,18 +315,17 @@ public class ProcessEmployee extends HttpServlet {
 
     protected void doPostView(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String id = request.getParameter("id");
+        Query query = em.createNativeQuery("SELECT * FROM ONLINEADMIN WHERE STATUS ='Inactive'", Onlineadmin.class);
+//        Query query = em.createNamedQuery("Onlineadmin.findAll");
+        List<Onlineadmin> deleteAdminList = query.getResultList();
 
-        Query query = em.createNamedQuery("Onlineadmin.findById").setParameter("id", id);
-        List<Onlineadmin> adminList = query.getResultList();
+        HttpSession session = request.getSession();
+        session.setAttribute("deleteAdminList", deleteAdminList);
 
-        try {
-
-        } catch (Exception ex) {
-            try (PrintWriter out = response.getWriter()) {
-                out.println(ex.getMessage());
-            }
-        }
+//        try (PrintWriter out = response.getWriter()) {
+//            out.print(deleteAdminList.get(0).getName());
+//        }
+        response.sendRedirect("Admin/Employee/ViewDeleteEmployee.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

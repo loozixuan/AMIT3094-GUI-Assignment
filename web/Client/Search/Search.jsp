@@ -15,7 +15,7 @@
         <link href="/HobbitHall/Client/Product/ProductCatolog.css" rel="stylesheet"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="icon" href="../Share/images/logoBook.png"/>
+        <link rel="icon" href="/HobbitHall/Client/Share/images/logoBook.png"/>
         <title>Hobbit Hall</title>
     </head>
     <%
@@ -31,19 +31,21 @@
         <div class="product-catalog-container d-flex justify-content-around p-4">
             <div class="prod-filter-container d-flex flex-column p-2">
                 <h5 class="p-2 text-center" style="color:#323e48;"><b>Recommended Categories</b></h5>
-                <% if (!subcategoryList.isEmpty()) { %>
-                <% for (Subcategory subcategory : subcategoryList) {%>
-                <div class="sub-ctg d-flex flex-column">
-                    <div>
-                        <i class="fa fa-book" aria-hidden="true"></i><a href="../../HobbitHall/ViewProducts?name=price&order=asc&subcategory=<%= subcategory.getId()%>&category=<%= subcategory.getCategoryId().getId()%>"/><%= subcategory.getName()%></a>
+                <div style="height: 500px;overflow: auto;">
+                    <% if (!subcategoryList.isEmpty()) { %>
+                    <% for (Subcategory subcategory : subcategoryList) {%>
+                    <div class="sub-ctg d-flex flex-column">
+                        <div>
+                            <i class="fa fa-book" aria-hidden="true"></i><a href="../../HobbitHall/ViewProducts?name=price&order=asc&subcategory=<%= subcategory.getId()%>&category=<%= subcategory.getCategoryId().getId()%>"/><%= subcategory.getName()%></a>
+                        </div>
                     </div>
+                    <% }%>
+                    <%} else {%>
+                    <div class="sub-ctg-none d-flex flex-column" style="border-bottom:none !important">
+                        <div></div>
+                    </div>
+                    <%}%>
                 </div>
-                <% }%>
-                <%} else {%>
-                <div class="sub-ctg-none d-flex flex-column" style="border-bottom:none !important">
-                    <div></div>
-                </div>
-                <%}%>
             </div>
 
             <div class="prod-list-container w-75 p-2">
@@ -68,11 +70,11 @@
                     <%}%>
                 </div>
 
-                <div class="prod-container row p-2 d-flex justify-content-between">
+                <div class="prod-container row p-2 d-flex">
                     <% if (!productSearch.isEmpty()) {%>
                     <% for (Product product : productSearch) {%>
                     <div class="book-body p-2 mb-3">
-                        <a href="/HobbitHall/LoadProductDesc?productid=<%= product.getId()%>&subcategory=<%= product.getSubcategoryId().getId()%>"><img src="/HobbitHall/Client/<%= product.getImage()%>" alt="book-image" style="max-width: 100%"/></a>
+                        <a href="/HobbitHall/LoadProductDesc?productid=<%= product.getId()%>&subcategory=<%= product.getSubcategoryId().getId()%>"><img class="d-block mx-auto" src="/HobbitHall/Client/Share/images/book/<%= product.getImage()%>" alt="book-image" style="max-width: 100%;width:220px;height:310px;"/></a>
                         <div><%= product.getName()%></div>
                         <div class="pt-3">RM <%= product.getPrice()%></div>
                         <% if (product.getStockQuantity() <= 0) {%>

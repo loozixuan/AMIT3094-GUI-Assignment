@@ -6,6 +6,7 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -35,7 +36,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "CUSTOMER_ORDER")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "CustomerOrder.findAll", query = "SELECT c FROM CustomerOrder c ORDER BY c.date DESC")
+    @NamedQuery(name = "CustomerOrder.findAll", query = "SELECT c FROM CustomerOrder c")
     , @NamedQuery(name = "CustomerOrder.findById", query = "SELECT c FROM CustomerOrder c WHERE c.id = :id")
     , @NamedQuery(name = "CustomerOrder.findByCustomerID", query = "SELECT c FROM CustomerOrder c WHERE c.customerId = :customer")
     , @NamedQuery(name = "CustomerOrder.findByDate", query = "SELECT c FROM CustomerOrder c WHERE c.date = :date")
@@ -47,6 +48,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "CustomerOrder.findByStatus", query = "SELECT c FROM CustomerOrder c WHERE c.status = :status")})
 public class CustomerOrder implements Serializable {
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerOrderId")
+    private List<Payment> paymentList;
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -93,14 +96,14 @@ public class CustomerOrder implements Serializable {
     private Payment payment;
 
     public CustomerOrder() {
-
+        
     }
 
     public CustomerOrder(String id) {
         this.id = id;
-        this.status = "Delivery";
+        this.status = "Order Confirmed";
     }
-
+    
     public CustomerOrder(String id, Date date, String name, String email, String address, String contactNumber) {
         this.id = id;
         this.date = date;
@@ -108,7 +111,7 @@ public class CustomerOrder implements Serializable {
         this.email = email;
         this.address = address;
         this.contactNumber = contactNumber;
-        this.status = "Delivery";
+        this.status = "Order Confirmed";
     }
 
     public String getId() {
@@ -204,26 +207,26 @@ public class CustomerOrder implements Serializable {
     public void setOrderDetailList(List<OrderDetail> orderDetailList) {
         this.orderDetailList = orderDetailList;
     }
-
-    public double getOrderSubtotal() {
+    
+    public double getOrderSubtotal(){
         double subtotal = 0;
         for (int i = 0; i < orderDetailList.size(); i++) {
             subtotal += orderDetailList.get(i).getSubtotal();
         }
         return subtotal;
     }
-
-    public double getDiscount() {
-        if (this.promotionCode != null) {
+    
+    public double getDiscount(){
+        if(this.promotionCode != null){
             return (this.getOrderSubtotal() + this.getDelivery()) * this.promotionCode.getDiscountRate();
-        } else {
+        }else{
             return 0.00;
         }
     }
-
-    public double getOrderTotal() {
+    
+    public double getOrderTotal(){
         double total = this.getOrderSubtotal() + this.getDelivery();
-        if (this.promotionCode != null) {
+        if(this.promotionCode != null){
             total -= this.getDiscount();
         }
         return total;
@@ -254,4 +257,13 @@ public class CustomerOrder implements Serializable {
         return "entity.CustomerOrder[ id=" + id + " ]";
     }
 
+    @XmlTransient
+    public List<Payment> getPaymentList() {
+        return paymentList;
+    }
+
+    public void setPaymentList(List<Payment> paymentList) {
+        this.paymentList = paymentList;
+    }
+    
 }

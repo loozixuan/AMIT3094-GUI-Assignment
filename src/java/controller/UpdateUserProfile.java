@@ -25,6 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.UserTransaction;
 import java.security.MessageDigest;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -47,6 +48,23 @@ public class UpdateUserProfile extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ChangePassword</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet ChangePassword at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
+    }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -56,6 +74,12 @@ public class UpdateUserProfile extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -144,8 +168,12 @@ public class UpdateUserProfile extends HttpServlet {
                     utx.commit();
                     String message = "Account details changed successfully.";
                     request.setAttribute("successMessage", message);
+
+                    HttpSession session = request.getSession();
+                    session.setAttribute("customer", customerDetails);
                     RequestDispatcher rd = request.getRequestDispatcher("Client/User/userProfile.jsp");
                     rd.forward(request, response);
+
                 }
 
             } catch (Exception ex) {

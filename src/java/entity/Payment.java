@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author zixua
+ * @author user
  */
 @Entity
 @Table(name = "PAYMENT")
@@ -58,9 +58,11 @@ public class Payment implements Serializable {
         this.id = id;
     }
 
-    public Payment(String id, double amount) {
+    public Payment(String id, String method, double amount, CustomerOrder customerOrderId) {
         this.id = id;
+        this.method = method;
         this.amount = amount;
+        this.customerOrderId = customerOrderId;
     }
 
     public String getId() {
@@ -119,5 +121,5 @@ public class Payment implements Serializable {
     public String toString() {
         return "entity.Payment[ id=" + id + " ]";
     }
-
+    
 }

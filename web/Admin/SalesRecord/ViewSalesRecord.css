@@ -9,3 +9,22 @@
 .order-customer-tab ul li a:hover{
     color:limegreen;
 }
+
+.order-id-ct, .cust-id-ct{
+    background: white;
+    border: 1px solid green;
+    width: 250px;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cust-details{
+    box-shadow: 0.1rem 0.1rem 0.1rem 0.1rem rgb(0 0 0 / 30%);
+}
+
+.table-sales-record #table-title th{
+    border-top: 2px solid lightgrey !important;
+    border-bottom: 2px solid lightgrey !important;
+    text-align: center;
+}

@@ -4,6 +4,7 @@
     background: #fff;
     box-shadow: 0.1rem 0.1rem 0.2rem rgb(0 0 0 / 10%);
     border-radius: 2px;
+    height: 540px;
 }
 
 .prod-list-container{

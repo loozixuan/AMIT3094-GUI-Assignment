@@ -23,10 +23,10 @@
                 <h1>My Account</h1>
                 <table>
                     <tr>
-                        <td style="background-color: white;border-left: 3px solid blue; "><a href="#" style="color:black;"><i class="fa fa-user" aria-hidden="true" style="color:black"></i>Account Details</a></td>
+                        <td style="background-color: white;border-left: 3px solid blue "> <a href="#" style="color:black"><i class="fa fa-user" aria-hidden="true" style="color:black" ></i>Account Details</a></td>
                     </tr>
                     <tr>
-                        <td><a href="#"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>Orders</a></td>
+                        <td><a href="/HobbitHall/CustomerOrderControl?action=orderHistory"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>Orders</a></td>
                     </tr>
                     <tr>
                     <form action="/HobbitHall/Logout" action="get">

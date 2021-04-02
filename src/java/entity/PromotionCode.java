@@ -5,7 +5,11 @@
  */
 package entity;
 
+import domain.CartItem;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -26,7 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Chrisann Lee
+ * @author user
  */
 @Entity
 @Table(name = "PROMOTION_CODE")
@@ -34,22 +38,12 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "PromotionCode.findAll", query = "SELECT p FROM PromotionCode p")
     , @NamedQuery(name = "PromotionCode.findByCode", query = "SELECT p FROM PromotionCode p WHERE p.code = :code")
-    , @NamedQuery(name = "PromotionCode.findByDiscount", query = "SELECT p FROM PromotionCode p WHERE p.discount = :discount")
+    , @NamedQuery(name = "PromotionCode.findByDiscountRate", query = "SELECT p FROM PromotionCode p WHERE p.discountRate = :discountRate")
     , @NamedQuery(name = "PromotionCode.findByMinimumOrderAmount", query = "SELECT p FROM PromotionCode p WHERE p.minimumOrderAmount = :minimumOrderAmount")
     , @NamedQuery(name = "PromotionCode.findByStartDate", query = "SELECT p FROM PromotionCode p WHERE p.startDate = :startDate")
-    , @NamedQuery(name = "PromotionCode.findByEnddateDate", query = "SELECT p FROM PromotionCode p WHERE p.enddateDate = :enddateDate")})
+    , @NamedQuery(name = "PromotionCode.findByExpiredDate", query = "SELECT p FROM PromotionCode p WHERE p.expiredDate = :expiredDate")})
 public class PromotionCode implements Serializable {
-
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "DISCOUNT_RATE")
-    private double discountRate;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "EXPIRED_DATE")
-    @Temporal(TemporalType.DATE)
-    private Date expiredDate;
-
+    
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -59,8 +53,8 @@ public class PromotionCode implements Serializable {
     private String code;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "DISCOUNT")
-    private double discount;
+    @Column(name = "DISCOUNT_RATE")
+    private double discountRate;
     @Basic(optional = false)
     @NotNull
     @Column(name = "MINIMUM_ORDER_AMOUNT")
@@ -72,13 +66,18 @@ public class PromotionCode implements Serializable {
     private Date startDate;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "ENDDATE_DATE")
+    @Column(name = "EXPIRED_DATE")
     @Temporal(TemporalType.DATE)
-    private Date enddateDate;
-    @OneToMany(mappedBy = "promotionCode")
-    private List<CustomerOrder> customerOrderList;
+    private Date expiredDate;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 15)
+    @Column(name = "STATUS")
+    private String status;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "promotionCode1")
     private List<PromotionUpdate> promotionUpdateList;
+    @OneToMany(mappedBy = "promotionCode")
+    private List<CustomerOrder> customerOrderList;
 
     public PromotionCode() {
     }
@@ -87,12 +86,12 @@ public class PromotionCode implements Serializable {
         this.code = code;
     }
 
-    public PromotionCode(String code, double discount, double minimumOrderAmount, Date startDate, Date enddateDate) {
+    public PromotionCode(String code, double discountRate, double minimumOrderAmount, Date startDate, Date expiredDate) {
         this.code = code;
-        this.discount = discount;
+        this.discountRate = discountRate;
         this.minimumOrderAmount = minimumOrderAmount;
         this.startDate = startDate;
-        this.enddateDate = enddateDate;
+        this.expiredDate = expiredDate;
     }
 
     public String getCode() {
@@ -103,12 +102,12 @@ public class PromotionCode implements Serializable {
         this.code = code;
     }
 
-    public double getDiscount() {
-        return discount;
+    public double getDiscountRate() {
+        return discountRate;
     }
 
-    public void setDiscount(double discount) {
-        this.discount = discount;
+    public void setDiscountRate(double discountRate) {
+        this.discountRate = discountRate;
     }
 
     public double getMinimumOrderAmount() {
@@ -127,30 +126,51 @@ public class PromotionCode implements Serializable {
         this.startDate = startDate;
     }
 
-    public Date getEnddateDate() {
-        return enddateDate;
+    public Date getExpiredDate() {
+        return expiredDate;
     }
 
-    public void setEnddateDate(Date enddateDate) {
-        this.enddateDate = enddateDate;
+    public void setExpiredDate(Date expiredDate) {
+        this.expiredDate = expiredDate;
+    }
+    
+    public String getStatus() {
+        return status;
     }
 
-    @XmlTransient
-    public List<CustomerOrder> getCustomerOrderList() {
-        return customerOrderList;
+    public void setStatus(String status) {
+        this.status = status;
     }
-
-    public void setCustomerOrderList(List<CustomerOrder> customerOrderList) {
-        this.customerOrderList = customerOrderList;
+    
+    public boolean checkPromotionStartedDate(){
+        LocalDate localDate = LocalDate.now();
+        ZoneId defaultZoneId = ZoneId.systemDefault();
+        Date todaydate = Date.from(localDate.atStartOfDay(defaultZoneId).toInstant()); 
+        if(todaydate.compareTo(this.startDate) <  0){
+            return false;
+        }
+        return true;
     }
-
-    @XmlTransient
-    public List<PromotionUpdate> getPromotionUpdateList() {
-        return promotionUpdateList;
+    
+    public boolean checkPromotionExpiredDate(){
+        LocalDate localDate = LocalDate.now();
+        ZoneId defaultZoneId = ZoneId.systemDefault();
+        Date todaydate = Date.from(localDate.atStartOfDay(defaultZoneId).toInstant()); 
+        if(todaydate.compareTo(this.expiredDate) >  0){
+            return false;
+        }
+        return true;
     }
-
-    public void setPromotionUpdateList(List<PromotionUpdate> promotionUpdateList) {
-        this.promotionUpdateList = promotionUpdateList;
+    
+    public boolean checkOrderAmountValidation(ArrayList<CartItem> cartItemList){
+        double total = 0;
+        for (int i = 0; i < cartItemList.size(); i++) {
+            total += (cartItemList.get(i).getProduct().getPrice() * cartItemList.get(i).getQuantity());
+        } 
+        if(total < this.minimumOrderAmount){
+            return false;
+        }
+        return true;
     }
 
     @Override
@@ -178,20 +198,22 @@ public class PromotionCode implements Serializable {
         return "entity.PromotionCode[ code=" + code + " ]";
     }
 
-    public double getDiscountRate() {
-        return discountRate;
+    @XmlTransient
+    public List<CustomerOrder> getCustomerOrderList() {
+        return customerOrderList;
     }
 
-    public void setDiscountRate(double discountRate) {
-        this.discountRate = discountRate;
+    public void setCustomerOrderList(List<CustomerOrder> customerOrderList) {
+        this.customerOrderList = customerOrderList;
     }
 
-    public Date getExpiredDate() {
-        return expiredDate;
+    @XmlTransient
+    public List<PromotionUpdate> getPromotionUpdateList() {
+        return promotionUpdateList;
     }
 
-    public void setExpiredDate(Date expiredDate) {
-        this.expiredDate = expiredDate;
+    public void setPromotionUpdateList(List<PromotionUpdate> promotionUpdateList) {
+        this.promotionUpdateList = promotionUpdateList;
     }
-
+    
 }

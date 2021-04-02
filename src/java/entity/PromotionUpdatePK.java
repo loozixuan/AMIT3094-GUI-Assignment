@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
 
 /**
  *
- * @author Chrisann Lee
+ * @author zixua
  */
 @Embeddable
 public class PromotionUpdatePK implements Serializable {

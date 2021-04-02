@@ -13,11 +13,11 @@
 <header>
     <div class="header">
         <div class="logo">
-            <a href="/HobbitHall/Home"><img src="<%=request.getContextPath()%>/Client/Share/images/logo.png" alt="logo"></a>
+            <a href="<%=request.getContextPath()%>/Client/Home/home.jsp"><img src="<%=request.getContextPath()%>/Client/Share/images/logo.png" alt="logo"></a>
         </div>
 
         <form action="/HobbitHall/Search" method="POST">
-            <div id="searchBar" style="width:700px">
+            <div id="searchBar">
                 <input type="text" name="search" placeholder="Title, Author or Keyword">
                 <div id="searchIconContainer">
                     <button style="background: transparent;border:none;color:white;outline:none"><i class="fa fa-search" aria-hidden="true"></i></button>
@@ -61,7 +61,7 @@
                         %>
                         <% if (subCategory.getCategoryId().getId().equalsIgnoreCase("1")) {%>
                         <div class="subCategory justify-content-center d-flex w-25">
-                            <a href="/HobbitHall/ViewProducts?subcategory=<%=subCategory.getId() %>&category=1&name=name&order=desc"/><%= subCategory.getName()%></a>
+                            <a href="/HobbitHall/ViewProducts?subcategory=<%= subCategory.getId()%>&category=1&name=name&order=desc"/><%= subCategory.getName()%></a>
                         </div>
 
                         <% }
@@ -81,7 +81,7 @@
                         %>
                         <% if (subCategory.getCategoryId().getId().equalsIgnoreCase("2")) {%>
                         <div class="subCategory justify-content-center d-flex w-25">
-                            <a href="/HobbitHall/ViewProducts?subcategory=<%=subCategory.getId() %>&category=2&name=name&order=desc"/><%= subCategory.getName()%></a>
+                            <a href="../../ViewProducts?subcategory=<%= subCategory.getId()%>&category=2&name=name&order=desc"/><%= subCategory.getName()%></a>
                         </div>
 
                         <% }
@@ -99,7 +99,7 @@
                         %>
                         <% if (subCategory.getCategoryId().getId().equalsIgnoreCase("3")) {%>
                         <div class="subCategory justify-content-center d-flex w-25">
-                            <a href="/HobbitHall/ViewProducts?subcategory=<%=subCategory.getId() %>&category=3&name=name&order=desc"/><%= subCategory.getName()%></a>
+                            <a href="../../ViewProducts?subcategory=<%= subCategory.getId()%>&category=3&name=name&order=desc"/><%= subCategory.getName()%></a>
                         </div>
 
                         <% }

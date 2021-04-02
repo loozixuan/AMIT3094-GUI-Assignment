@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Chrisann Lee
+ * @author zixua
  */
 @Entity
 @Table(name = "PROMOTION_UPDATE")

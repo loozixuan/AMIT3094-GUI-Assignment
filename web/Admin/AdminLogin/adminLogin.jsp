@@ -9,7 +9,6 @@
         <link href="/HobbitHall/Admin/AdminLogin/adminLogin.css" rel="stylesheet">
     </head>
 
-
     <body style="background-image: url('/HobbitHall/Admin/Share/images/loginbg.jpeg');
           background-size: cover;background-repeat: no-repeat;">
 

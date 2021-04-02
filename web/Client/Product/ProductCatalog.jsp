@@ -35,11 +35,13 @@
             <div class="prod-filter-container d-flex flex-column p-2">
                 <h5 class="p-2" style="color:#323e48;"><b>Categories</b></h5>
                 <div class="sub-ctg d-flex flex-column">
-                    <% for (Subcategory subcategory : subcategoryList) {%>
-                    <div>
-                        <i class="fa fa-book" aria-hidden="true"></i><a href="../../ViewProducts?name=price&order=asc&subcategory=<%= subcategory.getId()%>&category=<%= subcategory.getCategoryId().getId()%>"/><%= subcategory.getName()%></a>
+                    <div style="height: 250px;overflow: auto;">
+                        <% for (Subcategory subcategory : subcategoryList) {%>
+                        <div>
+                            <i class="fa fa-book" aria-hidden="true"></i><a href="../../ViewProducts?name=price&order=asc&subcategory=<%= subcategory.getId()%>&category=<%= subcategory.getCategoryId().getId()%>"/><%= subcategory.getName()%></a>
+                        </div>
+                        <% }%>
                     </div>
-                    <% }%>
                     <% if (!prodList.isEmpty()) { %>
                     <% for (int i = 0; i < 1; i++) {%>
                     <div class="filter-container d-flex flex-column pt-4">
@@ -64,7 +66,7 @@
                     </div>  
                     <% }%>
                     <% } else {%>
-                    <div class="filter-container d-flex flex-column pt-4">
+                    <div class="filter-container d-flex flex-column pt-2">
                         <h5 class="p-1" style="color:#323e48;"><b>Filters</b></h5>
 
                         <div style="padding:5px">
@@ -121,10 +123,10 @@
 
                 <% if (!prodList.isEmpty()) { %>
                 <!-- Load Product List -->
-                <div class="prod-container row p-2 d-flex justify-content-between">
+                <div class="prod-container row p-2 d-flex">
                     <% for (Product product : prodList) {%>
                     <div class="book-body p-2 mb-3">
-                        <a href="../../LoadProductDesc?productid=<%= product.getId()%>&subcategory=<%= product.getSubcategoryId().getId()%>"><img src=<%= product.getImage()%> src="book-image" style="max-width: 100%"/></a>
+                        <a href="../../LoadProductDesc?productid=<%= product.getId()%>&subcategory=<%= product.getSubcategoryId().getId()%>"><img class="d-block mx-auto" src="/HobbitHall/Client/Share/images/book/<%= product.getImage()%>" alt="book-image" style="max-width: 100%;width:220px;height:310px;"/></a>
                         <div><%= product.getName()%></div>
                         <div class="pt-3">RM <%= product.getPrice()%></div>
                         <% if (product.getStockQuantity() <= 0) {%>

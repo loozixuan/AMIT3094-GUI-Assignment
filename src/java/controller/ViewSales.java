@@ -5,12 +5,12 @@
  */
 package controller;
 
+import entity.CustomerOrder;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
-import entity.Product;
-import entity.Subcategory;
-import java.util.Collections;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -20,17 +20,47 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author zixua
  */
-@WebServlet(name = "Search", urlPatterns = {"/Search"})
-public class Search extends HttpServlet {
+@WebServlet(name = "ViewSales", urlPatterns = {"/ViewSales"})
+public class ViewSales extends HttpServlet {
 
     @PersistenceContext
     EntityManager em;
+
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            Date salesdate = formatter.parse(formatter.format(new Date()));
+            Query query = em.createNamedQuery("CustomerOrder.findByDate").setParameter("date", salesdate);
+            List<CustomerOrder> customerOrderList = query.getResultList();
+//            try (PrintWriter out = response.getWriter()) {
+//                out.print(customerOrderList.get(0).getName());
+//            }
+            request.setAttribute("customerOrderList", customerOrderList);
+            request.setAttribute("test", "test");
+            RequestDispatcher rd = request.getRequestDispatcher("/Admin/SalesRecord/ViewSalesTable.jsp");
+            rd.forward(request, response);
+
+        } catch (Exception ex) {
+            try (PrintWriter out = response.getWriter()) {
+                out.print(ex.getMessage());
+            }
+        }
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -44,7 +74,7 @@ public class Search extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        processRequest(request, response);
     }
 
     /**
@@ -58,36 +88,7 @@ public class Search extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String search = request.getParameter("search");
-
-        try {
-            Query query = em.createNativeQuery("SELECT * FROM PRODUCT WHERE UPPER(NAME) LIKE UPPER('%" + search + "%') OR UPPER(AUTHOR_NAME) LIKE UPPER('%"
-                    + search + "%') OR UPPER(DESCRIPTION) LIKE ('%" + search + "%')", entity.Product.class);
-            List<Product> productR = query.getResultList();
-
-            request.setAttribute("product", productR);
-            request.setAttribute("keyword", search);
-            try {
-                Product prod = productR.get(0);
-
-                String catID = prod.getSubcategoryId().getCategoryId().getId();
-
-                Query categoryQuery = em.createNativeQuery("SELECT * FROM SUBCATEGORY WHERE CATEGORY_ID ='"
-                        + catID + "' ", Subcategory.class);
-                List<Subcategory> subcategoryList = categoryQuery.getResultList();
-                request.setAttribute("subcategoryList", subcategoryList);
-            } catch (Exception ex) {
-                request.setAttribute("subcategoryList", Collections.<String>emptyList());
-            }
-
-            RequestDispatcher rd = request.getRequestDispatcher("Client/Search/Search.jsp");
-            rd.forward(request, response);
-
-        } catch (Exception ex) {
-            try (PrintWriter out = response.getWriter()) {
-                out.print(ex.getMessage());
-            }
-        }
+        processRequest(request, response);
     }
 
     /**

@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Chrisann Lee
+ * @author user
  */
 @Entity
 @Table(name = "ORDER_DETAIL")
@@ -57,9 +57,17 @@ public class OrderDetail implements Serializable {
         this.orderDetailPK = orderDetailPK;
         this.productQuantity = productQuantity;
     }
-
-    public OrderDetail(String productId, String orderId) {
+    
+    public OrderDetail(String productId, String orderId, int productQuantity) {
         this.orderDetailPK = new OrderDetailPK(productId, orderId);
+        this.productQuantity = productQuantity;
+    }
+
+    public OrderDetail(String productId, String orderId, int productQuantity, CustomerOrder customerOrder, Product product) {
+        this.orderDetailPK = new OrderDetailPK(productId, orderId);
+        this.productQuantity = productQuantity;
+        this.customerOrder = customerOrder;
+        this.product = product;
     }
 
     public OrderDetailPK getOrderDetailPK() {
@@ -93,8 +101,8 @@ public class OrderDetail implements Serializable {
     public void setProduct(Product product) {
         this.product = product;
     }
-
-    public double getSubtotal() {
+    
+    public double getSubtotal(){
         return this.product.getPrice() * this.productQuantity;
     }
 
@@ -122,5 +130,5 @@ public class OrderDetail implements Serializable {
     public String toString() {
         return "entity.OrderDetail[ orderDetailPK=" + orderDetailPK + " ]";
     }
-
+    
 }

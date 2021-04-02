@@ -1,11 +1,3 @@
-#title{
-    display: block;
-    text-align: left;
-    padding-left: 35px;
-    margin-top: 1em;
-    margin-bottom: 1.25em;
-}
-
 #main{
     margin-bottom: 50px;
 }
@@ -31,6 +23,14 @@ td#productImage>img{
     width: 70%;
 }
 
+td#productSubCategoryandName a{
+    color: #8B0000;
+}
+
+td#productSubCategoryandName a:hover{
+    color: rgb(255, 77, 77);
+}
+
 #checkout-container{
    width: 40%;
    display: block;
@@ -42,11 +42,6 @@ td#productImage>img{
     margin: 0px auto;
     width: 70%;
     padding: 20px;
-}
-
-#discountCode{
-    border-bottom: 1px solid black; 
-    padding-bottom: 0px;
 }
 
 #orderValue, #deliveryAmount, #totalAmount{

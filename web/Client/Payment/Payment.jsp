@@ -4,142 +4,157 @@
     Author     : user
 --%>
 
+<%@page import="entity.CustomerOrder"%>
+<%@page import="domain.CartItem, java.util.ArrayList, entity.CustomerOrder, entity.PromotionCode"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-        <link href="Payment.css" rel="stylesheet"/>
+        <link href="/HobbitHall/Client/Payment/Payment.css" rel="stylesheet"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="Payment.js"></script>
+        <script src="/HobbitHall/Client/Payment/Payment.js"></script>
         <title>JSP Page</title>
     </head>
     <%@include file="../Share/header.jsp" %>
+    <% 
+        ArrayList<CartItem> cartItemList;
+        if(customer.getId() == null){ 
+            cartItemList = (ArrayList<CartItem>)session.getAttribute("guest" + "_cart"); 
+        }else{
+            cartItemList = (ArrayList<CartItem>)session.getAttribute(customer.getId() + "_cart"); 
+        } 
+        PromotionCode promotionCode = (PromotionCode) request.getAttribute("promotion_code");
+        CustomerOrder order = new CustomerOrder();
+    %>
+    <%! 
+        public double calculateCartTotal(ArrayList<CartItem> cartItemList){
+            double total = 0;
+            for (int i = 0; i < cartItemList.size(); i++) {
+                total += (cartItemList.get(i).getProduct().getPrice() * cartItemList.get(i).getQuantity());
+            }
+            return total;
+        }
+    %>
     <body>
-        <div class="row justify-content-start" id="main">
+        <div class="row justify-content-center" id="main">
             <div class="col-md-5 order-md-2 mb-5" style="background-color: white;">
                 <h5 style="text-align: center; margin: 20px 0px">Your Cart</h5>
-                <div class="row overflow-hidden" id="productInCart">
-                    <div class="row justify-content-start">
-                        <div class="col-2" id="productImage"><img src="testing1.jpg" /><span class="badge badge-secondary badge-pill bg-warning text-dark">3</span></div>
-                        <div class="col-5 pt-3 bookName">Macmillan-Uk<br/>Hidden in Plain Sight</div>
-                        <div class="col-5 text-end" style="padding-top: 30px;">RM 30.00</div>
+                <div class="row justify-content-center overflow-hidden" id="productInCart">
+                    <% for (int i = 0; i < cartItemList.size(); i++) { %>
+                    <div class="row justify-content-center">
+                        <div class="col-2" id="productImage"><img src="/HobbitHall/Client/Share/images/book/<%= cartItemList.get(i).getProduct().getImage() %>" /><span class="badge badge-secondary badge-pill bg-warning text-dark"><%= cartItemList.get(i).getQuantity() %></span></div>
+                        <div class="col-5 pt-3 align-middle"><%= cartItemList.get(i).getProduct().getSubcategoryId().getName() %><br/><%= cartItemList.get(i).getProduct().getName() %></div>
+                        <div class="col-5 text-end" style="padding-top: 30px;"><%= String.format("%.2f",cartItemList.get(i).getSubtotal()) %></div>
                     </div>
-                    <div class="row justify-content-start">
-                        <div class="col-2" id="productImage"><img src="testing1.jpg" /><span class="badge badge-secondary badge-pill bg-warning text-dark">3</span></div>
-                        <div class="col-5 pt-3 bookName">Macmillan-Uk<br/>Hidden in Plain Sight</div>
-                        <div class="col-5 text-end" style="padding-top: 30px;">RM 30.00</div>
-                    </div>
-                    <div class="row justify-content-start">
-                        <div class="col-2" id="productImage"><img src="testing1.jpg" /><span class="badge badge-secondary badge-pill bg-warning text-dark">3</span></div>
-                        <div class="col-5 pt-3 bookName">Macmillan-Uk<br/>Hidden in Plain Sight</div>
-                        <div class="col-5 text-end" style="padding-top: 30px;">RM 30.00</div>
-                    </div>
+                    <% } %>
                 </div>
-                <div class="row justify-content-start" style="margin-bottom: 0px;">
+                <div class="row justify-content-center" style="margin-bottom: 0px;">
                     <div class="col-md-12">
                         <hr class="mb-3">
                     </div>
                 </div>
-                <div class="row" id="calculation" style="margin-top: 0px;">
+                <div class="row justify-content-start">
+                        <form action="/HobbitHall/PromotionCodeControl" method="GET" class="input-group col-md-9">
+                            <input type="text" name="promotion_code" class="form-control" aria-describedby="button-addon2" placeholder="ADD A DISCOUNT CODE">
+                            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">ADD</button>
+                        </form>
+                        <p class="text-danger col-md-12 text-start mb-0">${promotion_code_error}</p>
+                </div>
+                <div class="row justify-content-center" style="margin-bottom: 0px;">
+                    <div class="col-md-12">
+                        <hr class="mb-3">
+                    </div>
+                </div>
+                <div class="row justify-content-center" id="calculation" style="margin-top: 0px;">
                     <div class="row justify-content-start">
                         <div class="col-md-5">Subtotal</div>
-                        <div class="col-md-7 text-end">RM 90.00</div>
-                    </div>
-                    <div class="row justify-content-start">
-                        <div class="col-md-5">Discount</div>
-                        <div class="col-md-7 text-end">(10.00)</div>
+                        <div class="col-md-7 text-end">RM <%= String.format("%.2f",calculateCartTotal(cartItemList)) %></div>
                     </div>
                     <div class="row justify-content-start">
                         <div class="col-md-5">Delivery</div>
-                        <div class="col-md-7 text-end">RM 20.00</div>
+                        <div class="col-md-7 text-end">RM <%= String.format("%.2f",order.getDelivery()) %></div>
                     </div>
+                    <% if(promotionCode != null){ %>
+                    <div class="row justify-content-start">
+                        <div class="col-md-5">Discount (<%= promotionCode.getCode()%>)</div>
+                        <div class="col-md-7 text-end">RM (<%= String.format("%.2f", (calculateCartTotal(cartItemList) + order.getDelivery()) * promotionCode.getDiscountRate()) %>)</div>
+                    </div>
+                    <% } %>
                 </div>
                 <div class="row justify-content-start">
                     <div class="col-md-12">
                         <hr class="mb-3">
                     </div>
                 </div>
-                <div class="row justify-content-start">
+                <div class="row justify-content-center">
                     <div class="row justify-content-start">
                         <div class="col-md-5">Total</div>
-                        <div class="col-md-7 text-end">RM 100.00</div>
+                        <% if(promotionCode != null){ %>
+                        <div class="col-md-7 text-end">RM <%= String.format("%.2f", (calculateCartTotal(cartItemList) + order.getDelivery()) -  ((calculateCartTotal(cartItemList) + order.getDelivery()) * promotionCode.getDiscountRate()))%></div>
+                        <% }else{ %>
+                        <div class="col-md-7 text-end">RM <%= String.format("%.2f", calculateCartTotal(cartItemList) + order.getDelivery()) %></div>
+                        <% } %>
                     </div>
                 </div>
             </div>
-            <div class="col-md-7">
+                        
+            <form class="col-md-7" action="/HobbitHall/PaymentControl" method="POST">
+                <% if(promotionCode != null){ %>
+                    <input type="hidden" class="form-control" name="promotion_code" value="<%= promotionCode.getCode() %>">
+                <% } %>
                 <div class="row justify-content-start">
+                    <a href="Payment.jsp"></a>
                     <h5>My Information</h5>
                 </div>
                 <div class="row justify-content-start mb-3">
                     <div class="col-md-6">
-                        <label class="form-label col-form-label-sm">Email</label>
-                        <input type="email" class="form-control">
-                    </div>    
+                        <label class="form-label col-form-label-sm font-weight-bold">Email</label>
+                        <% if(customer.getId() == null){ %>
+                        <input type="text" class="form-control" name="email">
+                        <% }else{ %>
+                        <p>${customer.email}</p>
+                        <input type="hidden" class="form-control" name="email" value="${customer.email}">
+                        <% } %>
+                    </div>
+                    <p class="text-danger text-start mb-0">${email_error}</p>
                 </div>
                 <div class="row justify-content-start">
                     <h5>Delivery Information</h5>
                 </div>
-                <div class="row justify-content-start">
-                    <div class="col-md-2">
-                        <label class="form-label col-form-label-sm">Title</label>
-                        <select class="form-select mb-3">
-                            <option>Mr</option>
-                            <option>Mrs</option>
-                            <option>Miss</option>
-                        </select>
+                <div class="row justify-content-start mb-2">
+                    <div class="col-md-10">
+                        <label class="form-label col-form-label-sm">Name</label>
+                        <% if(customer.getId() == null){ %>
+                        <input type="text" class="form-control" name="receiver_name" >
+                        <% }else{ %>
+                        <input type="text" class="form-control" name="receiver_name" value="${customer.name}">
+                        <% } %>
                     </div>
+                    <p class="text-danger text-start mb-0">${receiver_name_error}</p>
                 </div>
-                <div class="row justify-content-start">
-                    <div class="col-md-5">
-                        <label class="form-label col-form-label-sm">First Name</label>
-                        <input type="text" class="form-control">
-                    </div> 
-                    <div class="col-md-5">
-                        <label class="form-label col-form-label-sm">Last Name</label>
-                        <input type="text" class="form-control">
-                    </div>    
-                </div>
-                <div class="row justify-content-start">
+                <div class="row justify-content-start mb-2">
                     <div class="col-md-10">
                         <label class="form-label col-form-label-sm">Address</label>
-                        <input type="text" class="form-control">
-                    </div>               
-                </div>
-                <div class="row justify-content-start">
-                    <div class="col-md-2">
-                        <label class="form-label col-form-label-sm">Postcode</label>
-                        <input type="text" class="form-control">
-                    </div> 
-                    <div class="col-md-4">
-                        <label class="form-label col-form-label-sm">City</label>
-                        <input type="text" class="form-control">
+                        <% if(customer.getId() == null){ %>
+                        <input type="text" class="form-control" name="address">
+                        <% }else{ %>
+                        <input type="text" class="form-control" name="address" value="${customer.address}">
+                        <% } %>
                     </div>
-                    <div class="col-md-4">
-                        <label class="form-label col-form-label-sm">State</label>
-                        <select class="form-select mb-3">
-                            <option>Johor</option>
-                            <option>Kedah</option>
-                            <option>Kelantan</option>
-                            <option>Malacca</option>
-                            <option>Negeri Sembilan</option>
-                            <option>Pahang</option>
-                            <option>Penang</option>
-                            <option>Perak</option>
-                            <option>Perlis</option>
-                            <option>Sabah</option>
-                            <option>Sarawak</option>
-                            <option>Selangor</option>
-                            <option>Terrengganu</option>
-                        </select>
-                    </div>
+                    <p class="text-danger text-start mb-0">${address_error}</p>
                 </div>
-                <div class="row justify-content-start">
+                <div class="row justify-content-start mb-2">
                     <div class="col-md-10">
                         <label class="form-label col-form-label-sm">Contact Number</label>
-                        <input type="text" class="form-control">
-                    </div>               
+                        <% if(customer.getId() == null){ %>
+                        <input type="text" class="form-control" name="contact_number">
+                        <% }else{ %>
+                        <input type="text" class="form-control" name="contact_number" value="${customer.contactNumber}">
+                        <% } %>
+                    </div>
+                    <p class="text-danger text-start mb-0">${contact_number_error}</p>
                 </div>
                 <div class="row justify-content-start">
                     <div class="col-md-10">
@@ -147,37 +162,42 @@
                     </div>
                 </div>
                 <div class="row justify-content-start">
-                    <h5>Payment</h5>
+                    <h5>Payment (Master Card Only)</h5>
                 </div>
-                <div class="row justify-content-start" style="padding-left: 11px;">
+                <div class="row justify-content-start mb-2" style="padding-left: 11px;">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio"/>
+                        <input class="form-check-input" type="radio" name="payment_method" value="Debit Card"/>
                         <label class="form-check-label">Debit Card</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio"/>
+                        <input class="form-check-input" type="radio" name="payment_method" value="Credit Card"/>
                         <label class="form-check-label">Credit Card</label>
                     </div>
+                    <p class="text-danger text-start mb-0 col-12">${payment_method_error}</p>
                 </div>
-                <div class="row justify-content-start">
+                <div class="row justify-content-start mb-2">
                     <div class="col-md-5">
                         <label class="form-label col-form-label-sm">Name On Card</label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="card_owner">
                     </div>
                     <div class="col-md-5">
                         <label class="form-label col-form-label-sm">Card Number</label>
-                        <input type="text" class="form-control">
-                    </div>  
+                        <input type="text" class="form-control" name="card_number">
+                    </div>
+                    <p class="text-danger text-start mb-0 col-5">${card_owner_error}</p>
+                    <p class="text-danger text-start mb-0 col-5">${card_number_error}</p>
                 </div>
-                <div class="row justify-content-start">
+                <div class="row justify-content-start mb-2">
                     <div class="col-md-5">
                         <label class="form-label col-form-label-sm">Expiration</label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="card_expiration">
                     </div>
                     <div class="col-md-5">
                         <label class="form-label col-form-label-sm">CVV</label>
-                        <input type="text" class="form-control">
-                    </div>  
+                        <input type="text" class="form-control" name="card_cvv">
+                    </div>
+                    <p class="text-danger text-start mb-0 col-5">${card_expiration_error}</p>
+                    <p class="text-danger text-start mb-0 col-5">${card_cvv_error}</p>
                 </div>
                 <div class="row justify-content-start">
                     <div class="col-md-10">
@@ -189,7 +209,7 @@
                         <button class="btn btn-primary col-md-12" type="submit">Place Order</button>
                     </div>
                 </div>         
-            </div>
+            </form>
         </div>
     </body>
     <%@include file="../Share/footer.html" %>

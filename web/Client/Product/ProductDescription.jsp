@@ -12,7 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!-- CSS only -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-        <link href="ProductDescription.css" rel="stylesheet"/>
+        <link href="/HobbitHall/Client/Product/ProductDescription.css" rel="stylesheet"/>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -32,8 +32,8 @@
             <% for (Product product : productInfo) {%>
             <div class="info-card p-2 d-flex justify-content-evenly">
                 <div class="image-body p-4 d-flex justify-content-evenly">
-                    <div class="small-image"><img src="<%= product.getImage()%>" alt="book"/></div>
-                    <div><img src="<%= product.getImage()%>" alt="book"/></div>
+                    <div class="small-image"><img class="d-block mx-auto" src="/HobbitHall/Client/Share/images/book/<%= product.getImage()%>" alt="book"/></div>
+                    <div><img class="d-block mx-auto" src="/HobbitHall/Client/Share/images/book/<%= product.getImage()%>" alt="book" style="width:266px;height:400px;"/></div>
                 </div>
                 <div class="info-body p-4">
                     <div><%= product.getName()%></div>
@@ -79,20 +79,33 @@
                                 <i class="fa fa-minus" aria-hidden="true"></i>
                             </button>
                         </div>
-                        <input class="input-group-field" type="number" name="quantity" id="myNumber" value="0">
+                        <input class="input-group-field" type="number" name="quantity" id="myNumber" value="<%= (product.getStockQuantity()) == 0 ? 0 : 1%>">
                         <div class="input-group-button">
                             <button type="button" class="button hollow circle" id="up" data-quantity="plus" data-field="quantity">
                                 <i class="fa fa-plus" aria-hidden="true"></i>
                             </button>
                         </div>
-
                     </div>
                     <div class="qty_status d-flex align-items-center" style="color:#be1e2d;font-weight: 500 ">
                     </div>
-                    <!-- Transfer Information to Shopping Cart -->
-                    <div>
-                        <a href="../../Order?productid=<%= product.getId()%>"><button class="btn-cart" id="cart-add">Add To Cart</button></a>
+                    <div class="qty_status2 d-flex align-items-center" style="color:#be1e2d;font-weight: 500 ">
+                        ${invalid_quantity_error}
                     </div>
+                    <!-- Transfer Information to Shopping Cart -->
+                    <form method="GET" action="/HobbitHall/ShoppingCart">
+                        <input type="hidden" name="action" value="add"/>
+                        <input type="hidden" name="product_ID" value="<%= product.getId()%>"/>
+                        <input type="hidden" id="qtyBuy" name="qtyBuy" value=""/>
+                        <% if (product.getStockQuantity() > 0) {%>
+                        <div>
+                            <a href="#"><button type="submit" class="btn-cart" id="cart-add">Add To Cart</button></a>
+                        </div>
+                        <% } else {%>
+                        <div>
+                            <a href="#"><button type="submit" class="btn-cart" id="cart-add" disabled>Add To Cart</button></a>
+                        </div>
+                        <% }%>
+                    </form>
                 </div>
 
             </div>
@@ -113,15 +126,15 @@
                 <div class="prod-container row p-2 d-flex justify-content-between">
                     <% for (int i = 0; i < 4; i++) {%>
                     <div class="product-item-body p-3">
-                        <a href="../../LoadProductDesc?productid=<%= prodList.get(i).getId()%>&subcategory=<%= prodList.get(i).getSubcategoryId().getId()%>"><img src=<%= prodList.get(i).getImage()%> src="book-image" style="max-width: 100%"/></a>
+                        <a href="/HobbitHall/LoadProductDesc?productid=<%= prodList.get(i).getId()%>&subcategory=<%= prodList.get(i).getSubcategoryId().getId()%>"><img src="/HobbitHall/Client/Share/images/book/<%= prodList.get(i).getImage()%>" alt="book-image" style="max-width: 100%;width:260px;height:390px;"/></a>
                         <div><%= prodList.get(i).getName()%></div>
                         <div class="pt-3">RM <%= prodList.get(i).getPrice()%></div>
                         <% if (prodList.get(i).getStockQuantity() <= 0) {%>
                         <li class="sold-out"> Sold Out</li>
-                        <a href="../../LoadProductDesc?productid=<%= prodList.get(i).getId()%>&subcategory=<%= prodList.get(i).getSubcategoryId().getId()%>"><button class="btn-cart w-100" disabled>Add To Cart</button></a>
+                        <a href="/HobbitHall/LoadProductDesc?productid=<%= prodList.get(i).getId()%>&subcategory=<%= prodList.get(i).getSubcategoryId().getId()%>"><button class="btn-cart w-100" disabled>Add To Cart</button></a>
                         <% } else {%>
                         <li class="in-stock"> In Stock</li>
-                        <a href="../../LoadProductDesc?productid=<%= prodList.get(i).getId()%>&subcategory=<%= prodList.get(i).getSubcategoryId().getId()%>"><button class="btn-cart w-100">Add To Cart</button></a>
+                        <a href="/HobbitHall/LoadProductDesc?productid=<%= prodList.get(i).getId()%>&subcategory=<%= prodList.get(i).getSubcategoryId().getId()%>"><button class="btn-cart w-100">Add To Cart</button></a>
                         <% }%>
                     </div>
                     <% }%>
@@ -151,15 +164,42 @@
                     // Otherwise put a 0 there
                     $('input[name=' + fieldName + ']').val(0);
                 }
+
+                var qtyInput = parseInt(document.getElementById('myNumber').value)
+                if (qtyInput === 0) {
+                    $(".btn-cart").attr("disabled", true);
+                } else {
+                    document.getElementById("up").disabled = false;
+                    $(".btn-cart").attr("disabled", false);
+                }
 //                console.log(currentVal);
                 document.getElementById('qty').value;
+
                 if ((currentVal + 1) > document.getElementById('qty').value) {
                     $(".btn-cart").attr("disabled", true);
                     var qty_status = "<div class='qty-status-text'>Out Of Stock !</div>"
                     $(".qty_status").append(qty_status);
                     document.getElementById("up").disabled = true;
                 }
+                document.getElementById('qtyBuy').value = currentVal + 1;
+//                console.log("qty avalilable:" + document.getElementById('qty').value);
+//                console.log("qty but: " + document.getElementById('qtyBuy').value);
             });
+
+            $("#myNumber").keyup(function () {
+                var qtyInput = parseInt(document.getElementById('myNumber').value)
+                var qtyAvailable = parseInt(document.getElementById('qty').value)
+                if (qtyInput > qtyAvailable) {
+                    $(".btn-cart").attr("disabled", true);
+                    document.getElementById("up").disabled = true;
+                } else {
+                    $(".qty_status").text('');
+                    document.getElementById("up").disabled = false;
+                    $(".btn-cart").attr("disabled", false);
+                }
+                document.getElementById('qtyBuy').value = qtyInput;
+            });
+
             // This button will decrement the value till 0
             $('[data-quantity="minus"]').click(function (e) {
                 // Stop acting like a button
@@ -177,11 +217,34 @@
                     $('input[name=' + fieldName + ']').val(0);
                 }
 //                console.log(currentVal);
+                var qtyInput = parseInt(document.getElementById('myNumber').value)
+                var qtyAvailable = parseInt(document.getElementById('qty').value)
                 if ((currentVal + 1) > document.getElementById('qty').value) {
                     $(".qty_status").text('');
                     document.getElementById("up").disabled = false;
                     $(".btn-cart").attr("disabled", false);
                 }
+
+//                console.log("current val: " + (currentVal + 1))
+//                console.log("qty input: " + qtyInput)
+                if (qtyInput > qtyAvailable) {
+                    $(".btn-cart").attr("disabled", true);
+                    document.getElementById("up").disabled = true;
+                } else {
+                    document.getElementById("up").disabled = false;
+                    $(".btn-cart").attr("disabled", false);
+                }
+
+                if (qtyInput === 0) {
+                    $(".btn-cart").attr("disabled", true);
+                } else {
+                    document.getElementById("up").disabled = false;
+                    $(".btn-cart").attr("disabled", false);
+                }
+
+                document.getElementById('qtyBuy').value = currentVal - 1;
+//                console.log("qty avalilable:" + document.getElementById('qty').value);
+//                console.log("qty but: " + document.getElementById('qtyBuy').value);
             });
         });
     </script>

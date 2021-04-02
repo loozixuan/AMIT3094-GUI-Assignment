@@ -13,13 +13,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="/HobbitHall/Admin/SalesRecord/ViewSalesTable.css" rel="stylesheet"/>
-        <link rel="icon" href="/HobbitHall/Client/Share/images/logoBook.png"/>
+        <link rel="icon" href="../Share/images/logo-book.png"/>
         <title>Hobbit Hall Book Store</title>
     </head>
     <%
-        List<CustomerOrder> customerOrderList = (List) request.getAttribute("customerOrderList");
-        String date = (String) request.getAttribute("todayDate");
-        String day = (String) request.getAttribute("dayOfWeek");
+        List<CustomerOrder> searchOrder = (List) request.getAttribute("searchOrder");
+        String date = (String) request.getAttribute("date");
+        String day = (String) request.getAttribute("day");
     %>
     <body>
         <%@ include file="../Share/adminHeader.jsp" %>
@@ -29,7 +29,9 @@
         <div class="content">
             <div class="p-3">
                 <div class="pageheader-title">
-                    <h2>Daily Sales Record</h2>
+                    <h2>
+                        <div>Daily Sales Record</div>
+                    </h2>
                     <hr style="margin:0px;border-bottom:1px solid lightgrey;border-top: none;"/>
                     <ul class="breadcrumb">
                         <li><a href="#">Sales Table</a></li>
@@ -45,7 +47,7 @@
                                 <b>Date :</b>
                             </div>
                             <div>
-                                <input type="text" name="salesdate" value="<%= date%>" placeholder="yyyy-MM-dd" class="sales-date w-75 d-block mx-auto p-1"/>
+                                <input type="text" name="salesdate" placeholder="yyyy-MM-dd" value="<%=date%>" class="sales-date w-75 d-block mx-auto p-1"/>
                             </div>
                         </div>
                     </form>
@@ -53,14 +55,18 @@
                     <table class="table table-sales table-striped">
                         <div class="table-sales-header d-flex justify-content-between p-3 align-items-center"style="margin-right: 15px;">
                             <div class=" ml-2" style="font-size:1.25rem">
-                                Sales
+                                Search Result for Sales
                             </div>
                             <div class="d-flex mr-5"> 
                                 <div class="d-flex align-items-center">
                                     Day
                                 </div>
                                 <div>
+                                    <% if (day != null) {%>
                                     <input type="text" name="sales_day" value="<%= day%>" class="sales-date w-75 d-block mx-auto p-1" readonly/>
+                                    <%} else {%>
+                                    <input type="text" name="sales_day" value="" class="sales-date w-75 d-block mx-auto p-1" readonly/>
+                                    <%}%>
                                 </div>
                             </div>
                         </div>
@@ -70,33 +76,33 @@
                                 <th>Customer ID</th>
                                 <th>Order Date</th>
                                 <th>Order Status</th>
-                                <th>Total Amount (RM)</th>
+                                <th>Order Total (RM)</th>
                             </tr>
                         </thead>
-                        <% if (!customerOrderList.isEmpty()) {%>
-                        <% for (int i = 0; i < customerOrderList.size(); i++) {%>
+
+                        <% if (!searchOrder.isEmpty()) {%>
+                        <% for (int i = 0; i < searchOrder.size(); i++) {%>
                         <tr>
-                            <td><a class="orderlink" href="/HobbitHall/Sales?action=check&orderid=<%= customerOrderList.get(i).getId()%>"><%= customerOrderList.get(i).getId()%></a></td>
-                                <% if (customerOrderList.get(i).getCustomerId() != null) {%>
-                            <td><%= customerOrderList.get(i).getCustomerId()%></td>
+                            <td><a class="orderlink" href="/HobbitHall/Sales?action=check&orderid=<%= searchOrder.get(i).getId()%>"><%= searchOrder.get(i).getId()%></a></td>
+                                <% if (searchOrder.get(i).getCustomerId() != null) {%>
+                            <td><%= searchOrder.get(i).getCustomerId()%></td>
                             <%} else {%>
                             <td>Guest</td>
                             <%}%>
                             <td><%= date%></td>
-                            <% if (customerOrderList.get(i).getStatus().equalsIgnoreCase("Ordered Confirm") || customerOrderList.get(i).getStatus().equalsIgnoreCase("Delivery")) {%>
-                            <td style="color: crimson"><%= customerOrderList.get(i).getStatus()%></td>
-                            <%} else if (customerOrderList.get(i).getStatus().equalsIgnoreCase("Cancelled ")) {%>
-                            <td style="color:#be1e2d"><%= customerOrderList.get(i).getStatus()%></td>
+                            <% if (searchOrder.get(i).getStatus().equalsIgnoreCase("Ordered Confirm") || searchOrder.get(i).getStatus().equalsIgnoreCase("Delivery")) {%>
+                            <td style="color: crimson"><%= searchOrder.get(i).getStatus()%></td>
+                            <%} else if (searchOrder.get(i).getStatus().equalsIgnoreCase("Cancelled ")) {%>
+                            <td style="color:#be1e2d"><%= searchOrder.get(i).getStatus()%></td>
                             <%} else {%>
-                            <td style="color:#008a00"><%= customerOrderList.get(i).getStatus()%></td>
+                            <td style="color:#008a00"><%= searchOrder.get(i).getStatus()%></td>
                             <%}%>
-                            <td><%= String.format("%.2f", customerOrderList.get(i).getOrderTotal())%></td>
+                            <td><%= String.format("%.2f", searchOrder.get(i).getOrderTotal())%></td>
                         </tr>
                         <%}%>
                         <%} else {%>
-                        <tr><td colspan="5"><b style="color:chocolate">Today No Sales Records...</b></td></tr>
+                        <tr><td colspan="5"><b style="color:chocolate">No Sales Records...</b></td></tr>
                         <%}%>
-
                     </table>
                 </div>
             </div>

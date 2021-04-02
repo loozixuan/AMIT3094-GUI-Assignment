@@ -109,7 +109,7 @@
                             for (int i = 0; i < 5; i++) {
                                 Product proSelf = proSelfList.get(i);%>
                     <div class="book-body p-4 mb-3">
-                        <div><a href="ProductDescription.jsp"><img src="/HobbitHall/Client/Share/images/book/<%=proSelf.getImage()%>" src="book" class="bookImg"/></a></div>
+                        <div><a href="/HobbitHall/LoadProductDesc?productid=<%= proSelf.getId()%>&subcategory=<%= proSelf.getSubcategoryId().getId()%>"><img src="/HobbitHall/Client/Share/images/book/<%=proSelf.getImage()%>" src="book" class="bookImg"/></a></div>
                         <div><%=proSelf.getName()%></div>
                         <div>RM <%=proSelf.getPrice()%></div>
                         <button class="btn-cart">Add To Cart</button>
@@ -133,7 +133,7 @@
                             for (int i = 0; i < 3; i++) {
                                 Product proChild = proChildList.get(i);%>
                     <div class="book-body p-4 mb-3" style="width:33%" >
-                        <img src="/HobbitHall/Client/Share/images/book/<%=proChild.getImage()%>" src="book" class="bookImg"/>
+                        <div><a href="/HobbitHall/LoadProductDesc?productid=<%= proChild.getId()%>&subcategory=<%= proChild.getSubcategoryId().getId()%>"><img src="/HobbitHall/Client/Share/images/book/<%=proChild.getImage()%>" src="book" class="bookImg"/></a></div>
                         <div class="book-title"><%=proChild.getName()%></div>
                         <div>RM <%=proChild.getPrice()%></div>
                         <button class="btn-cart">Add To Cart</button>

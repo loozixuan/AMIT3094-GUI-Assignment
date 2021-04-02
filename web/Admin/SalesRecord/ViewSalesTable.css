@@ -9,7 +9,10 @@
     border-bottom: 1px solid lightgrey !important;
     text-align: center;
 }
-
+.orderlink:hover{
+    text-decoration: none;
+    color:limegreen;
+}
 .table-sales td{
     text-align: center;
 }
@@ -41,7 +44,15 @@
     margin-bottom: 0px !important;
 }
 
+::placeholder {
+    font-weight: normal;
+    font-size: 0.85rem;
+}
+
 .sales-date{
+    color:darkblue;
+    font-style: italic;
+    font-weight: bold;
     background: aliceblue;
     border: none;
     border-radius: 2px;
