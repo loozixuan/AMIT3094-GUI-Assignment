@@ -13,7 +13,7 @@
 <header>
     <div class="header">
         <div class="logo">
-            <a href="<%=request.getContextPath()%>/Client/Home/home.jsp"><img src="<%=request.getContextPath()%>/Client/Share/images/logo.png" alt="logo"></a>
+            <a href="/HobbitHall/Home"><img src="<%=request.getContextPath()%>/Client/Share/images/logo.png" alt="logo"></a>
         </div>
 
         <form action="/HobbitHall/Search" method="POST">

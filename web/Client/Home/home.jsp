@@ -112,7 +112,7 @@
                         <div><a href="/HobbitHall/LoadProductDesc?productid=<%= proSelf.getId()%>&subcategory=<%= proSelf.getSubcategoryId().getId()%>"><img src="/HobbitHall/Client/Share/images/book/<%=proSelf.getImage()%>" src="book" class="bookImg"/></a></div>
                         <div><%=proSelf.getName()%></div>
                         <div>RM <%=proSelf.getPrice()%></div>
-                        <button class="btn-cart">Add To Cart</button>
+                        <a href="/HobbitHall/LoadProductDesc?productid=<%= proSelf.getId()%>&subcategory=<%= proSelf.getSubcategoryId().getId()%>"><button class="btn-cart">Add To Cart</button></a>
                     </div>
                     <%}
                         }%>
@@ -136,7 +136,7 @@
                         <div><a href="/HobbitHall/LoadProductDesc?productid=<%= proChild.getId()%>&subcategory=<%= proChild.getSubcategoryId().getId()%>"><img src="/HobbitHall/Client/Share/images/book/<%=proChild.getImage()%>" src="book" class="bookImg"/></a></div>
                         <div class="book-title"><%=proChild.getName()%></div>
                         <div>RM <%=proChild.getPrice()%></div>
-                        <button class="btn-cart">Add To Cart</button>
+                        <a href="/HobbitHall/LoadProductDesc?productid=<%= proChild.getId()%>&subcategory=<%= proChild.getSubcategoryId().getId()%>"><button class="btn-cart">Add To Cart</button></a>
                     </div>
                     <%}
                         }%>
