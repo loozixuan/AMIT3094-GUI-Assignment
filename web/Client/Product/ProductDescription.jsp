@@ -16,8 +16,7 @@
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="icon" href="../Share/images/logoBook.png"/>
-        <link rel="icon" href="../Share/images/logoBook.png"/>
+        <link rel="icon" href="/HobbitHall/Client/Share/images/logoBook.png"/>
         <title>Hobbit Hall Book Store</title>
     </head>
     <%
@@ -246,6 +245,20 @@
 //                console.log("qty avalilable:" + document.getElementById('qty').value);
 //                console.log("qty but: " + document.getElementById('qtyBuy').value);
             });
+
+            $(".btn-cart").click(function () {
+                var qtyInput = parseInt(document.getElementById('myNumber').value)
+                if (qtyInput === 0) {
+                    $(".btn-cart").attr("disabled", true);
+                } else {
+
+                    document.getElementById("up").disabled = false;
+                    $(".btn-cart").attr("disabled", false);
+                    document.getElementById('qtyBuy').value = qtyInput;
+                    console.log(document.getElementById('qtyBuy').value)
+                }
+            });
+
         });
     </script>
 </html>

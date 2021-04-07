@@ -46,17 +46,17 @@ public class Product implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 12)
+    @Size(max = 12)
     @Column(name = "ID")
     private String id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 10000)
+    @Size(max = 250)
     @Column(name = "NAME")
     private String name;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 250)
+    @Size(max = 250)
     @Column(name = "IMAGE")
     private String image;
     @Size(max = 1000)
@@ -75,7 +75,7 @@ public class Product implements Serializable {
     private int stockQuantity;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 10)
+    @Size(max = 10)
     @Column(name = "STATUS")
     private String status;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
@@ -162,6 +162,10 @@ public class Product implements Serializable {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+    
+    public void decreaseStockQuantity(int quantity){
+        this.stockQuantity -= quantity;
     }
 
     @XmlTransient

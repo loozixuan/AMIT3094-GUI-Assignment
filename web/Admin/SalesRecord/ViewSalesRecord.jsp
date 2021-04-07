@@ -19,6 +19,7 @@
         List<OrderDetail> orderDetail = (List) request.getAttribute("orderDetail");
         Double total = 0.0;
         Double delivery = 0.0;
+        double discount = 0.0;
         int totalProduct = 0;
     %>
     <body>
@@ -67,6 +68,7 @@
                                     <thead>
                                         <tr id="table-title" class="text-center">
                                             <th>Product ID</th>
+                                            <th>Product Name</th>
                                             <th>Image</th>
                                             <th>Category</th>
                                             <th>QTY</th>
@@ -80,6 +82,7 @@
                                         <td>
                                             <div><%= orderDetail.get(i).getProduct().getId()%></div>                                        
                                         </td>
+                                        <td><%= orderDetail.get(i).getProduct().getName()%></td>
                                         <td>
                                             <div><img style="width:100px;height: 150px;" src="/HobbitHall/Client/Share/images/book/<%= orderDetail.get(i).getProduct().getImage()%>" alt="product"/></div>
                                         </td>
@@ -89,27 +92,52 @@
                                     </tr>
                                     <%  total += orderDetail.get(i).getSubtotal();
                                         delivery = orderDetail.get(i).getCustomerOrder().getDelivery();
+                                        discount = orderDetail.get(i).getCustomerOrder().getDiscount();
                                     %>
                                     <%}%>
-                                    <tr class="text-center" style="background: ghostwhite;">
-                                        <td><div><b>Delivery Fees :</b></div></td>
+
+                                    <tr>
+                                        <td><div><b class="pl-3">Delivery Fees :</b></div></td>
                                         <td><div></div></td>
                                         <td></td>
                                         <td></td>
+                                        <td></td>
 
-                                        <td>
+                                        <td class="text-center">
                                             RM <%= String.format("%.2f", delivery)%>
                                         </td>
                                     </tr>
-                                    <tr class="text-center" style="background: ghostwhite;border-top:2px solid black;border-bottom:2px solid black;">
-                                        <td><div><b>Total Amount :</b></div></td>
+                                    <tr style="background: ghostwhite;box-shadow: none !important;">
+                                        <td><div><b class="pl-3">Discount (if any) :</b></div></td>
                                         <td><div></div></td>
                                         <td></td>
                                         <td></td>
+                                        <td></td>
 
-                                        <td>
+                                        <% if (discount != 0.0) {%>
+                                        <td class="text-center">
+                                            RM <%= String.format("%.2f", discount)%>
+                                        </td>
+                                        <%} else {%>
+                                        <td class="text-center">RM 00.00</td>
+                                        <%}%>
+                                    </tr>
+                                    <tr style="background: ghostwhite;border-top:2px solid black;border-bottom:2px solid black;">
+                                        <td><div><b class="pl-3">Total Amount :</b></div></td>
+                                        <td><div></div></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+
+                                        <% if (discount == 0.0) {%>
+                                        <td class="text-center">
                                             <div style="color:blue"><b>RM <%= String.format("%.2f", total + delivery)%></b></div>
                                         </td>
+                                        <%} else {%>
+                                        <td class="text-center">
+                                            <div style="color:blue"><b>RM <%= String.format("%.2f", total + delivery - discount)%></b></div>
+                                        </td>
+                                        <%}%>
                                     </tr>
                                     <%} else {%>
                                     <tr></tr>
@@ -125,7 +153,7 @@
                                     <% if (orderDetail.get(0).getCustomerOrder().getCustomerId() == null) {%>
                                     <div>Guest</div>
                                     <%} else {%>
-                                    <div><%= orderDetail.get(0).getCustomerOrder().getCustomerId()%></div>
+                                    <div><%= orderDetail.get(0).getCustomerOrder().getCustomerId().getId()%></div>
                                     <%}%>
                                 </div>
                             </div>

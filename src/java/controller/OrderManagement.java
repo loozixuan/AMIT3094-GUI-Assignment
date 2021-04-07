@@ -223,13 +223,14 @@ public class OrderManagement extends HttpServlet {
 
             try {
                 Query query = em.createNativeQuery("SELECT * FROM CUSTOMER_ORDER WHERE ID LIKE '"
-                        + search + "%' OR CONTACT_NUMBER LIKE'" + search + "%' OR DATE = '" + search + "'", CustomerOrder.class);
+                        + search + "%' OR CONTACT_NUMBER LIKE'" + search + "%'", CustomerOrder.class);
                 List<entity.CustomerOrder> orderList = query.getResultList();
                 request.setAttribute("orderList", orderList);
                 RequestDispatcher rd = request.getRequestDispatcher("Admin/Order/customerOrder.jsp");
                 rd.forward(request, response);
 
             } catch (Exception ex) {
+
                 try (PrintWriter out = response.getWriter()) {
                     out.print(ex.getMessage());
                 }

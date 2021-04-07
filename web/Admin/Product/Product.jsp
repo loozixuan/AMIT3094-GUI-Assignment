@@ -20,7 +20,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
         <link rel="stylesheet" href="/HobbitHall/Admin/Product/Product.css"/>
         <link href="/HobbitHall/Admin/Share/adminPanel.css" rel="stylesheet">
-        <title>Hobbit Hall</title>
+        <title>Hobbit Hall Admin</title>
     </head>
     <body>
         <!--Header-->

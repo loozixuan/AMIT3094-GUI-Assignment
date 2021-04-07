@@ -9,8 +9,10 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -23,55 +25,59 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author zixua
+ * @author user
  */
 @Entity
 @Table(name = "PROMOTION_UPDATE")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "PromotionUpdate.findAll", query = "SELECT p FROM PromotionUpdate p")
-    , @NamedQuery(name = "PromotionUpdate.findByPromotionCode", query = "SELECT p FROM PromotionUpdate p WHERE p.promotionUpdatePK.promotionCode = :promotionCode")
-    , @NamedQuery(name = "PromotionUpdate.findByAdminId", query = "SELECT p FROM PromotionUpdate p WHERE p.promotionUpdatePK.adminId = :adminId")
+    , @NamedQuery(name = "PromotionUpdate.findByPromotionUpdateId", query = "SELECT p FROM PromotionUpdate p WHERE p.promotionUpdateId = :promotionUpdateId")
     , @NamedQuery(name = "PromotionUpdate.findByDate", query = "SELECT p FROM PromotionUpdate p WHERE p.date = :date")})
 public class PromotionUpdate implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @EmbeddedId
-    protected PromotionUpdatePK promotionUpdatePK;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "PROMOTION_UPDATE_ID")
+    private Integer promotionUpdateId;
     @Basic(optional = false)
     @NotNull
     @Column(name = "DATE")
     @Temporal(TemporalType.DATE)
     private Date date;
-    @JoinColumn(name = "ADMIN_ID", referencedColumnName = "ID", insertable = false, updatable = false)
+    @JoinColumn(name = "ADMIN_ID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
-    private Onlineadmin onlineadmin;
-    @JoinColumn(name = "PROMOTION_CODE", referencedColumnName = "CODE", insertable = false, updatable = false)
+    private Onlineadmin adminId;
+    @JoinColumn(name = "PROMOTION_CODE", referencedColumnName = "CODE")
     @ManyToOne(optional = false)
-    private PromotionCode promotionCode1;
+    private PromotionCode promotionCode;
 
     public PromotionUpdate() {
     }
 
-    public PromotionUpdate(PromotionUpdatePK promotionUpdatePK) {
-        this.promotionUpdatePK = promotionUpdatePK;
+    public PromotionUpdate(Date date, Onlineadmin adminId, PromotionCode promotionCode) {
+        this.date = date;
+        this.adminId = adminId;
+        this.promotionCode = promotionCode;
     }
 
-    public PromotionUpdate(PromotionUpdatePK promotionUpdatePK, Date date) {
-        this.promotionUpdatePK = promotionUpdatePK;
+    public PromotionUpdate(Integer promotionUpdateId) {
+        this.promotionUpdateId = promotionUpdateId;
+    }
+
+    public PromotionUpdate(Integer promotionUpdateId, Date date) {
+        this.promotionUpdateId = promotionUpdateId;
         this.date = date;
     }
 
-    public PromotionUpdate(String promotionCode, String adminId) {
-        this.promotionUpdatePK = new PromotionUpdatePK(promotionCode, adminId);
+    public Integer getPromotionUpdateId() {
+        return promotionUpdateId;
     }
 
-    public PromotionUpdatePK getPromotionUpdatePK() {
-        return promotionUpdatePK;
-    }
-
-    public void setPromotionUpdatePK(PromotionUpdatePK promotionUpdatePK) {
-        this.promotionUpdatePK = promotionUpdatePK;
+    public void setPromotionUpdateId(Integer promotionUpdateId) {
+        this.promotionUpdateId = promotionUpdateId;
     }
 
     public Date getDate() {
@@ -82,26 +88,26 @@ public class PromotionUpdate implements Serializable {
         this.date = date;
     }
 
-    public Onlineadmin getOnlineadmin() {
-        return onlineadmin;
+    public Onlineadmin getAdminId() {
+        return adminId;
     }
 
-    public void setOnlineadmin(Onlineadmin onlineadmin) {
-        this.onlineadmin = onlineadmin;
+    public void setAdminId(Onlineadmin adminId) {
+        this.adminId = adminId;
     }
 
-    public PromotionCode getPromotionCode1() {
-        return promotionCode1;
+    public PromotionCode getPromotionCode() {
+        return promotionCode;
     }
 
-    public void setPromotionCode1(PromotionCode promotionCode1) {
-        this.promotionCode1 = promotionCode1;
+    public void setPromotionCode(PromotionCode promotionCode) {
+        this.promotionCode = promotionCode;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (promotionUpdatePK != null ? promotionUpdatePK.hashCode() : 0);
+        hash += (promotionUpdateId != null ? promotionUpdateId.hashCode() : 0);
         return hash;
     }
 
@@ -112,7 +118,7 @@ public class PromotionUpdate implements Serializable {
             return false;
         }
         PromotionUpdate other = (PromotionUpdate) object;
-        if ((this.promotionUpdatePK == null && other.promotionUpdatePK != null) || (this.promotionUpdatePK != null && !this.promotionUpdatePK.equals(other.promotionUpdatePK))) {
+        if ((this.promotionUpdateId == null && other.promotionUpdateId != null) || (this.promotionUpdateId != null && !this.promotionUpdateId.equals(other.promotionUpdateId))) {
             return false;
         }
         return true;
@@ -120,7 +126,7 @@ public class PromotionUpdate implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.PromotionUpdate[ promotionUpdatePK=" + promotionUpdatePK + " ]";
+        return "entity.PromotionUpdate[ promotionUpdateId=" + promotionUpdateId + " ]";
     }
-
+    
 }

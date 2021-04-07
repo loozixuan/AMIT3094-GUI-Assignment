@@ -6,7 +6,6 @@
 package entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -96,14 +95,14 @@ public class CustomerOrder implements Serializable {
     private Payment payment;
 
     public CustomerOrder() {
-        
+
     }
 
     public CustomerOrder(String id) {
         this.id = id;
         this.status = "Order Confirmed";
     }
-    
+
     public CustomerOrder(String id, Date date, String name, String email, String address, String contactNumber) {
         this.id = id;
         this.date = date;
@@ -207,26 +206,26 @@ public class CustomerOrder implements Serializable {
     public void setOrderDetailList(List<OrderDetail> orderDetailList) {
         this.orderDetailList = orderDetailList;
     }
-    
-    public double getOrderSubtotal(){
+
+    public double getOrderSubtotal() {
         double subtotal = 0;
         for (int i = 0; i < orderDetailList.size(); i++) {
             subtotal += orderDetailList.get(i).getSubtotal();
         }
         return subtotal;
     }
-    
-    public double getDiscount(){
-        if(this.promotionCode != null){
+
+    public double getDiscount() {
+        if (this.promotionCode != null) {
             return (this.getOrderSubtotal() + this.getDelivery()) * this.promotionCode.getDiscountRate();
-        }else{
+        } else {
             return 0.00;
         }
     }
-    
-    public double getOrderTotal(){
+
+    public double getOrderTotal() {
         double total = this.getOrderSubtotal() + this.getDelivery();
-        if(this.promotionCode != null){
+        if (this.promotionCode != null) {
             total -= this.getDiscount();
         }
         return total;
@@ -265,5 +264,5 @@ public class CustomerOrder implements Serializable {
     public void setPaymentList(List<Payment> paymentList) {
         this.paymentList = paymentList;
     }
-    
+
 }

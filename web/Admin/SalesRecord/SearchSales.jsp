@@ -13,13 +13,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="/HobbitHall/Admin/SalesRecord/ViewSalesTable.css" rel="stylesheet"/>
-        <link rel="icon" href="../Share/images/logo-book.png"/>
+        <link rel="icon" href="/HobbitHall/Client/Share/images/logoBook.png"/>
         <title>Hobbit Hall Book Store</title>
     </head>
     <%
         List<CustomerOrder> searchOrder = (List) request.getAttribute("searchOrder");
         String date = (String) request.getAttribute("date");
         String day = (String) request.getAttribute("day");
+        double total = 0.0;
     %>
     <body>
         <%@ include file="../Share/adminHeader.jsp" %>
@@ -30,7 +31,7 @@
             <div class="p-3">
                 <div class="pageheader-title">
                     <h2>
-                        <div>Daily Sales Record</div>
+                        <div>Sales Result(s) on " <%= date%> " </div>
                     </h2>
                     <hr style="margin:0px;border-bottom:1px solid lightgrey;border-top: none;"/>
                     <ul class="breadcrumb">
@@ -46,16 +47,22 @@
                             <div class="d-flex align-items-center">
                                 <b>Date :</b>
                             </div>
-                            <div>
+                            <div class="d-flex">
                                 <input type="text" name="salesdate" placeholder="yyyy-MM-dd" value="<%=date%>" class="sales-date w-75 d-block mx-auto p-1"/>
+                                <button style="background:transparent;border:none;"><i class="fa fa-search" aria-hidden="true"></i></button>
                             </div>
                         </div>
                     </form>
+                    <% if (!searchOrder.isEmpty()) {%>
+                    <% for (int i = 0; i < searchOrder.size(); i++) {
+                            total += searchOrder.get(i).getOrderTotal();
 
+                        }%>
+                    <%}%>
                     <table class="table table-sales table-striped">
                         <div class="table-sales-header d-flex justify-content-between p-3 align-items-center"style="margin-right: 15px;">
                             <div class=" ml-2" style="font-size:1.25rem">
-                                Search Result for Sales
+                                Total Sales : <span>RM <%= String.format("%.2f", total)%></span>
                             </div>
                             <div class="d-flex mr-5"> 
                                 <div class="d-flex align-items-center">
@@ -85,14 +92,14 @@
                         <tr>
                             <td><a class="orderlink" href="/HobbitHall/Sales?action=check&orderid=<%= searchOrder.get(i).getId()%>"><%= searchOrder.get(i).getId()%></a></td>
                                 <% if (searchOrder.get(i).getCustomerId() != null) {%>
-                            <td><%= searchOrder.get(i).getCustomerId()%></td>
+                            <td><%= searchOrder.get(i).getCustomerId().getId()%></td>
                             <%} else {%>
                             <td>Guest</td>
                             <%}%>
                             <td><%= date%></td>
                             <% if (searchOrder.get(i).getStatus().equalsIgnoreCase("Ordered Confirm") || searchOrder.get(i).getStatus().equalsIgnoreCase("Delivery")) {%>
                             <td style="color: crimson"><%= searchOrder.get(i).getStatus()%></td>
-                            <%} else if (searchOrder.get(i).getStatus().equalsIgnoreCase("Cancelled ")) {%>
+                            <%} else if (searchOrder.get(i).getStatus().equalsIgnoreCase("Cancelled")) {%>
                             <td style="color:#be1e2d"><%= searchOrder.get(i).getStatus()%></td>
                             <%} else {%>
                             <td style="color:#008a00"><%= searchOrder.get(i).getStatus()%></td>

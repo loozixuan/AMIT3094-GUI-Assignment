@@ -11,48 +11,48 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-         <title>Hobbit Hall</title>
-           <link rel="icon" href="/HobbitHall/Client/Share/images/logoBook.png"/>
+        <title>Hobbit Hall</title>
+        <link rel="icon" href="/HobbitHall/Client/Share/images/logoBook.png"/>
     </head>
     <%@include file="../Share/header.jsp" %>
     <body>
-        <% CustomerOrder customerOrder = (CustomerOrder)request.getAttribute("customer_order"); %>
+        <% CustomerOrder customerOrder = (CustomerOrder) request.getAttribute("customer_order");%>
         <div class="row justify-content-center py-5">
             <div class="row justify-content-center col-8 border border-3 border-dark" style="background-color: rgb(255, 235, 205);">
                 <div class="col-6 border-end border-3 border-dark">
                     <div class="row">
                         <p class="col-6 text-start">Order ID</p>
-                        <p class="col-6 text-end"><%= customerOrder.getId() %></p>
+                        <p class="col-6 text-end"><%= customerOrder.getId()%></p>
                     </div>     
                     <div class="row">
                         <p class="col-6 text-start">Payment ID</p>
-                        <p class="col-6 text-end"><%= customerOrder.getPayment().getId() %></p>
+                        <p class="col-6 text-end"><%= customerOrder.getPayment().getId()%></p>
                     </div>
                     <div class="row">
                         <p class="col-6 text-start">Date</p>
-                        <p class="col-6 text-end"><%= customerOrder.getDate() %></p>
+                        <p class="col-6 text-end"><%= customerOrder.getDate()%></p>
                     </div>
                     <div class="row">
                         <p class="col-6 text-start">Subtotal</p>
-                        <p class="col-6 text-end">RM <%= String.format("%.2f", customerOrder.getOrderSubtotal()) %></p>
+                        <p class="col-6 text-end">RM <%= String.format("%.2f", customerOrder.getOrderSubtotal())%></p>
                     </div>
                     <div class="row">
                         <p class="col-6 text-start">Delivery Fees</p>
-                        <p class="col-6 text-end">RM <%= String.format("%.2f", customerOrder.getDelivery()) %></p>
+                        <p class="col-6 text-end">RM <%= String.format("%.2f", customerOrder.getDelivery())%></p>
                     </div>
                     <div class="row">
                         <p class="col-6 text-start">Discount</p>
-                        <p class="col-6 text-end">RM (<%= String.format("%.2f", customerOrder.getDiscount()) %>)</p>
+                        <p class="col-6 text-end">RM (<%= String.format("%.2f", customerOrder.getDiscount())%>)</p>
                     </div>
                     <div class="row">
                         <p class="col-6 text-start">Total</p>
-                        <p class="col-6 text-end">RM <%= String.format("%.2f", customerOrder.getOrderTotal()) %></p>
+                        <p class="col-6 text-end">RM <%= String.format("%.2f", customerOrder.getOrderTotal())%></p>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="row">
                         <p class="col-6 text-start">Receiver Name</p>
-                        <p class="col-6 text-end"><%= customerOrder.getName() %></p>
+                        <p class="col-6 text-end"><%= customerOrder.getName()%></p>
                     </div>
                     <div class="row">
                         <p class="col-6 text-start">Email</p>
@@ -64,7 +64,7 @@
                     </div>
                     <div class="row">
                         <p class="col-6 text-start">Delivery Address</p>
-                        <p class="col-6 text-end"><%= customerOrder.getAddress() %></p>
+                        <p class="col-6 text-end"><%= customerOrder.getAddress()%></p>
                     </div>
                 </div>
             </div>

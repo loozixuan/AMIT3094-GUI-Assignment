@@ -9,6 +9,10 @@
     border-bottom: 1px solid lightgrey !important;
     text-align: center;
 }
+
+.orderlink{
+    color:#0033cc;
+}
 .orderlink:hover{
     text-decoration: none;
     color:limegreen;

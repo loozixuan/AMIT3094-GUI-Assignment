@@ -19,7 +19,7 @@ and open the template in the editor.
         <i class="fa fa-bars nav_btn"></i>
     </div>
     <div class="mobile_nav_items">
-        <a href="../Dashboard/dashboard.jsp"><i class="fa fa-home" aria-hidden="true"></i></i><span>Dashboard</span></a>
+        <a href="/HobbitHall/Admin/Dashboard/dashboard.jsp"><i class="fa fa-home" aria-hidden="true"></i></i><span>Dashboard</span></a>
         <a href=""><i class="fa fa-user-circle-o" aria-hidden="true"></i><span>Staff Info</span></a>
         <a href="/HobbitHall/ProcessProduct?action=view"><i class="fa fa-book" aria-hidden="true"></i><span>Product</span></a>
         <a href=""><i class="fa fa-user" aria-hidden="true"></i><span>Order</span></a>
@@ -56,9 +56,8 @@ and open the template in the editor.
         <a href="/HobbitHall/ProcessProduct?action=insertPage&lang=3" class="dropdown-list">Malay</a>
     </div>
     <a href="/HobbitHall/OrderManagement?action=view"><i class="fa fa-user" aria-hidden="true"></i><span>Order</span></a>
-    <a href=""><i class="fa fa-product-hunt" aria-hidden="true"></i><span>Promotion</span></a>
-    <a href="../SalesRecord/ViewSalesTable.jsp"><i class="fa fa-folder" aria-hidden="true"></i><span>Daily Sales</span></a>
-    <a href="#"><i class="fa fa-pie-chart"></i><span>Sales Report</span></a>
+    <a href="/HobbitHall/PromotionCodeControl?action=display"><i class="fa fa-product-hunt" aria-hidden="true"></i><span>Promotion</span></a>
+    <a href="/HobbitHall/Sales?action=view"><i class="fa fa-folder" aria-hidden="true"></i><span>Daily Sales</span></a>
 </div>
 <!--sidebar end-->
 

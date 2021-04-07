@@ -20,7 +20,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" href="/HobbitHall/Admin/Share/images/logo-book.png"/>
         <link rel="stylesheet" href="/HobbitHall/Admin/Order/customerOrder.css"/>
-        <title>Hobbit Hall</title>
+        <title>Hobbit Hall Admin</title>
     </head>
     <body>
         <!--Header-->
@@ -48,7 +48,7 @@
                             <div>Order Management</div>
                             <form action="/HobbitHall/OrderManagement?action=search" method="post">
                                 <div id="searchBar">
-                                    <input type="text" name="search" placeholder="ID, Phone , yyyy-mm-dd" value="" style="font-size:0.8em">
+                                    <input type="text" name="search" placeholder="ID, Phone" value="" style="font-size:0.8em">
                                     <input type="submit" name="search" value="Search"  id="search"/>
                                 </div>
                             </form></div>

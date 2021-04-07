@@ -15,21 +15,22 @@
         <link href="/HobbitHall/Client/Payment/Payment.css" rel="stylesheet"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="/HobbitHall/Client/Payment/Payment.js"></script>
-        <title>JSP Page</title>
+        <title>Hobbit Hall</title>
+        <link rel="icon" href="/HobbitHall/Client/Share/images/logoBook.png"/>
     </head>
     <%@include file="../Share/header.jsp" %>
-    <% 
+    <%
         ArrayList<CartItem> cartItemList;
-        if(customer.getId() == null){ 
-            cartItemList = (ArrayList<CartItem>)session.getAttribute("guest" + "_cart"); 
-        }else{
-            cartItemList = (ArrayList<CartItem>)session.getAttribute(customer.getId() + "_cart"); 
-        } 
+        if (customer.getId() == null) {
+            cartItemList = (ArrayList<CartItem>) session.getAttribute("guest" + "_cart");
+        } else {
+            cartItemList = (ArrayList<CartItem>) session.getAttribute(customer.getId() + "_cart");
+        }
         PromotionCode promotionCode = (PromotionCode) request.getAttribute("promotion_code");
         CustomerOrder order = new CustomerOrder();
     %>
-    <%! 
-        public double calculateCartTotal(ArrayList<CartItem> cartItemList){
+    <%!
+        public double calculateCartTotal(ArrayList<CartItem> cartItemList) {
             double total = 0;
             for (int i = 0; i < cartItemList.size(); i++) {
                 total += (cartItemList.get(i).getProduct().getPrice() * cartItemList.get(i).getQuantity());
@@ -42,13 +43,13 @@
             <div class="col-md-5 order-md-2 mb-5" style="background-color: white;">
                 <h5 style="text-align: center; margin: 20px 0px">Your Cart</h5>
                 <div class="row justify-content-center overflow-hidden" id="productInCart">
-                    <% for (int i = 0; i < cartItemList.size(); i++) { %>
+                    <% for (int i = 0; i < cartItemList.size(); i++) {%>
                     <div class="row justify-content-center">
-                        <div class="col-2" id="productImage"><img src="/HobbitHall/Client/Share/images/book/<%= cartItemList.get(i).getProduct().getImage() %>" /><span class="badge badge-secondary badge-pill bg-warning text-dark"><%= cartItemList.get(i).getQuantity() %></span></div>
-                        <div class="col-5 pt-3 align-middle"><%= cartItemList.get(i).getProduct().getSubcategoryId().getName() %><br/><%= cartItemList.get(i).getProduct().getName() %></div>
-                        <div class="col-5 text-end" style="padding-top: 30px;"><%= String.format("%.2f",cartItemList.get(i).getSubtotal()) %></div>
+                        <div class="col-2" id="productImage"><img src="/HobbitHall/Client/Share/images/book/<%= cartItemList.get(i).getProduct().getImage()%>" /><span class="badge badge-secondary badge-pill bg-warning text-dark"><%= cartItemList.get(i).getQuantity()%></span></div>
+                        <div class="col-5 pt-3 align-middle"><%= cartItemList.get(i).getProduct().getSubcategoryId().getName()%><br/><%= cartItemList.get(i).getProduct().getName()%></div>
+                        <div class="col-5 text-end" style="padding-top: 30px;"><%= String.format("%.2f", cartItemList.get(i).getSubtotal())%></div>
                     </div>
-                    <% } %>
+                    <% }%>
                 </div>
                 <div class="row justify-content-center" style="margin-bottom: 0px;">
                     <div class="col-md-12">
@@ -56,11 +57,11 @@
                     </div>
                 </div>
                 <div class="row justify-content-start">
-                        <form action="/HobbitHall/PromotionCodeControl" method="GET" class="input-group col-md-9">
-                            <input type="text" name="promotion_code" class="form-control" aria-describedby="button-addon2" placeholder="ADD A DISCOUNT CODE">
-                            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">ADD</button>
-                        </form>
-                        <p class="text-danger col-md-12 text-start mb-0">${promotion_code_error}</p>
+                    <form action="/HobbitHall/PromotionCodeControl" method="GET" class="input-group col-md-9">
+                        <input type="text" name="promotion_code" class="form-control" aria-describedby="button-addon2" placeholder="ADD A DISCOUNT CODE">
+                        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">ADD</button>
+                    </form>
+                    <p class="text-danger col-md-12 text-start mb-0">${promotion_code_error}</p>
                 </div>
                 <div class="row justify-content-center" style="margin-bottom: 0px;">
                     <div class="col-md-12">
@@ -70,16 +71,16 @@
                 <div class="row justify-content-center" id="calculation" style="margin-top: 0px;">
                     <div class="row justify-content-start">
                         <div class="col-md-5">Subtotal</div>
-                        <div class="col-md-7 text-end">RM <%= String.format("%.2f",calculateCartTotal(cartItemList)) %></div>
+                        <div class="col-md-7 text-end">RM <%= String.format("%.2f", calculateCartTotal(cartItemList))%></div>
                     </div>
                     <div class="row justify-content-start">
                         <div class="col-md-5">Delivery</div>
-                        <div class="col-md-7 text-end">RM <%= String.format("%.2f",order.getDelivery()) %></div>
+                        <div class="col-md-7 text-end">RM <%= String.format("%.2f", order.getDelivery())%></div>
                     </div>
-                    <% if(promotionCode != null){ %>
+                    <% if (promotionCode != null) {%>
                     <div class="row justify-content-start">
                         <div class="col-md-5">Discount (<%= promotionCode.getCode()%>)</div>
-                        <div class="col-md-7 text-end">RM (<%= String.format("%.2f", (calculateCartTotal(cartItemList) + order.getDelivery()) * promotionCode.getDiscountRate()) %>)</div>
+                        <div class="col-md-7 text-end">RM (<%= String.format("%.2f", (calculateCartTotal(cartItemList) + order.getDelivery()) * promotionCode.getDiscountRate())%>)</div>
                     </div>
                     <% } %>
                 </div>
@@ -91,18 +92,18 @@
                 <div class="row justify-content-center">
                     <div class="row justify-content-start">
                         <div class="col-md-5">Total</div>
-                        <% if(promotionCode != null){ %>
-                        <div class="col-md-7 text-end">RM <%= String.format("%.2f", (calculateCartTotal(cartItemList) + order.getDelivery()) -  ((calculateCartTotal(cartItemList) + order.getDelivery()) * promotionCode.getDiscountRate()))%></div>
-                        <% }else{ %>
-                        <div class="col-md-7 text-end">RM <%= String.format("%.2f", calculateCartTotal(cartItemList) + order.getDelivery()) %></div>
+                        <% if (promotionCode != null) {%>
+                        <div class="col-md-7 text-end">RM <%= String.format("%.2f", (calculateCartTotal(cartItemList) + order.getDelivery()) - ((calculateCartTotal(cartItemList) + order.getDelivery()) * promotionCode.getDiscountRate()))%></div>
+                        <% } else {%>
+                        <div class="col-md-7 text-end">RM <%= String.format("%.2f", calculateCartTotal(cartItemList) + order.getDelivery())%></div>
                         <% } %>
                     </div>
                 </div>
             </div>
-                        
+
             <form class="col-md-7" action="/HobbitHall/PaymentControl" method="POST">
-                <% if(promotionCode != null){ %>
-                    <input type="hidden" class="form-control" name="promotion_code" value="<%= promotionCode.getCode() %>">
+                <% if (promotionCode != null) {%>
+                <input type="hidden" class="form-control" name="promotion_code" value="<%= promotionCode.getCode()%>">
                 <% } %>
                 <div class="row justify-content-start">
                     <a href="Payment.jsp"></a>
@@ -111,9 +112,9 @@
                 <div class="row justify-content-start mb-3">
                     <div class="col-md-6">
                         <label class="form-label col-form-label-sm font-weight-bold">Email</label>
-                        <% if(customer.getId() == null){ %>
+                        <% if (customer.getId() == null) { %>
                         <input type="text" class="form-control" name="email">
-                        <% }else{ %>
+                        <% } else { %>
                         <p>${customer.email}</p>
                         <input type="hidden" class="form-control" name="email" value="${customer.email}">
                         <% } %>
@@ -126,9 +127,9 @@
                 <div class="row justify-content-start mb-2">
                     <div class="col-md-10">
                         <label class="form-label col-form-label-sm">Name</label>
-                        <% if(customer.getId() == null){ %>
+                        <% if (customer.getId() == null) { %>
                         <input type="text" class="form-control" name="receiver_name" >
-                        <% }else{ %>
+                        <% } else { %>
                         <input type="text" class="form-control" name="receiver_name" value="${customer.name}">
                         <% } %>
                     </div>
@@ -137,9 +138,9 @@
                 <div class="row justify-content-start mb-2">
                     <div class="col-md-10">
                         <label class="form-label col-form-label-sm">Address</label>
-                        <% if(customer.getId() == null){ %>
+                        <% if (customer.getId() == null) { %>
                         <input type="text" class="form-control" name="address">
-                        <% }else{ %>
+                        <% } else { %>
                         <input type="text" class="form-control" name="address" value="${customer.address}">
                         <% } %>
                     </div>
@@ -148,11 +149,11 @@
                 <div class="row justify-content-start mb-2">
                     <div class="col-md-10">
                         <label class="form-label col-form-label-sm">Contact Number</label>
-                        <% if(customer.getId() == null){ %>
+                        <% if (customer.getId() == null) { %>
                         <input type="text" class="form-control" name="contact_number">
-                        <% }else{ %>
+                        <% } else { %>
                         <input type="text" class="form-control" name="contact_number" value="${customer.contactNumber}">
-                        <% } %>
+                        <% }%>
                     </div>
                     <p class="text-danger text-start mb-0">${contact_number_error}</p>
                 </div>

@@ -24,10 +24,13 @@ body{
 
 }
 
+.header form{
+    width: 50%;
+}
 
 
 #searchBar{
-    width:700px;
+    width: 80%;
     height:45px;
     margin: 30px 80px 0px 80px;
     display:flex;
@@ -243,6 +246,7 @@ div.link {
     width: auto;
     text-align: center;
     font-size: 14px;
+    padding-bottom: 20px;
 }
 
 .Footerrow::after{
@@ -256,27 +260,3 @@ div.link {
     margin-right: auto;
 }
 
-div.upIconContainer{
-    width:20px;
-
-    margin:10px;
-    background-color: red;
-    border-radius:50px;
-
-}
-.upIcon>a{
-
-    margin-left:5px;
-    margin-right:5px;
-    color:honeydew;
-    font-size: 1.0em;
-
-}
-
-@media screen and (max-width: 1200px) {
-
-    #searchBar{
-        width:480px;
-        height:45px;
-    }
-}

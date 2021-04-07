@@ -29,19 +29,19 @@
     <%@include file="../Share/header.jsp" %>
     <body>
         <div class="product-catalog-container d-flex justify-content-around p-4">
-            <div class="prod-filter-container d-flex flex-column p-2">
-                <h5 class="p-2 text-center" style="color:#323e48;"><b>Recommended Categories</b></h5>
-                <div style="height: 500px;overflow: auto;">
+            <div class="prod-filter-container d-flex flex-column p-2" style="height:375px;">
+                <h5 class="p-2" style="color:#323e48;"><b>Sub-Categories</b></h5>
+                <div style="height: 300px;overflow: auto;">
                     <% if (!subcategoryList.isEmpty()) { %>
                     <% for (Subcategory subcategory : subcategoryList) {%>
                     <div class="sub-ctg d-flex flex-column">
                         <div>
-                            <i class="fa fa-book" aria-hidden="true"></i><a href="../../HobbitHall/ViewProducts?name=price&order=asc&subcategory=<%= subcategory.getId()%>&category=<%= subcategory.getCategoryId().getId()%>"/><%= subcategory.getName()%></a>
+                            <i class="fa fa-book" aria-hidden="true"></i><a href="/HobbitHall/ViewProducts?name=price&order=asc&subcategory=<%= subcategory.getId()%>&category=<%= subcategory.getCategoryId().getId()%>"/><%= subcategory.getName()%></a>
                         </div>
                     </div>
                     <% }%>
                     <%} else {%>
-                    <div class="sub-ctg-none d-flex flex-column" style="border-bottom:none !important">
+                    <div class="sub-ctg-none d-flex flex-column" style="border-bottom:none !important;">
                         <div></div>
                     </div>
                     <%}%>
@@ -52,6 +52,9 @@
                 <div class="prod-title-container p-2">
 
                     <% if (!productSearch.isEmpty()) {%>
+                    <% for (Product product : productSearch) {
+                            countP++;
+                        }%>
                     <div class="prod-title">
                         Search Result for "<%= keyword%>"
                     </div>

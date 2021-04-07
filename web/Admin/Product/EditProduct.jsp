@@ -16,7 +16,7 @@ List<Subcategory> subCategoryList = (List<Subcategory>) request.getAttribute("su
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="icon" href="/HobbitHall/Admin/Share/images/logo-book.png"/>
         <link rel="stylesheet" href="/HobbitHall/Admin/Product/EditProduct.css"/>
-        <title>Hobbit Hall</title>
+        <title>Hobbit Hall Admin</title>
     </head>
     <body>
         <!--Header-->

@@ -13,10 +13,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!-- CSS only -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-        <link href="ProductCatolog.css" rel="stylesheet"/>
+        <link href="/HobbitHall/Client/Product/ProductCatolog.css" rel="stylesheet"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="icon" href="../Share/images/logoBook.png"/>
+        <link rel="icon" href="/HobbitHall/Client/Share/images/logoBook.png"/>
         <title>Hobbit Hall Book Store</title>
     </head>
     <!--Header-->
@@ -126,15 +126,15 @@
                 <div class="prod-container row p-2 d-flex">
                     <% for (Product product : prodList) {%>
                     <div class="book-body p-2 mb-3">
-                        <a href="../../LoadProductDesc?productid=<%= product.getId()%>&subcategory=<%= product.getSubcategoryId().getId()%>"><img class="d-block mx-auto" src="/HobbitHall/Client/Share/images/book/<%= product.getImage()%>" alt="book-image" style="max-width: 100%;width:220px;height:310px;"/></a>
+                        <a href="/HobbitHall/LoadProductDesc?productid=<%= product.getId()%>&subcategory=<%= product.getSubcategoryId().getId()%>"><img class="d-block mx-auto" src="/HobbitHall/Client/Share/images/book/<%= product.getImage()%>" alt="book-image" style="max-width: 100%;width:220px;height:310px;"/></a>
                         <div><%= product.getName()%></div>
                         <div class="pt-3">RM <%= product.getPrice()%></div>
                         <% if (product.getStockQuantity() <= 0) {%>
                         <li class="sold-out"> Sold Out</li>
-                        <a href="../../LoadProductDesc?productid=<%= product.getId()%>&subcategory=<%= product.getSubcategoryId().getId()%>"><button class="btn-cart" disabled>Add To Cart</button></a>
+                        <a href="/HobbitHall/LoadProductDesc?productid=<%= product.getId()%>&subcategory=<%= product.getSubcategoryId().getId()%>"><button class="btn-cart" disabled>Add To Cart</button></a>
                         <% } else {%>
                         <li class="in-stock"> In Stock</li>
-                        <a href="../../LoadProductDesc?productid=<%= product.getId()%>&subcategory=<%= product.getSubcategoryId().getId()%>"><button class="btn-cart">Add To Cart</button></a>
+                        <a href="/HobbitHall/LoadProductDesc?productid=<%= product.getId()%>&subcategory=<%= product.getSubcategoryId().getId()%>"><button class="btn-cart">Add To Cart</button></a>
                         <% }%>
                     </div>
                     <% }%>

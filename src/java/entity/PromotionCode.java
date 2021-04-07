@@ -41,7 +41,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "PromotionCode.findByDiscountRate", query = "SELECT p FROM PromotionCode p WHERE p.discountRate = :discountRate")
     , @NamedQuery(name = "PromotionCode.findByMinimumOrderAmount", query = "SELECT p FROM PromotionCode p WHERE p.minimumOrderAmount = :minimumOrderAmount")
     , @NamedQuery(name = "PromotionCode.findByStartDate", query = "SELECT p FROM PromotionCode p WHERE p.startDate = :startDate")
-    , @NamedQuery(name = "PromotionCode.findByExpiredDate", query = "SELECT p FROM PromotionCode p WHERE p.expiredDate = :expiredDate")})
+    , @NamedQuery(name = "PromotionCode.findByExpiredDate", query = "SELECT p FROM PromotionCode p WHERE p.expiredDate = :expiredDate")
+    , @NamedQuery(name = "PromotionCode.findByStatus", query = "SELECT p FROM PromotionCode p WHERE p.status = :status")})
 public class PromotionCode implements Serializable {
     
     private static final long serialVersionUID = 1L;
@@ -74,7 +75,7 @@ public class PromotionCode implements Serializable {
     @Size(min = 1, max = 15)
     @Column(name = "STATUS")
     private String status;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "promotionCode1")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "promotionCode")
     private List<PromotionUpdate> promotionUpdateList;
     @OneToMany(mappedBy = "promotionCode")
     private List<CustomerOrder> customerOrderList;
@@ -214,6 +215,10 @@ public class PromotionCode implements Serializable {
 
     public void setPromotionUpdateList(List<PromotionUpdate> promotionUpdateList) {
         this.promotionUpdateList = promotionUpdateList;
+    }
+    
+    public void addPromotionUpdateList(PromotionUpdate promotionUpdate){
+        this.promotionUpdateList.add(promotionUpdate);
     }
     
 }

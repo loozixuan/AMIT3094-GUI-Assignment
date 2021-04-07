@@ -72,7 +72,7 @@ public class Onlineadmin implements Serializable {
     @Size(min = 1, max = 10)
     @Column(name = "STATUS")
     private String status;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "onlineadmin")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "adminId")
     private List<PromotionUpdate> promotionUpdateList;
 
     public Onlineadmin() {

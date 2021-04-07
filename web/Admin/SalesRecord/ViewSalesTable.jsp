@@ -20,6 +20,7 @@
         List<CustomerOrder> customerOrderList = (List) request.getAttribute("customerOrderList");
         String date = (String) request.getAttribute("todayDate");
         String day = (String) request.getAttribute("dayOfWeek");
+        double total = 0.0;
     %>
     <body>
         <%@ include file="../Share/adminHeader.jsp" %>
@@ -44,16 +45,23 @@
                             <div class="d-flex align-items-center">
                                 <b>Date :</b>
                             </div>
-                            <div>
+                            <div class="d-flex">
                                 <input type="text" name="salesdate" value="<%= date%>" placeholder="yyyy-MM-dd" class="sales-date w-75 d-block mx-auto p-1"/>
+                                <button style="background:transparent;border:none;"><i class="fa fa-search" aria-hidden="true"></i></button>
                             </div>
                         </div>
                     </form>
+                    <% if (!customerOrderList.isEmpty()) {%>
+                    <% for (int i = 0; i < customerOrderList.size(); i++) {
+                            total += customerOrderList.get(i).getOrderTotal();
+
+                        }%>
+                    <%}%>
 
                     <table class="table table-sales table-striped">
                         <div class="table-sales-header d-flex justify-content-between p-3 align-items-center"style="margin-right: 15px;">
                             <div class=" ml-2" style="font-size:1.25rem">
-                                Sales
+                                Today Sales : RM <%= String.format("%.2f", total)%>
                             </div>
                             <div class="d-flex mr-5"> 
                                 <div class="d-flex align-items-center">
@@ -78,7 +86,7 @@
                         <tr>
                             <td><a class="orderlink" href="/HobbitHall/Sales?action=check&orderid=<%= customerOrderList.get(i).getId()%>"><%= customerOrderList.get(i).getId()%></a></td>
                                 <% if (customerOrderList.get(i).getCustomerId() != null) {%>
-                            <td><%= customerOrderList.get(i).getCustomerId()%></td>
+                            <td><%= customerOrderList.get(i).getCustomerId().getId()%></td>
                             <%} else {%>
                             <td>Guest</td>
                             <%}%>

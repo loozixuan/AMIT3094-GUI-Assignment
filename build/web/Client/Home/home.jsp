@@ -147,7 +147,6 @@
 
         </main>
 
-
         <%@ include file="../Share/footer.html" %>
 
     </body>
