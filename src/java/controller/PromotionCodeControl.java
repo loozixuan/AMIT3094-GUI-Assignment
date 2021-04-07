@@ -1,4 +1,3 @@
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -126,7 +125,7 @@ public class PromotionCodeControl extends HttpServlet {
     protected void doGet_displayPromotionCode(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Query query = em.createNamedQuery("PromotionCode.findByStatus");
-        query.setParameter("status", "active");
+        query.setParameter("status", "Active");
         List<PromotionCode> promotionCodeList = query.getResultList();
         request.setAttribute("PromotionCodeList", promotionCodeList);
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Admin/Promotion/Promotion.jsp");
@@ -189,8 +188,8 @@ public class PromotionCodeControl extends HttpServlet {
         }
 
         if (startedDate.trim().length() > 0 && expiredDate.trim().trim().length() > 0) {
-            Date date1 = new SimpleDateFormat("yyyy-mm-dd").parse(startedDate);
-            Date date2 = new SimpleDateFormat("yyyy-mm-dd").parse(expiredDate);
+            Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(startedDate);
+            Date date2 = new SimpleDateFormat("yyyy-MM-dd").parse(expiredDate);
             if (date1.compareTo(date2) > 0) {
                 String errorMessage = "The expired date must be on after the started date";
                 request.setAttribute("expiredDate_error", errorMessage);
@@ -291,8 +290,8 @@ public class PromotionCodeControl extends HttpServlet {
             }
 
             if (startedDate.trim().length() > 0 && expiredDate.trim().trim().length() > 0) {
-                Date date1 = new SimpleDateFormat("yyyy-mm-dd").parse(startedDate);
-                Date date2 = new SimpleDateFormat("yyyy-mm-dd").parse(expiredDate);
+                Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(startedDate);
+                Date date2 = new SimpleDateFormat("yyyy-MM-dd").parse(expiredDate);
                 if (date1.compareTo(date2) > 0) {
                     String errorMessage = "The expired date must be on after the started date";
                     request.setAttribute("expiredDate_error", errorMessage);

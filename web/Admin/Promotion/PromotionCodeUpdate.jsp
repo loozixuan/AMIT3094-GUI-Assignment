@@ -49,7 +49,7 @@
                                         <option value="0.01" <% if(discountRate_entered != null && discountRate_entered.equals("0.01")){ %>selected<% } %>>1%</option>
                                         <option value="0.03" <% if(discountRate_entered != null && discountRate_entered.equals("0.03")){ %>selected<% } %>>3%</option>
                                         <option value="0.05" <% if(discountRate_entered != null && discountRate_entered.equals("0.05")){ %>selected<% } %>>5%</option>
-                                        <option value="0.07" <% if(discountRate_entered != null && discountRate_entered.equals("0.08")){ %>selected<% } %>>8%</option>
+                                        <option value="0.07" <% if(discountRate_entered != null && discountRate_entered.equals("0.07")){ %>selected<% } %>>7%</option>
                                         <option value="0.1" <% if(discountRate_entered != null && discountRate_entered.equals("0.1")){ %>selected<% } %>>10%</option>
                                         <option value="0.15" <% if(discountRate_entered != null && discountRate_entered.equals("0.15")){ %>selected<% } %>>15%</option>
                                         <option value="0.2" <% if(discountRate_entered != null && discountRate_entered.equals("0.2")){ %>selected<% } %>>20%</option>                               
