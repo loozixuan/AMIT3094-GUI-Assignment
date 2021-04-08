@@ -24,10 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.UserTransaction;
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -143,7 +140,7 @@ public class ProcessEmployee extends HttpServlet {
         if (validation == true) {
 
             try {
-                // Decrypt password         
+                // Decrypt password
                 String encodedPassword = "";
                 MessageDigest digest = MessageDigest.getInstance("SHA-256");
                 byte[] hash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
@@ -178,6 +175,11 @@ public class ProcessEmployee extends HttpServlet {
 
                     String success_msg = "One " + roleAdmin + " successfuly added";
                     request.setAttribute("success_msg", success_msg);
+                    RequestDispatcher rd = request.getRequestDispatcher("Admin/Employee/AddEmployeeForm.jsp");
+                    rd.forward(request, response);
+                } else {
+                    String err_msg = "This email has been registered by other employee.";
+                    request.setAttribute("err_msg", err_msg);
                     RequestDispatcher rd = request.getRequestDispatcher("Admin/Employee/AddEmployeeForm.jsp");
                     rd.forward(request, response);
                 }
@@ -236,7 +238,7 @@ public class ProcessEmployee extends HttpServlet {
 
         if (validate == true) {
             try {
-                // Decode current password to match with database         
+                // Decode current password to match with database
                 String encodedCurrentPassword = "";
                 String encodedNewPassword = "";
                 MessageDigest digest = MessageDigest.getInstance("SHA-256");
