@@ -30,7 +30,7 @@
                         <h4><%=action%> Product</h4>
                         <hr style="margin:0px;border-bottom:1px solid lightgrey;border-top: none;"/>
                         <ul class="breadcrumb">
-                            <li><a href="#">Product</a></li>
+                            <li> <a href="/HobbitHall/ProcessProduct?action=view">Product</a></li>
                             <li><%=action%> Product</li>
                         </ul>
                     </div>

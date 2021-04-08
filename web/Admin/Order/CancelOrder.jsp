@@ -49,7 +49,7 @@
                         <h4>Order Details</h4>
                         <hr style="margin:0px;border-bottom:1px solid lightgrey;border-top: none;"/>
                         <ul class="breadcrumb">
-                            <li><a href="#">Customer Order</a></li>
+                            <li><a href="/HobbitHall/OrderManagement?action=view">Customer Order</a></li>
                             <li>Order Details</li>
                         </ul>
                     </div>

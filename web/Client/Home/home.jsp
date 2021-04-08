@@ -1,3 +1,9 @@
+<%-- 
+    Document   : home
+    Created on : Mar 7, 2021, 1:02:28 PM
+    Author     : Chrisann Lee
+--%>
+
 <%@page import="entity.Product,java.util.List"%>
 <% List<Product> proSelfList = (List<Product>) request.getAttribute("productSelfList");
     List<Product> proChildList = (List<Product>) request.getAttribute("productChildList");%> 

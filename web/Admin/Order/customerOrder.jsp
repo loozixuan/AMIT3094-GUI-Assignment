@@ -66,6 +66,7 @@
                             <%
                                 SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
                                 String valid="";
+                                String cancelValid="";
                                 for (int i = 0; i < orderList.size(); i++) {
                                     CustomerOrder order = orderList.get(i);
                                     String orderStatus;
@@ -78,6 +79,7 @@
                                     } else if (order.getStatus().equalsIgnoreCase("Shipping")) {
                                         orderStatus = order.getStatus();
                                         color = "green";
+                                        cancelValid="disabled";
                                     } else {
                                         color = "red";
                                         orderStatus = order.getStatus();
@@ -90,9 +92,10 @@
                                 <td><a href="/HobbitHall/OrderManagement?action=viewSingleOrder&id=<%=order.getId()%>"><%=order.getId()%></a></td>
                                 <td><%=formatter.format(dateString)%></td><td><%=order.getName()%></td>
                                 <td><%=order.getContactNumber()%></td><td style='color:<%=color%>'><%=orderStatus%></td>
-                                <td><a href="/HobbitHall/OrderManagement?action=ship&id=<%=order.getId()%>"><input type='submit' name='submit' value='Shipping' class="shipping-button" <%=valid %> ></a></td>
-                                <td><a href="/HobbitHall/OrderManagement?action=cancel&id=<%=order.getId()%>" ><i class='fas fa-trash-alt'></i></a></td>
-                                        <% valid="";}%>
+                                <td><a href="/HobbitHall/OrderManagement?action=ship&id=<%=order.getId()%>"><input type='submit' name='shipping' value='Shipping' class="shipping-button" <%=valid %> ></a></td>
+                                <td><a href="/HobbitHall/OrderManagement?action=cancel&id=<%=order.getId()%>" ><input type='submit' name='cancel' value='Cancel' class="shipping-button" <%=cancelValid %> style="background-color:red"></a></td>
+                                        <% valid="";
+                                        cancelValid="";}%>
                         </table>
                     </div>
                     <%} else { %>
