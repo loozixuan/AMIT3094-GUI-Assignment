@@ -13,6 +13,7 @@
             <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/src/java/entity/OrderDetail.java</file>
             <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/src/java/entity/Onlineadmin.java</file>
             <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Admin/Share/adminSidebar.jsp</file>
+            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/src/java/controller/UpdateProduct.java</file>
             <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/src/java/controller/Sales.java</file>
             <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Client/Login/ChangePassword.jsp</file>
             <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Client/User/userProfile.css</file>
@@ -22,6 +23,8 @@
             <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Client/Login/login.css</file>
             <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/src/java/controller/PromotionCodeControl.java</file>
             <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Client/Login/login.jsp</file>
+            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/src/java/controller/ForgotPassword.java</file>
+            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/src/java/controller/InsertProduct.java</file>
             <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/src/java/entity/Subcategory.java</file>
             <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/src/java/entity/Category.java</file>
             <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Client/User/userProfile.jsp</file>
@@ -30,6 +33,7 @@
             <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Admin/Order/customerOrder.css</file>
             <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/src/java/entity/Product.java</file>
             <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/src/java/controller/Login.java</file>
+            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/src/java/controller/Home.java</file>
             <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/src/java/entity/CustomerOrder.java</file>
             <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/src/java/controller/CustomerOrderControl.java</file>
             <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Admin/Order/orderDetails.jsp</file>
@@ -38,6 +42,7 @@
             <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Admin/Order/orderDetails.css</file>
             <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Client/Share/base.css</file>
             <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Admin/Product/Product.jsp</file>
+            <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/src/java/controller/ProcessEmployee.java</file>
             <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/src/java/controller/ProcessProduct.java</file>
             <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/web/Admin/Product/ViewOrDeleteProduct.jsp</file>
             <file>file:/C:/Users/Chrisann%20Lee/Desktop/HobbitHall/src/java/controller/UpdateUserProfile.java</file>

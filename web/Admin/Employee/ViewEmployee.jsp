@@ -12,7 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="ViewEmployee.css" rel="stylesheet"/>
         <link href="/HobbitHall/Admin/Employee/ViewEmployee.css" rel="stylesheet"/>
-        <link rel="icon" href="../Share/images/logo-book.png"/>
+        <link rel="icon" href="/HobbitHall/Share/images/logo-book.png"/>
         <title>Hobbit Hall Book Store</title>
     </head>
     <%
@@ -41,13 +41,24 @@
                     <table class="table table-emp table-striped">
                         <div class="table-emp-header p-3 d-flex justify-content-between align-items-center">
                             <div>Employee <b>Information</b></div>
-                            <div class="btn-add-emp" style="margin-right: 15px;">
-                                <a href="AddEmployeeForm.jsp">
-                                    <button class="w-100"> 
-                                        <i class="fa fa-plus-circle p-1" aria-hidden="true"></i> 
-                                        Add New Employee
-                                    </button>
-                                </a>
+                            <div class="d-flex justify-content-between" style="margin-right: 15px;">
+                                <div class="btn-add-emp" style="margin-right: 15px;">
+                                    <a href="AddEmployeeForm.jsp">
+                                        <button class="w-100"> 
+                                            <i class="fa fa-plus-circle p-1" aria-hidden="true"></i> 
+                                            Add New Employee
+                                        </button>
+                                    </a>
+
+                                </div>
+                                <div class="btn-add-emp">
+                                    <a href="/HobbitHall/ProcessEmployee?action=view">
+                                        <button class="w-100 ml-1"> 
+                                            <i class="fa fa-eye p-1" aria-hidden="true"></i>
+                                            View Inactive Employee
+                                        </button>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                         <thead>

@@ -10,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="/HobbitHall/Admin/Employee/UpdateEmployeeForm.css" rel="stylesheet"/>
-        <link rel="icon" href="../Share/images/logo-book.png"/>
+        <link rel="icon" href="/HobbitHall/Share/images/logo-book.png"/>
         <title>Hobbit Hall Book Store</title>
     </head>
     <body>
@@ -18,8 +18,34 @@
         <%@ include file="../Share/adminHeader.jsp" %>
         <!--Sidebar-->
         <%@ include file="../Share/adminSidebar.jsp" %>
-        <% String emailSelected = (String) request.getParameter("email");
+        <%
+            String emailSelected = (String) request.getParameter("email");
             String roleSelected = (String) request.getParameter("roles");
+            String currentpassword = (String) request.getAttribute("currentpassword");
+            String newpassword = (String) request.getAttribute("newpassword");
+            String cpassword = (String) request.getAttribute("cpassword");
+            String name = (String) request.getAttribute("name");
+
+            if (name == null) {
+                name = "";
+            } else {
+                name = name;
+            }
+            if (currentpassword == null) {
+                currentpassword = "";
+            } else {
+                currentpassword = currentpassword;
+            }
+            if (newpassword == null) {
+                newpassword = "";
+            } else {
+                newpassword = newpassword;
+            }
+            if (cpassword == null) {
+                cpassword = "";
+            } else {
+                cpassword = cpassword;
+            }
         %>
         <!--Content-->
         <div class="content">
@@ -71,23 +97,23 @@
                         </div>
                         <div class="form-group w-50">
                             <label for="name">Name :</label>
-                            <input type="text" class="form-control" id="name" name="newname">
+                            <input type="text" class="form-control" id="name" value="<%=name%>" name="newname" >
                         </div>
                         <div class="form-group w-50">
                             <label for="cpwd">Current Password :</label>
-                            <input type="password" class="form-control" id="cpwd" name="currentpassword">
+                            <input type="password" class="form-control" id="cpwd" value="<%=currentpassword%>" name="currentpassword">
                         </div>
 
                         <div class="form-group w-50">
                             <label for="pwd">New Password :</label>
-                            <input type="password" class="form-control" id="pwd" name="password">
+                            <input type="password" class="form-control" id="pwd" value="<%=newpassword%>" name="password">
                             <small id="passwordGuide" class="form-text text-muted">
                                 *Password should should consists of 6 characters including 1 digit and 1 alphabet
                             </small>
                         </div>
                         <div class="form-group w-50">
                             <label for="pwd">Confirmed Password :</label>
-                            <input type="password" class="form-control" id="pwd" name="cpassword">
+                            <input type="password" class="form-control" id="pwd" value="<%=cpassword%>" name="cpassword">
                         </div>
 
                         <div>

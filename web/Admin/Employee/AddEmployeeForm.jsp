@@ -11,7 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="/HobbitHall/Admin/Employee/AddEmployeeForm.css" rel="stylesheet"/>
         <link href="/HobbitHall/Admin/Share/adminPanel.css" rel="stylesheet"/>
-        <link rel="icon" href="../Share/images/logo-book.png"/>
+        <link rel="icon" href="/HobbitHall/Share/images/logo-book.png"/>
         <title>Hobbit Hall Book Store</title>
     </head>
     <body>
