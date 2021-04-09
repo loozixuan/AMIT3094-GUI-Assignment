@@ -158,6 +158,11 @@ public class PaymentControl extends HttpServlet {
                 inputValidation++;
             }
         }
+        
+        PromotionCode promotionCode = null;
+        if (promotion_code != null) {
+            promotionCode = em.find(PromotionCode.class, promotion_code);
+        }
 
         if (inputValidation > 0) {
             request.setAttribute("email_entered", email);
@@ -169,6 +174,7 @@ public class PaymentControl extends HttpServlet {
             request.setAttribute("card_number_entered", card_number);
             request.setAttribute("card_expiration_entered", card_expiration);
             request.setAttribute("card_cvv_entered", card_cvv);
+            request.setAttribute("promotion_code", promotionCode);
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Client/Payment/Payment.jsp");
             dispatcher.forward(request, response);
         } else {
@@ -195,11 +201,7 @@ public class PaymentControl extends HttpServlet {
             }
             customerOrder.setOrderDetailList(orderDetailList);
 
-            PromotionCode promotionCode;
-            if (promotion_code != null) {
-                promotionCode = em.find(PromotionCode.class, promotion_code);
-                customerOrder.setPromotionCode(promotionCode);
-            }
+            customerOrder.setPromotionCode(promotionCode);
 
             double paymentAmount = customerOrder.getOrderTotal();
 
