@@ -1,7 +1,7 @@
 <%-- 
     Document   : PromotionCodeUpdate
     Created on : Mar 19, 2021, 12:27:06 AM
-    Author     : user
+    Author     : Chow Sing Hong
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

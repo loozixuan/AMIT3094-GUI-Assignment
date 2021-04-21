@@ -31,7 +31,7 @@
 
                     <% String name = customer.getName();
                         if (name == null) {%>
-                    <a href="<%=request.getContextPath()%>/Client/Login/login.jsp"><div>Login </div></a><div>/ Signup</div>
+                        <a href="<%=request.getContextPath()%>/Client/Login/login.jsp"><div>Login </div></a><a href="/HobbitHall/Client/Register/register.jsp"><div>/ Signup</div></a>
                     <%} else { %>
                     <div>Hello ${customer.name}</div>
                     <% }%>
@@ -40,10 +40,12 @@
                     <a href="<%=request.getContextPath()%>/Client/User/userProfile.jsp"> <p >My Account<p></a>
                 </div>
             </div>
-            <div class="col-1-2" id="cart">
-                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                <div id="cartLabel">Cart</div>
-            </div>
+            <a href="/HobbitHall/ShoppingCart?action=display">
+                <div class="col-1-2" id="cart">
+                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                    <div id="cartLabel">Cart</div>
+                </div>
+            </a>
         </div>
     </div>
 

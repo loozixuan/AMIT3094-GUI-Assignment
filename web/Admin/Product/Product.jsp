@@ -37,7 +37,7 @@
                         <h2>Product</h2>
                         <hr style="margin:0px;border-bottom:1px solid lightgrey;border-top: none;"/>
                         <ul class="breadcrumb">
-                            <li><a href="#">Product</a></li>
+                            <li> <a href="/HobbitHall/ProcessProduct?action=view" class="dropdown-btn">Product</a></li>
 
                         </ul>
                     </div>

@@ -229,7 +229,7 @@ public class ProcessProduct extends HttpServlet {
 
             try {
                 Query query = em.createNativeQuery("SELECT * FROM PRODUCT WHERE ID LIKE'"
-                        + search + "%' OR NAME LIKE'" + search + "%' OR AUTHOR_NAME LIKE'" + search + "%'", Product.class);
+                        + search + "' OR NAME LIKE'" + search + "%' OR AUTHOR_NAME LIKE'" + search + "%' AND STATUS='Active'", Product.class);
                 List<entity.Product> productList = query.getResultList();
                 request.setAttribute("productList", productList);
                 RequestDispatcher rd = request.getRequestDispatcher("Admin/Product/Product.jsp");

@@ -25,7 +25,7 @@ import javax.transaction.UserTransaction;
 
 /**
  *
- * @author user
+ * @author Chow Sing Hong
  */
 @WebServlet(name = "ShoppingCart", urlPatterns = {"/ShoppingCart"})
 public class ShoppingCart extends HttpServlet {
@@ -68,13 +68,7 @@ public class ShoppingCart extends HttpServlet {
             throws ServletException, IOException {
             String action = request.getParameter("action");
             if(action.equalsIgnoreCase("display")){
-                try{
-                    doGet_display(request, response);
-                }catch(NumberFormatException ex){
-                    request.setAttribute("cartItemOutofStockMessage", ex.getMessage());
-                    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/HobbitHall/Client/Order/ShoppingCart.jsp");
-                    dispatcher.forward(request, response);
-                }
+                doGet_display(request, response);
             }else if(action.equalsIgnoreCase("add")){
                 try{
                     doGet_Add(request, response);
@@ -91,6 +85,7 @@ public class ShoppingCart extends HttpServlet {
                 }
             }else if(action.equalsIgnoreCase("remove")){
                 doGet_remove(request, response);
+
             }
     }
     
@@ -156,34 +151,25 @@ public class ShoppingCart extends HttpServlet {
                 }
             }
         }
-        response.sendRedirect("/HobbitHall/Client/Order/ShoppingCart.jsp");
+        CheckStockOfCartItem(request, response, cartItemList);
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Client/Order/ShoppingCart.jsp");
+        dispatcher.forward(request, response);  
     }
     
     protected void doGet_display(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        ArrayList<CartItem> cartItemList;
-//        HttpSession session = request.getSession();
-//        Customer customer = (Customer)session.getAttribute("customer");
-//        if(customer.getId() == null){ 
-//            cartItemList = (ArrayList<CartItem>)session.getAttribute("guest" + "_cart"); 
-//        }else{
-//            cartItemList = (ArrayList<CartItem>)session.getAttribute(customer.getId() + "_cart"); 
-//        }
-//        
-//        StringBuilder cartItemOutofStockMessage = new StringBuilder("");
-//        for (int i = 0; i < cartItemList.size(); i++) {
-//            Product product = em.find(Product.class, cartItemList.get(i).getProduct().getId());
-//            if(product.getStockQuantity() == 0){
-//                cartItemOutofStockMessage.append(product.getName() + " is now out of stock. Please remove it.\n");
-//            }else if(cartItemList.get(i).getQuantity() > product.getStockQuantity()){
-//                cartItemOutofStockMessage.append(product.getName() + "only left" + product.getStockQuantity() + ". Please reduce the quantity in your cart.\n");
-//            }
-//        }
-//        
-//        if(cartItemOutofStockMessage.toString().length() <= 0){
-//            throw new NumberFormatException(cartItemOutofStockMessage.toString());
-//        }
-        response.sendRedirect("/HobbitHall/Client/Order/ShoppingCart.jsp");
+        ArrayList<CartItem> cartItemList;
+        HttpSession session = request.getSession();
+        Customer customer = (Customer)session.getAttribute("customer");
+        if(customer.getId() == null){ 
+            cartItemList = (ArrayList<CartItem>)session.getAttribute("guest" + "_cart"); 
+        }else{
+            cartItemList = (ArrayList<CartItem>)session.getAttribute(customer.getId() + "_cart"); 
+        }
+        CheckStockOfCartItem(request, response, cartItemList);
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Client/Order/ShoppingCart.jsp");
+        dispatcher.forward(request, response);      
+
     }
     
     protected void doGet_updateQuantity(HttpServletRequest request, HttpServletResponse response)
@@ -227,7 +213,9 @@ public class ShoppingCart extends HttpServlet {
         }else{
             session.setAttribute(customer.getId() + "_cart", cartItemList);
         }
-        response.sendRedirect("/HobbitHall/Client/Order/ShoppingCart.jsp");
+        CheckStockOfCartItem(request, response, cartItemList);
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Client/Order/ShoppingCart.jsp");
+        dispatcher.forward(request, response);  
     }
     
     protected void doGet_remove(HttpServletRequest request, HttpServletResponse response)
@@ -251,7 +239,27 @@ public class ShoppingCart extends HttpServlet {
         }else{
             session.setAttribute(customer.getId() + "_cart", cartItemList);
         }
-        response.sendRedirect("/HobbitHall/Client/Order/ShoppingCart.jsp");
+        CheckStockOfCartItem(request, response, cartItemList);
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Client/Order/ShoppingCart.jsp");
+        dispatcher.forward(request, response);  
+    }
+    
+    protected void CheckStockOfCartItem(HttpServletRequest request, HttpServletResponse response, ArrayList<CartItem> cartItemList)
+            throws ServletException, IOException {
+        if(cartItemList != null){
+            ArrayList<String> cartItemOutofStockMessageList = new ArrayList<>();
+            for (int i = 0; i < cartItemList.size(); i++) {
+                Product product = em.find(Product.class, cartItemList.get(i).getProduct().getId());
+                if(product.getStockQuantity() == 0){
+                    cartItemOutofStockMessageList.add(product.getName() + " is now out of stock. Please remove it.\n");
+                }else if(cartItemList.get(i).getQuantity() > product.getStockQuantity()){
+                    cartItemOutofStockMessageList.add(product.getName() + " only left " + product.getStockQuantity() + ". Please reduce the quantity in your cart.\n");
+                }
+            }
+            if(cartItemOutofStockMessageList.size() > 0){
+                request.setAttribute("cartItemOutofStockMessageList", cartItemOutofStockMessageList);
+            }
+        }   
     }
     
 

@@ -7,6 +7,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" href="images/logo-book.png"/>
         <link href="/HobbitHall/Admin/AdminLogin/adminLogin.css" rel="stylesheet">
+        <link rel="icon" href="/HobbitHall/Admin/Share/images/logo-book.png"/>
+        <title>Hobbit Hall Admin</title>
     </head>
 
     <body style="background-image: url('/HobbitHall/Admin/Share/images/loginbg.jpeg');

@@ -84,6 +84,7 @@ div.col-1-2{
 #cart{
     display:flex;
     padding-top: 18px;
+    padding-bottom: 18px;
 }
 
 #cartLabel{

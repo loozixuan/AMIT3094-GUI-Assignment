@@ -1,7 +1,7 @@
 <%-- 
     Document   : Payment
     Created on : Mar 12, 2021, 5:20:27 AM
-    Author     : user
+    Author     : Chow Sing Hong
 --%>
 
 <%@page import="entity.CustomerOrder"%>
@@ -15,7 +15,8 @@
         <link href="/HobbitHall/Client/Payment/Payment.css" rel="stylesheet"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="/HobbitHall/Client/Payment/Payment.js"></script>
-        <title>JSP Page</title>
+          <link rel="icon" href="/HobbitHall/Client/Share/images/logoBook.png"/>
+         <title>Hobbit Hall</title>
     </head>
     <%@include file="../Share/header.jsp" %>
     <% 
@@ -117,7 +118,7 @@
                         <input type="text" value="${email_entered}" class="form-control" name="email">
                         <% }else{ %>
                         <p>${customer.email}</p>
-                        <input type="hidden" class="form-control" name="email" value="${email_entered}">
+                        <input type="hidden" class="form-control" name="email" value="${customer.email}">
                         <% } %>
                     </div>
                     <p class="text-danger text-start mb-0">${email_error}</p>

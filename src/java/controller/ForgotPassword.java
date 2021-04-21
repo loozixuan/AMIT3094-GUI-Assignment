@@ -93,7 +93,7 @@ public class ForgotPassword extends HttpServlet {
                 response.sendRedirect("Client/Login/SendedEmail.jsp");
 
             } else {
-                String message = "Please enter a valid emial";
+                String message = "Please enter a valid email";
                 request.setAttribute("errorMessage", message);
                 RequestDispatcher rd = request.getRequestDispatcher("Client/Login/ForgotPassword.jsp");
                 rd.include(request, response);

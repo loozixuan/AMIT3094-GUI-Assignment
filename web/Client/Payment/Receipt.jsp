@@ -1,7 +1,7 @@
 <%-- 
     Document   : Receipt
     Created on : Mar 16, 2021, 12:12:58 AM
-    Author     : user
+    Author     : Chow Sing Hong
 --%>
 
 <%@page import="entity.CustomerOrder"%>

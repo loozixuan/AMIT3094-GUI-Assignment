@@ -1,7 +1,7 @@
 <%-- 
     Document   : OrderDetails
     Created on : Mar 15, 2021, 11:27:21 PM
-    Author     : user
+    Author     : Chow Sing Hong
 --%>
 
 <%@page import="entity.CustomerOrder"%>
@@ -13,7 +13,6 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
         <link href="/HobbitHall/Client/Order/OrderDetails.css" rel="stylesheet"/>
          <title>Hobbit Hall</title>
-           <link rel="icon" href="/HobbitHall/Client/Share/images/logoBook.png"/>
     </head>
     <body>
         <%@include file="../Share/header.jsp" %>
@@ -56,14 +55,10 @@
                     <p class="col-5 text-end mt-2">RM <%= String.format("%.2f", customerOrder.getOrderTotal()) %></p>
                 </div>
                 <div class="row bg-white text-dark justify-content-center">
-                    <% if(customerOrder.getStatus().equalsIgnoreCase("Order Confirmed") ){ %>
-                    <p class="col-5 btn btn-secondary text-white my-3">Ordered Confirmed</p>
-                    <% }else if (customerOrder.getStatus().equalsIgnoreCase("Delivery")){ %>
+                    <% if(customerOrder.getStatus().equalsIgnoreCase("Shipping")){ %>
                     <a href="/HobbitHall/CustomerOrderControl?action=updateStatus&orderID=<%= customerOrder.getId() %>" class="col-5 btn btn-danger my-3">Receive</a>
-                    <% }else if (customerOrder.getStatus().equalsIgnoreCase("Received")) { %>
-                    <p class="col-5 btn btn-secondary text-white my-3">Received</p>
                     <% }else{ %>
-                    <p class="col-5 btn btn-secondary text-white my-3">Cancelled</p>
+                    <p class="col-5 btn btn-secondary text-white my-3"><%= customerOrder.getStatus() %></p>
                     <% } %>
                 </div>
             </div>

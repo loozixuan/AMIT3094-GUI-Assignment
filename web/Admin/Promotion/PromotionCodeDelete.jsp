@@ -1,7 +1,7 @@
 <%-- 
     Document   : PromotionCodeDelete
     Created on : Mar 19, 2021, 12:38:43 AM
-    Author     : user
+    Author     : Chow Sing Hong
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

@@ -30,7 +30,7 @@ import javax.transaction.UserTransaction;
 
 /**
  *
- * @author user
+ * @author Chow Sing Hong
  */
 @WebServlet(name = "PromotionCodeControl", urlPatterns = {"/PromotionCodeControl"})
 public class PromotionCodeControl extends HttpServlet {
@@ -148,11 +148,17 @@ public class PromotionCodeControl extends HttpServlet {
             request.setAttribute("promotionCode_error", errorMessage);
             error_validation++;
         } else {
-            PromotionCode code = em.find(PromotionCode.class, promotionCode);
-            if (code != null) {
-                String errorMessage = "This promotion code has existed";
+            if(promotionCode.length() > 12){
+                String errorMessage = "Please do not enter more than 12 characters for promotion code";
                 request.setAttribute("promotionCode_error", errorMessage);
                 error_validation++;
+            }else{
+                PromotionCode code = em.find(PromotionCode.class, promotionCode);
+                if (code != null) {
+                    String errorMessage = "This promotion code has existed";
+                    request.setAttribute("promotionCode_error", errorMessage);
+                    error_validation++;
+                }
             }
         }
 

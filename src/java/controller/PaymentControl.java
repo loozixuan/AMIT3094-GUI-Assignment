@@ -26,7 +26,7 @@ import javax.transaction.UserTransaction;
 
 /**
  *
- * @author user
+ * @author Chow Sing Hong
  */
 @WebServlet(name = "PaymentControl", urlPatterns = {"/PaymentControl"})
 public class PaymentControl extends HttpServlet {
@@ -98,11 +98,21 @@ public class PaymentControl extends HttpServlet {
         if (receiver_name.trim().length() <= 0) {
             request.setAttribute("receiver_name_error", "Please enter your receiver name");
             inputValidation++;
+        }else{
+            if(receiver_name.length() > 50){
+                request.setAttribute("receiver_name_error", "Please do not enter more than 50 characters for your name");
+                inputValidation++;
+            }
         }
 
         if (address.trim().length() <= 0) {
             request.setAttribute("address_error", "Please enter your address");
             inputValidation++;
+        }else{
+            if(address.length() > 250){
+                request.setAttribute("address_error", "Please do not enter your more than 250 characters for your address");
+                inputValidation++;
+            }
         }
 
         if (contact_number.trim().length() <= 0) {

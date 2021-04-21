@@ -27,7 +27,7 @@ import javax.transaction.UserTransaction;
 
 /**
  *
- * @author user
+ * @author Chow Sing Hong
  */
 @WebServlet(name = "CustomerOrderControl", urlPatterns = {"/CustomerOrderControl"})
 public class CustomerOrderControl extends HttpServlet {

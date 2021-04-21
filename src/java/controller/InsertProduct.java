@@ -118,7 +118,7 @@ public class InsertProduct extends HttpServlet {
 
                         //    fileItem.write(new File("E:\\uploaded_files\\" + fileItem.getName()));
                         file_name2 = fileItem.getName();
-                        fileItem.write(new File("C:\\Users\\Chrisann Lee\\Desktop\\HobbitHall\\web\\Client\\Share\\images\\book\\" + file_name2));
+                        fileItem.write(new File("C:\\Users\\Chrisann Lee\\Downloads\\HobbitHall\\web\\Client\\Share\\images\\book\\" + file_name2));
                     }
                 }
             }

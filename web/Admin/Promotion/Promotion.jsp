@@ -1,7 +1,7 @@
 <%-- 
     Document   : Promotion.jsp
     Created on : Mar 18, 2021, 9:45:57 PM
-    Author     : user
+    Author     : Chow Sing Hong
 --%>
 
 <%@page import="entity.PromotionCode, java.util.List"%>

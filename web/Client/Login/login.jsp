@@ -47,7 +47,7 @@
 
             <div style="margin-top:20px;margin-bottom:10px;">
                 <div class="rowQuestion">
-                    <p class="question">New customer? </p><p class="link"> Create your account</p> 
+                    <p class="question">New customer? </p><a href="/HobbitHall/Client/Register/register.jsp"><p class="link"> Create your account</p></a> 
                 </div>
                 <div class="rowQuestion">
                     <p class="question">Lost password? </p><a href="/HobbitHall/ForgotPassword?action=1"><p class="link"> Recover password</p></a>

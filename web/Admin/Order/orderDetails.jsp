@@ -60,11 +60,11 @@
                                 <h5>Order ID - <%=order.getId()%></h5>
                                 <div class="banner">Customer Details</div>
                                 <table>
-<!--                                    <tr><td>Customer ID   :</td><td><input  type="text" value="<%=custID%>" name="custID"></td></tr>-->
-                                    <tr><td>Customer Name :</td><td><input type="text" value="<%=order.getName()%>"  name="name"></td></tr>
-                                    <tr><td>Email :</td><td><input type="text" value="<%=order.getEmail()%>" name="email"></td></tr>
-                                    <tr><td>Phone Number :</td><td><input type="text" value="<%=order.getContactNumber()%>" name="phone"></td></tr>
-                                    <tr><td>Address :</td><td><input type="text" value="<%=order.getAddress()%>" name="address"></td></tr>
+
+                                    <tr><td>Customer Name :</td><td><input type="text" value="<%=order.getName()%>"  name="name" readonly ></td></tr>
+                                    <tr><td>Email :</td><td><input type="text" value="<%=order.getEmail()%>" name="email" readonly></td></tr>
+                                    <tr><td>Phone Number :</td><td><input type="text" value="<%=order.getContactNumber()%>" name="phone" readonly></td></tr>
+                                    <tr><td>Address :</td><td><input type="text" value="<%=order.getAddress()%>" name="address" readonly></td></tr>
                                 </table>
                                 <div class="banner">Order Details</div>  
                                 <table>

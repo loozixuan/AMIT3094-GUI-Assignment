@@ -1,7 +1,7 @@
 <%-- 
     Document   : OrderHistory
     Created on : Mar 15, 2021, 11:26:39 PM
-    Author     : user
+    Author     : Chow Sing Hong
 --%>
 
 <%@page import="entity.CustomerOrder"%>
@@ -12,8 +12,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
         <link href="/HobbitHall/Client/Share/userSidebar.css" rel="stylesheet"/>
-         <title>Hobbit Hall</title>
-           <link rel="icon" href="/HobbitHall/Client/Share/images/logoBook.png"/>
+        <title>Hobbit Hall</title>
+          <link rel="icon" href="/HobbitHall/Client/Share/images/logoBook.png"/>
         <style>
             .col-3-4{
                 margin-top:50px;
@@ -44,10 +44,10 @@
             <h1>My Account</h1>
             <table>
                 <tr>
-                    <td> <a href="<%=request.getContextPath()%>/Client/User/userProfile.jsp"><i class="fa fa-user" aria-hidden="true" style="color:black"></i>Account Details</a></td>
+                    <td style="background-color: white;border-left: 3px solid blue; "><a href="/HobbitHall/Client/User/userProfile.jsp" style="color:black;"><i class="fa fa-user" aria-hidden="true" style="color:black"></i>Account Details</a></td>
                 </tr>
                 <tr>
-                    <td style="background-color: white;border-left: 3px solid blue "><a href="/HobbitHall/CustomerOrderControl?action=orderHistory" style="color:black"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>Orders</a></td>
+                    <td><a href="/HobbitHall/CustomerOrderControl?action=orderHistory"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>Orders</a></td>
                 </tr>
                 <tr>
                     <form action="/HobbitHall/Logout" action="get">
